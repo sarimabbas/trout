@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Capy-37ev59.us-east-1.xata.sh/db/trout",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
