@@ -7,21 +7,22 @@ import type {
 } from "@xata.io/client";
 
 const tables = [
-  { name: "organizations", columns: [{ name: "clerkId", type: "string" }] },
-  { name: "sources", columns: [{ name: "name", type: "string" }] },
+  {
+    name: "sources",
+    columns: [
+      { name: "name", type: "string" },
+      { name: "clerkOrgOrUserId", type: "string" },
+    ],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;
 export type InferredTypes = SchemaInference<SchemaTables>;
 
-export type Organizations = InferredTypes["organizations"];
-export type OrganizationsRecord = Organizations & XataRecord;
-
 export type Sources = InferredTypes["sources"];
 export type SourcesRecord = Sources & XataRecord;
 
 export type DatabaseSchema = {
-  organizations: OrganizationsRecord;
   sources: SourcesRecord;
 };
 
