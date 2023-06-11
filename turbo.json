@@ -4,12 +4,16 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "build/**"]
     },
     "lint": {},
     "dev": {
+      "dependsOn": ["^xata:generate"],
       "cache": false,
       "persistent": true
+    },
+    "xata:generate": {
+      "cache": false
     }
   }
 }
