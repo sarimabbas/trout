@@ -7,8 +7,6 @@ export default async function Home() {
   console.log({ orgId, userId });
   const lookupId = orgId ?? userId;
 
-  console.log({ lookupId });
-
   const sources = await xata.db.sources
     .filter({
       clerkOrgOrUserId: lookupId,
