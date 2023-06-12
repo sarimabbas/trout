@@ -1,6 +1,7 @@
 "use client";
 
 import { DataTable, ColumnDef } from "@sarim.garden/ui/client";
+import { SourcesRecord, SelectedPick } from "@trout/xata";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -35,7 +36,12 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export const SourceList = () => {
+interface SourceListProps {
+  sources: Readonly<SelectedPick<SourcesRecord, ["*"]>>[];
+}
+
+export const SourceList = (props: SourceListProps) => {
+  const { sources } = props;
   return <DataTable columns={columns} data={data} />;
 };
 
