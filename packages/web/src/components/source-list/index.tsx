@@ -3,36 +3,34 @@
 import { DataTable, ColumnDef } from "@sarim.garden/ui/client";
 import { SourcesRecord, SelectedPick } from "@trout/xata";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
-  id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
-};
+type Source = Readonly<SelectedPick<SourcesRecord, ["*"]>>;
 
-const data: Payment[] = [
+export const columns: ColumnDef<Source>[] = [
   {
-    id: "1",
-    amount: 100,
-    status: "pending",
-    email: "eemail",
-  },
-];
-
-export const columns: ColumnDef<Payment>[] = [
-  {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "id",
+    header: "ID",
   },
   {
-    accessorKey: "email",
-    header: "Email",
+    accessorKey: "name",
+    header: "Name",
   },
   {
-    accessorKey: "amount",
-    header: "Amount",
+    accessorKey: "xata.createdAt",
+    header: "Created at",
+    id: "createdAt",
+    accessorFn: (source) => {
+      // human readable date time
+      return new Date(source.xata.createdAt).toLocaleDateString();
+    },
+  },
+  {
+    accessorKey: "xata.updatedAt",
+    header: "Updated at",
+    id: "updatedAt",
+    accessorFn: (source) => {
+      // human readable date time
+      return new Date(source.xata.updatedAt).toLocaleDateString();
+    },
   },
 ];
 
@@ -42,7 +40,10 @@ interface SourceListProps {
 
 export const SourceList = (props: SourceListProps) => {
   const { sources } = props;
-  return <DataTable columns={columns} data={data} />;
+
+  console.log({ sources: JSON.stringify(sources, null, 2) });
+
+  return <DataTable columns={columns} data={sources} />;
 };
 
 export const SourceListItem = () => {

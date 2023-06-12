@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn(inter.className, "mx-auto container")}>
+        <body className={cn(inter.className, "mx-auto container p-4 md:p-12")}>
           {children}
           <Analytics />
         </body>
