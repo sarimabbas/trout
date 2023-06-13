@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTable, ColumnDef } from "@sarim.garden/ui/client";
+import { DataTable, ColumnDef, Button } from "@sarim.garden/ui/client";
 import { SourcesRecord, SelectedPick } from "@trout/xata";
 
 type Source = Readonly<SelectedPick<SourcesRecord, ["*"]>>;
@@ -43,7 +43,12 @@ export const SourceList = (props: SourceListProps) => {
 
   console.log({ sources: JSON.stringify(sources, null, 2) });
 
-  return <DataTable columns={columns} data={sources} />;
+  return (
+    <div className="flex flex-col gap-8">
+      <Button className="self-end">Create new</Button>
+      <DataTable columns={columns} data={sources} />
+    </div>
+  );
 };
 
 export const SourceListItem = () => {

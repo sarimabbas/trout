@@ -23,6 +23,7 @@ export default async function Home() {
         </div>
         <UserButton />
       </div>
+      <hr />
       <SourceList sources={sources} />
     </div>
   );
