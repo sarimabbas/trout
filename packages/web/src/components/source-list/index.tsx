@@ -56,7 +56,9 @@ export const SourceList = (props: SourceListProps) => {
     <div className="flex flex-col gap-8">
       <Dialog>
         <DialogTrigger className="self-end" asChild>
-          <div>Create new</div>
+          <div>
+            <Button>Create new</Button>
+          </div>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>

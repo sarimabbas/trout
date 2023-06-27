@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.21.10",
-    "@sarim.garden/ui": "^2.1.3",
+    "@sarim.garden/ui": "^2.1.4",
     "@trout/xata": "workspace:*",
     "@types/node": "20.3.2",
     "@types/react": "^18.2.14",
