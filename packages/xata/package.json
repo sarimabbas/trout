@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@xata.io/client": "^0.24.2"
+    "@xata.io/client": "^0.24.3"
   },
   "devDependencies": {
-    "@xata.io/cli": "^0.12.5"
+    "@xata.io/cli": "^0.12.6"
   }
 }
