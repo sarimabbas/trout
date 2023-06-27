@@ -1,7 +1,17 @@
 "use client";
 
-import { DataTable, ColumnDef, Button } from "@sarim.garden/ui/client";
-import { SourcesRecord, SelectedPick } from "@trout/xata";
+import {
+  Button,
+  ColumnDef,
+  DataTable,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Input,
+} from "@sarim.garden/ui/client";
+import { SelectedPick, SourcesRecord } from "@trout/xata";
 
 type Source = Readonly<SelectedPick<SourcesRecord, ["*"]>>;
 
@@ -36,16 +46,35 @@ export const columns: ColumnDef<Source>[] = [
 
 interface SourceListProps {
   sources: Readonly<SelectedPick<SourcesRecord, ["*"]>>[];
+  createSource: (formData: FormData) => Promise<void>;
 }
 
 export const SourceList = (props: SourceListProps) => {
-  const { sources } = props;
-
-  console.log({ sources: JSON.stringify(sources, null, 2) });
+  const { sources, createSource } = props;
 
   return (
     <div className="flex flex-col gap-8">
-      <Button className="self-end">Create new</Button>
+      <Dialog>
+        <DialogTrigger className="self-end" asChild>
+          <div>Create new</div>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Create new source</DialogTitle>
+          </DialogHeader>
+          <form className="gap-4 flex flex-col" action={createSource}>
+            <Input
+              type="text"
+              placeholder="my-source"
+              minLength={1}
+              name="source"
+            />
+            <Button type="submit" variant="outline" className="w-fit">
+              Create
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
       <DataTable columns={columns} data={sources} />
     </div>
   );
