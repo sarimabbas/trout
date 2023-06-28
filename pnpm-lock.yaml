@@ -77,6 +77,12 @@ importers:
       eslint-config-next:
         specifier: ^13.4.7
         version: 13.4.7(eslint@8.43.0)(typescript@5.1.3)
+      haikunator:
+        specifier: ^2.1.2
+        version: 2.1.2
+      lucide-react:
+        specifier: ^0.255.0
+        version: 0.255.0(react@18.2.0)
       next:
         specifier: 13.4.7
         version: 13.4.7(react-dom@18.2.0)(react@18.2.0)
@@ -3032,6 +3038,10 @@ packages:
   /@types/qs@6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
 
+  /@types/random-seed@0.3.3:
+    resolution: {integrity: sha512-kHsCbIRHNXJo6EN5W8EA5b4i1hdT6jaZke5crBPLUcLqaLdZ0QBq8QVMbafHzhjFF83Cl9qlee2dChD18d/kPg==}
+    dev: false
+
   /@types/range-parser@1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
 
@@ -4975,6 +4985,14 @@ packages:
   /graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
+  /haikunator@2.1.2:
+    resolution: {integrity: sha512-8xTQw2yomVQWG1mLJKD7RrwXN8PkgRYKDShOBhtlu2MqOTboc4O5dVYhPgLigcKMAtwJ0GZty5N44EbLGZN3FA==}
+    dependencies:
+      '@types/random-seed': 0.3.3
+      lodash.defaults: 4.2.0
+      random-seed: 0.3.0
+    dev: false
+
   /handlebars@4.7.7:
     resolution: {integrity: sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==}
     engines: {node: '>=0.4.7'}
@@ -5470,6 +5488,10 @@ packages:
   /json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
+  /json-stringify-safe@5.0.1:
+    resolution: {integrity: sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==}
+    dev: false
+
   /json5@1.0.2:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
     hasBin: true
@@ -5559,6 +5581,10 @@ packages:
     resolution: {integrity: sha512-2ozeiPi+5eBXW1CLtzjk8XQFhQOEMwwfxblqeq6EGyTxZJ1bPATqilY0e6g2SLQpP4KuMeuioBhEnWz5Pr7ICQ==}
     dev: true
 
+  /lodash.defaults@4.2.0:
+    resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
+    dev: false
+
   /lodash.get@4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
     dev: true
@@ -5617,6 +5643,14 @@ packages:
 
   /lucide-react@0.252.0(react@18.2.0):
     resolution: {integrity: sha512-98hUdm23F3YlC3UN4mzv1FAsWr81YYdxF31cYhm19c51FwOph4dn5B4NjKp45UXBiR1Xx+cKrdmSIZX0ldS8zw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /lucide-react@0.255.0(react@18.2.0):
+    resolution: {integrity: sha512-BsnpjPy2Dv3nqzZGgb6e/2WFp327Sa5sre5pFTBlAsSmmvOJ9y6tQ2VhgG7+mwaBS+9nYMR3BNaGLasAdCbhbQ==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -6397,6 +6431,13 @@ packages:
   /quick-lru@4.0.1:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
+
+  /random-seed@0.3.0:
+    resolution: {integrity: sha512-y13xtn3kcTlLub3HKWXxJNeC2qK4mB59evwZ5EkeRlolx+Bp2ztF7LbcZmyCnOqlHQrLnfuNbi1sVmm9lPDlDA==}
+    engines: {node: '>= 0.6.0'}
+    dependencies:
+      json-stringify-safe: 5.0.1
+    dev: false
 
   /rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
