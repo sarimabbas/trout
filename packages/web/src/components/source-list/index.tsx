@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
+  toast,
 } from "@sarim.garden/ui/client";
 import { SelectedPick, SourcesRecord } from "@trout/xata";
 import { MoreHorizontal } from "lucide-react";
@@ -80,6 +81,7 @@ export const columns: ColumnDef<SourceWithActions>[] = [
                   formAction={() => {
                     const formData = new FormData();
                     formData.append("sourceId", row.original.id);
+                    toast.success(`Deleted source ${row.original.name}`);
                     return row.original.actions.deleteSource(formData);
                   }}
                   value="Delete"
@@ -95,7 +97,7 @@ export const columns: ColumnDef<SourceWithActions>[] = [
 
 interface SourceListProps {
   sources: Readonly<SelectedPick<SourcesRecord, ["*"]>>[];
-  createSource: (formData: FormData) => Promise<void>;
+  createSource: () => Promise<void>;
   editSource: (formData: FormData) => Promise<void>;
   deleteSource: (formData: FormData) => Promise<void>;
 }
@@ -120,7 +122,13 @@ export const SourceList = (props: SourceListProps) => {
   return (
     <div className="flex flex-col gap-8">
       <form className="ml-auto">
-        <Button formAction={createSource} className="w-fit">
+        <Button
+          formAction={() => {
+            toast.success("Created new source");
+            return createSource();
+          }}
+          className="w-fit"
+        >
           Create new
         </Button>
       </form>
