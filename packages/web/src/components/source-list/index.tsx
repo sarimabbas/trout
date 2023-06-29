@@ -162,7 +162,7 @@ export const SourceList = (props: SourceListProps) => {
         }
         className="w-fit ml-auto"
       >
-        {isPending ? "Creating..." : "Create new"}
+        {isPending ? "Creating..." : "Create new source"}
       </Button>
       <DataTable columns={columns} data={sourcesWithActions} />
     </div>

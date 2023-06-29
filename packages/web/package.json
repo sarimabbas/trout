@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.21.12",
     "@sarim.garden/ui": "^2.1.5",
+    "@t3-oss/env-nextjs": "^0.6.0",
     "@trout/xata": "workspace:*",
     "@types/node": "20.3.2",
     "@types/react": "^18.2.14",
@@ -20,13 +21,14 @@
     "eslint": "^8.43.0",
     "eslint-config-next": "^13.4.7",
     "haikunator": "^2.1.2",
+    "kafkajs": "^2.2.4",
     "lucide-react": "^0.256.0",
     "next": "13.4.7",
     "postcss": "8.4.24",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.2",
-    "typescript": "^5.1.5",
+    "typescript": "^5.1.6",
     "zod": "^3.21.4"
   },
   "devDependencies": {

@@ -1,5 +1,12 @@
 {
-  "globalEnv": ["NODE_ENV", "NEXT_PUBLIC_VERCEL_URL"],
+  "globalEnv": [
+    "NODE_ENV",
+    "KAFKA_BROKER",
+    "KAFKA_USERNAME",
+    "KAFKA_PASSWORD",
+    "NEXT_PUBLIC_VERCEL_URL",
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
+  ],
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
