@@ -1,27 +1,14 @@
 import { Text } from "ink";
+import { useCallback, useEffect, useState } from "react";
 import zod from "zod";
-import { Kafka } from "kafkajs";
+import {
+  IApiCredentialsResponse,
+  getCredentialsForAccessToken,
+} from "../utils.js";
 
 export const options = zod.object({
   sourceId: zod.string().describe("Source ID"),
   accessToken: zod.string().describe("Access token"),
-});
-
-const kafka = new Kafka({
-  brokers: [process.env.KAFKA_BROKER!],
-  sasl: {
-    mechanism: "scram-sha-256",
-    username: process.env.KAFKA_USERNAME!,
-    password: process.env.KAFKA_PASSWORD!,
-  },
-  ssl: true,
-});
-
-const admin = kafka.admin();
-
-const producer = kafka.producer({
-  // not supported by Upstash yet, so we need to use createTopic
-  // allowAutoTopicCreation: true,
 });
 
 type Props = {
@@ -29,9 +16,20 @@ type Props = {
 };
 
 export default function Listen({ options }: Props) {
+  const [credentials, setCredentials] = useState<IApiCredentialsResponse>();
+
+  const getCredentials = useCallback(async () => {
+    const credentials = await getCredentialsForAccessToken(options.accessToken);
+    setCredentials(credentials);
+  }, [options.accessToken]);
+
+  useEffect(() => {
+    getCredentials();
+  }, [getCredentials]);
+
   return (
     <Text>
-      Hello, <Text color="green">{options.accessToken}</Text>
+      Hello, <Text color="green">{JSON.stringify(credentials)}</Text>
     </Text>
   );
 }

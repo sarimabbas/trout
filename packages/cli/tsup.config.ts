@@ -5,4 +5,5 @@ export default defineConfig({
   dts: true,
   clean: true,
   format: ["esm"],
+  env: process.env as Record<string, string>,
 });

@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-export const clientEnv = z.object({
+const clientEnvSchema = z.object({
   NEXT_PUBLIC_BASE_URL: z.string().url(),
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
 });
 
-export const serverEnv = z.object({
+const serverEnvSchema = z.object({
   CLERK_SECRET_KEY: z.string(),
   KAFKA_BROKER: z.string(),
   KAFKA_PASSWORD: z.string(),
@@ -16,9 +16,9 @@ export const serverEnv = z.object({
 });
 
 export const getClientEnv = () => {
-  return clientEnv.parse(process.env);
+  return clientEnvSchema.parse(process.env);
 };
 
 export const getServerEnv = () => {
-  return serverEnv.parse(process.env);
+  return serverEnvSchema.parse(process.env);
 };
