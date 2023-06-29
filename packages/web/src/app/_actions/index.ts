@@ -21,26 +21,30 @@ export const getSources = async () => {
   return sources;
 };
 
+export type IGetSources = typeof getSources;
+
 // creates a new source
 export const createSource = async () => {
-  console.log("calling createSource");
-
   const lookupId = getOrgOrUserId();
   if (!lookupId) {
     throw new Error("lookupId is not defined");
   }
 
-  await xata.db.sources.create({
+  const source = await xata.db.sources.create({
     clerkOrgOrUserId: lookupId,
     name: getRandomSourceName(),
   });
 
   revalidatePath("/");
+
+  return source;
 };
 
+export type ICreateSource = typeof createSource;
+
 // updates an existing source with name
-export const editSource = async (formData: FormData) => {
-  const sourceId = formData.get("sourceId");
+export const editSource = async (props: { sourceId: string; name: string }) => {
+  const { sourceId, name } = props;
   if (!sourceId) {
     throw new Error("sourceId is not defined");
   }
@@ -52,15 +56,17 @@ export const editSource = async (formData: FormData) => {
 
   await xata.db.sources.update({
     id: sourceId as string,
-    name: formData.get("name") as string,
+    name,
   });
 
   revalidatePath("/");
 };
 
+export type IEditSource = typeof editSource;
+
 // deletes an existing source
-export const deleteSource = async (formData: FormData) => {
-  const sourceId = formData.get("sourceId");
+export const deleteSource = async (props: { sourceId: string }) => {
+  const { sourceId } = props;
   if (!sourceId) {
     throw new Error("sourceId is not defined");
   }
@@ -76,3 +82,5 @@ export const deleteSource = async (formData: FormData) => {
 
   revalidatePath("/");
 };
+
+export type IDeleteSource = typeof deleteSource;

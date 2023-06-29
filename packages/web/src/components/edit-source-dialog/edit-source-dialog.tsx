@@ -1,5 +1,6 @@
 "use client";
 
+import type { IEditSource } from "@/app/_actions";
 import { Source } from "@/app/_utils";
 import {
   Button,
@@ -10,18 +11,33 @@ import {
   DialogTrigger,
   Input,
   Label,
+  toast,
 } from "@sarim.garden/ui/client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 
 interface EditSourceDialogProps {
   children: React.ReactNode;
-  editSource: (formData: FormData) => Promise<void>;
+  editSource: IEditSource;
   data: Source;
 }
 
 export const EditSourceDialog = (props: EditSourceDialogProps) => {
   const [open, setOpen] = useState(false);
   const { children, editSource } = props;
+  const [isPending, startTransition] = useTransition();
+  const [name, setName] = useState(props.data.name);
+
+  const onSubmit = () => {
+    startTransition(async () => {
+      await editSource({
+        name,
+        sourceId: props.data.id,
+      });
+      setOpen(false);
+      toast.success(`Updated source ${name}`);
+    });
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>{children}</DialogTrigger>
@@ -29,26 +45,17 @@ export const EditSourceDialog = (props: EditSourceDialogProps) => {
         <DialogHeader>
           <DialogTitle>Edit source</DialogTitle>
         </DialogHeader>
-        <form
-          className="gap-4 flex flex-col"
-          action={editSource}
-          onSubmit={() => {
-            setOpen(false);
-          }}
-        >
-          <input type="hidden" name="sourceId" value={props.data.id} />
-          <Label>Name</Label>
-          <Input
-            type="text"
-            placeholder="source name"
-            defaultValue={props.data.name}
-            minLength={1}
-            name="name"
-          />
-          <Button type="submit" variant="outline" className="w-fit">
-            Save
-          </Button>
-        </form>
+        <Label>Name</Label>
+        <Input
+          type="text"
+          placeholder="source name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          minLength={1}
+        />
+        <Button onClick={onSubmit} variant="outline" className="w-fit">
+          {isPending ? "Saving..." : "Save"}
+        </Button>
       </DialogContent>
     </Dialog>
   );

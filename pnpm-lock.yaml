@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@turbo/gen':
         specifier: ^1.10.6
-        version: 1.10.6(@types/node@20.3.2)(typescript@5.1.3)
+        version: 1.10.6(@types/node@20.3.2)(typescript@5.1.5)
       eslint:
         specifier: ^8.43.0
         version: 8.43.0
@@ -28,7 +28,7 @@ importers:
     dependencies:
       eslint-config-next:
         specifier: ^13.4.7
-        version: 13.4.7(eslint@8.43.0)(typescript@5.1.3)
+        version: 13.4.7(eslint@8.43.0)(typescript@5.1.5)
       eslint-config-prettier:
         specifier: ^8.3.0
         version: 8.8.0(eslint@8.43.0)
@@ -48,11 +48,11 @@ importers:
   packages/web:
     dependencies:
       '@clerk/nextjs':
-        specifier: ^4.21.10
-        version: 4.21.10(next@13.4.7)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^4.21.12
+        version: 4.21.12(next@13.4.7)(react-dom@18.2.0)(react@18.2.0)
       '@sarim.garden/ui':
-        specifier: ^2.1.4
-        version: 2.1.4(@types/react-dom@18.2.6)(@types/react@18.2.14)(tailwindcss@3.3.2)
+        specifier: ^2.1.5
+        version: 2.1.5(@types/react-dom@18.2.6)(@types/react@18.2.14)(tailwindcss@3.3.2)
       '@trout/xata':
         specifier: workspace:*
         version: link:../xata
@@ -76,13 +76,13 @@ importers:
         version: 8.43.0
       eslint-config-next:
         specifier: ^13.4.7
-        version: 13.4.7(eslint@8.43.0)(typescript@5.1.3)
+        version: 13.4.7(eslint@8.43.0)(typescript@5.1.5)
       haikunator:
         specifier: ^2.1.2
         version: 2.1.2
       lucide-react:
-        specifier: ^0.255.0
-        version: 0.255.0(react@18.2.0)
+        specifier: ^0.256.0
+        version: 0.256.0(react@18.2.0)
       next:
         specifier: 13.4.7
         version: 13.4.7(react-dom@18.2.0)(react@18.2.0)
@@ -99,15 +99,15 @@ importers:
         specifier: 3.3.2
         version: 3.3.2
       typescript:
-        specifier: ^5.1.3
-        version: 5.1.3
+        specifier: ^5.1.5
+        version: 5.1.5
       zod:
         specifier: ^3.21.4
         version: 3.21.4
     devDependencies:
       '@clerk/clerk-sdk-node':
-        specifier: ^4.10.12
-        version: 4.10.12
+        specifier: ^4.10.13
+        version: 4.10.13
       eslint-config-custom:
         specifier: workspace:*
         version: link:../eslint-config-custom
@@ -119,11 +119,11 @@ importers:
     dependencies:
       '@xata.io/client':
         specifier: ^0.24.3
-        version: 0.24.3(typescript@5.1.3)
+        version: 0.24.3(typescript@5.1.5)
     devDependencies:
       '@xata.io/cli':
         specifier: ^0.12.6
-        version: 0.12.6(@types/node@20.3.2)(esbuild@0.18.10)(rollup@2.79.1)(typescript@5.1.3)
+        version: 0.12.6(@types/node@20.3.2)(esbuild@0.18.10)(rollup@2.79.1)(typescript@5.1.5)
 
 packages:
 
@@ -542,11 +542,11 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@clerk/backend@0.23.5:
-    resolution: {integrity: sha512-x+NCRvgaVFbAQX2r5hJ6SRI1JnQWD8HAfKxZb+op0KBuKvnk1shpDX67n/23ehx+YG5rQ7FbbKHXyrO5chM5Mw==}
+  /@clerk/backend@0.23.6:
+    resolution: {integrity: sha512-+JnG9jmqoqPPKCHEtGf7vhFj2G8qNXmkPR8cDycjbUje/rXGNzxYAkgGaOahD9gXj5oZYMTKfGAebPf5i24JuA==}
     engines: {node: '>=14'}
     dependencies:
-      '@clerk/types': 3.46.0
+      '@clerk/types': 3.46.1
       '@peculiar/webcrypto': 1.4.1
       '@types/node': 16.18.6
       deepmerge: 4.2.2
@@ -554,25 +554,25 @@ packages:
       snakecase-keys: 5.4.4
       tslib: 2.4.1
 
-  /@clerk/clerk-react@4.20.5(react@18.2.0):
-    resolution: {integrity: sha512-y5edxot+7adnyUqOGNgS7bEA3eoM53FMC8jV8VmUFvKLkOOMQpgfdo3/I7PWoTrRaNwqNWmhQGy1J3uqw8gv4g==}
+  /@clerk/clerk-react@4.21.0(react@18.2.0):
+    resolution: {integrity: sha512-wd8BDGIh8zMx6R9uTmAQdgtTBzx7B7hlWlWSxZ+oJVcz8MqT7gcmmYGgqnr5RuDtaWK9Z2jzya6CvVodzJi/Wg==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16'
     dependencies:
       '@clerk/shared': 0.19.1(react@18.2.0)
-      '@clerk/types': 3.46.0
+      '@clerk/types': 3.46.1
       react: 18.2.0
       swr: 1.3.0(react@18.2.0)
       tslib: 2.4.1
     dev: false
 
-  /@clerk/clerk-sdk-node@4.10.12:
-    resolution: {integrity: sha512-6LzLFEMZMnUE4O19XOW/6LAoAnHP7mZ2scMCib4dOvTRQxcZz1ql34ZMzewNYKrS6V5loQlslc1bnPlJ2zoX3g==}
+  /@clerk/clerk-sdk-node@4.10.13:
+    resolution: {integrity: sha512-Yy7N/DT1GdW+oI3/PxYqgjIgHCIEPI97dDUYn1xpG82y9aIQMVI69/W7KRK940559GDl4CmgZm1Taon+SOdDmQ==}
     engines: {node: '>=14'}
     dependencies:
-      '@clerk/backend': 0.23.5
-      '@clerk/types': 3.46.0
+      '@clerk/backend': 0.23.6
+      '@clerk/types': 3.46.1
       '@types/cookies': 0.7.7
       '@types/express': 4.17.14
       '@types/node-fetch': 2.6.2
@@ -581,18 +581,18 @@ packages:
       snakecase-keys: 3.2.1
       tslib: 2.4.1
 
-  /@clerk/nextjs@4.21.10(next@13.4.7)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-5G02qZOBwbYvBxbHVPKpINyhZ1a3TLZ3noBExx5JHo8+UbpEp7ENd1TyFF/oO0EWG/VTbloP1Gegjm2XG9KeKw==}
+  /@clerk/nextjs@4.21.12(next@13.4.7)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-KjdKaDaDAaVFBXnXVoHC/PSycHHmATzLizhvC0BVmpsOKFdcWarnOltd5uXaHekUI79nFYLIAZLGMiOZRgZLPg==}
     engines: {node: '>=14'}
     peerDependencies:
       next: '>=10'
       react: ^17.0.2 || ^18.0.0-0
       react-dom: ^17.0.2 || ^18.0.0-0
     dependencies:
-      '@clerk/backend': 0.23.5
-      '@clerk/clerk-react': 4.20.5(react@18.2.0)
-      '@clerk/clerk-sdk-node': 4.10.12
-      '@clerk/types': 3.46.0
+      '@clerk/backend': 0.23.6
+      '@clerk/clerk-react': 4.21.0(react@18.2.0)
+      '@clerk/clerk-sdk-node': 4.10.13
+      '@clerk/types': 3.46.1
       next: 13.4.7(react-dom@18.2.0)(react@18.2.0)
       path-to-regexp: 6.2.1
       react: 18.2.0
@@ -611,8 +611,8 @@ packages:
       swr: 1.3.0(react@18.2.0)
     dev: false
 
-  /@clerk/types@3.46.0:
-    resolution: {integrity: sha512-IooGZ64uARKg+GS6b38usrWqhzU0PcrDbZBaZm4JmtYd5CZbWABklBNkiXQhnnaKYdvHr5K8vhJd5spsJarNpw==}
+  /@clerk/types@3.46.1:
+    resolution: {integrity: sha512-IA/iSXJJZym4Z6f9OcT9OJayK2opVhxUVJky15aY4iVsJCPScgApBuuzC7N4vfXwA6RI/wGebFbvmsEQ3oI/UA==}
     engines: {node: '>=14'}
     dependencies:
       csstype: 3.1.1
@@ -897,12 +897,12 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@hookform/resolvers@3.1.1(react-hook-form@7.45.0):
+  /@hookform/resolvers@3.1.1(react-hook-form@7.45.1):
     resolution: {integrity: sha512-tS16bAUkqjITNSvbJuO1x7MXbn7Oe8ZziDTJdA9mMvsoYthnOOiznOTGBYwbdlYBgU+tgpI/BtTU3paRbCuSlg==}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.45.0(react@18.2.0)
+      react-hook-form: 7.45.1(react@18.2.0)
     dev: false
 
   /@humanwhocodes/config-array@0.11.10:
@@ -1248,7 +1248,7 @@ packages:
       tslib: 2.6.0
     dev: true
 
-  /@oclif/core@2.8.8(@types/node@20.3.2)(typescript@5.1.3):
+  /@oclif/core@2.8.8(@types/node@20.3.2)(typescript@5.1.5):
     resolution: {integrity: sha512-21U+WDgyb/xnefx9DWZhBHj5TlloZZiA1dVAE1Y8FGSAJwdArI4HqaNgp99BcyuaeX5XOz1tPeXoeB/j8uADcQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
@@ -1276,7 +1276,7 @@ packages:
       strip-ansi: 6.0.1
       supports-color: 8.1.1
       supports-hyperlinks: 2.3.0
-      ts-node: 10.9.1(@types/node@20.3.2)(typescript@5.1.3)
+      ts-node: 10.9.1(@types/node@20.3.2)(typescript@5.1.5)
       tslib: 2.6.0
       widest-line: 3.1.0
       wordwrap: 1.0.0
@@ -1288,11 +1288,11 @@ packages:
       - typescript
     dev: true
 
-  /@oclif/plugin-help@5.2.10(@types/node@20.3.2)(typescript@5.1.3):
+  /@oclif/plugin-help@5.2.10(@types/node@20.3.2)(typescript@5.1.5):
     resolution: {integrity: sha512-l3hnloPkXOLGGrepLLdj8NsBpVhhEpg4jclIeIBaZzIo6+c+/uqcL2LjvOogmSEf5g4zooRtxivwUpcFiBSaBg==}
     engines: {node: '>=12.0.0'}
     dependencies:
-      '@oclif/core': 2.8.8(@types/node@20.3.2)(typescript@5.1.3)
+      '@oclif/core': 2.8.8(@types/node@20.3.2)(typescript@5.1.5)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
@@ -1300,12 +1300,12 @@ packages:
       - typescript
     dev: true
 
-  /@oclif/plugin-not-found@2.3.26(@types/node@20.3.2)(typescript@5.1.3):
+  /@oclif/plugin-not-found@2.3.26(@types/node@20.3.2)(typescript@5.1.5):
     resolution: {integrity: sha512-a8WfN8km1A9Q0lXWo1LZgFEjVFYIbOOp/QG++zyHt2Hnsp2b5Zr0p8EQLBK7v6na6C0Mrr+GlMI8zE40hYWMbw==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@oclif/color': 1.0.6
-      '@oclif/core': 2.8.8(@types/node@20.3.2)(typescript@5.1.3)
+      '@oclif/core': 2.8.8(@types/node@20.3.2)(typescript@5.1.5)
       fast-levenshtein: 3.0.0
     transitivePeerDependencies:
       - '@swc/core'
@@ -1314,12 +1314,12 @@ packages:
       - typescript
     dev: true
 
-  /@oclif/plugin-plugins@3.1.5(@types/node@20.3.2)(typescript@5.1.3):
+  /@oclif/plugin-plugins@3.1.5(@types/node@20.3.2)(typescript@5.1.5):
     resolution: {integrity: sha512-srBsriG0JSX2nYBMiNjDDeCby6efxGSc2VTgLLrC3yQAF9StCAlpb2cuX7HL3/2C8TkCJLzUCKBH3WguHo7oBQ==}
     engines: {node: '>=16'}
     dependencies:
       '@oclif/color': 1.0.6
-      '@oclif/core': 2.8.8(@types/node@20.3.2)(typescript@5.1.3)
+      '@oclif/core': 2.8.8(@types/node@20.3.2)(typescript@5.1.5)
       chalk: 4.1.2
       debug: 4.3.4(supports-color@8.1.1)
       fs-extra: 9.1.0
@@ -2804,11 +2804,11 @@ packages:
     resolution: {integrity: sha512-V+MvGwaHH03hYhY+k6Ef/xKd6RYlc4q8WBx+2ANmipHJcKuktNcI/NgEsJgdSUF6Lw32njT6OnrRsKYCdgHjYw==}
     dev: false
 
-  /@sarim.garden/ui@2.1.4(@types/react-dom@18.2.6)(@types/react@18.2.14)(tailwindcss@3.3.2):
-    resolution: {integrity: sha512-iERyv7Hho+YqaYiy2EUNWGx/k2DvIl4X4BVIdJ4tXr95+oaCBXi6IT4M5kPS2n3LI+iCwfNSJkKgeWSLrPsBog==}
+  /@sarim.garden/ui@2.1.5(@types/react-dom@18.2.6)(@types/react@18.2.14)(tailwindcss@3.3.2):
+    resolution: {integrity: sha512-K4tILGbZwaZ/epSzBhTV9dT0yKP8eXLywYtPQhT3NAgg3M/4KwmRm3FVZ0rXY22UANUuVEYOVWCLMTsTobiKRQ==}
     dependencies:
       '@faker-js/faker': 8.0.2
-      '@hookform/resolvers': 3.1.1(react-hook-form@7.45.0)
+      '@hookform/resolvers': 3.1.1(react-hook-form@7.45.1)
       '@radix-ui/react-accordion': 1.1.2(@types/react-dom@18.2.6)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-alert-dialog': 1.0.4(@types/react-dom@18.2.6)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-aspect-ratio': 1.0.3(@types/react-dom@18.2.6)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
@@ -2840,12 +2840,12 @@ packages:
       clsx: 1.2.1
       cmdk: 0.2.0(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
       csstype: 3.1.2
-      lucide-react: 0.252.0(react@18.2.0)
+      lucide-react: 0.256.0(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-hook-form: 7.45.0(react@18.2.0)
+      react-hook-form: 7.45.1(react@18.2.0)
       react-hot-toast: 2.4.1(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0)
-      sonner: 0.4.0(react-dom@18.2.0)(react@18.2.0)
+      sonner: 0.5.0(react-dom@18.2.0)(react@18.2.0)
       tailwind-merge: 1.13.2
       tailwindcss-animate: 1.0.6(tailwindcss@3.3.2)
       zod: 3.21.4
@@ -2902,7 +2902,7 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
-  /@turbo/gen@1.10.6(@types/node@20.3.2)(typescript@5.1.3):
+  /@turbo/gen@1.10.6(@types/node@20.3.2)(typescript@5.1.5):
     resolution: {integrity: sha512-sZWqL7VVBaLz4iFdMUpGg0n8agl7aLauGAVsrwC/0EQSmCh4tHzNeJQA4GSOjMwDBpa2ZO46/8KKdl2m0zDFRA==}
     hasBin: true
     dependencies:
@@ -2913,7 +2913,7 @@ packages:
       minimatch: 9.0.2
       node-plop: 0.26.3
       semver: 7.5.3
-      ts-node: 10.9.1(@types/node@20.3.2)(typescript@5.1.3)
+      ts-node: 10.9.1(@types/node@20.3.2)(typescript@5.1.5)
       update-check: 1.5.4
       validate-npm-package-name: 5.0.0
     transitivePeerDependencies:
@@ -3090,7 +3090,7 @@ packages:
       '@types/node': 20.3.2
     dev: true
 
-  /@typescript-eslint/parser@5.60.1(eslint@8.43.0)(typescript@5.1.3):
+  /@typescript-eslint/parser@5.60.1(eslint@8.43.0)(typescript@5.1.5):
     resolution: {integrity: sha512-pHWlc3alg2oSMGwsU/Is8hbm3XFbcrb6P5wIxcQW9NsYBfnrubl/GhVVD/Jm/t8HXhA2WncoIRfBtnCgRGV96Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -3102,10 +3102,10 @@ packages:
     dependencies:
       '@typescript-eslint/scope-manager': 5.60.1
       '@typescript-eslint/types': 5.60.1
-      '@typescript-eslint/typescript-estree': 5.60.1(typescript@5.1.3)
+      '@typescript-eslint/typescript-estree': 5.60.1(typescript@5.1.5)
       debug: 4.3.4(supports-color@8.1.1)
       eslint: 8.43.0
-      typescript: 5.1.3
+      typescript: 5.1.5
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -3123,7 +3123,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: false
 
-  /@typescript-eslint/typescript-estree@5.60.1(typescript@5.1.3):
+  /@typescript-eslint/typescript-estree@5.60.1(typescript@5.1.5):
     resolution: {integrity: sha512-hkX70J9+2M2ZT6fhti5Q2FoU9zb+GeZK2SLP1WZlvUDqdMbEKhexZODD1WodNRyO8eS+4nScvT0dts8IdaBzfw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -3138,8 +3138,8 @@ packages:
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.5.3
-      tsutils: 3.21.0(typescript@5.1.3)
-      typescript: 5.1.3
+      tsutils: 3.21.0(typescript@5.1.5)
+      typescript: 5.1.5
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -3156,7 +3156,7 @@ packages:
     resolution: {integrity: sha512-Ux0c9qUfkcPqng3vrR0GTrlQdqNJ2JREn/2ydrVuKwM3RtMfF2mWX31Ijqo1opSjNAq6rK76PwtANw6kl6TAow==}
     dev: false
 
-  /@xata.io/cli@0.12.6(@types/node@20.3.2)(esbuild@0.18.10)(rollup@2.79.1)(typescript@5.1.3):
+  /@xata.io/cli@0.12.6(@types/node@20.3.2)(esbuild@0.18.10)(rollup@2.79.1)(typescript@5.1.5):
     resolution: {integrity: sha512-pfEhNX6qOCniHFcCRbb4bKjA8q+6U7X763lPJhG/x7UmHSEW8TKG799GXUPiqFda27csQUqqlxU8fPctSepA9g==}
     engines: {node: '>=12.0.0'}
     hasBin: true
@@ -3164,19 +3164,19 @@ packages:
       '@babel/core': 7.22.5
       '@babel/preset-react': 7.22.5(@babel/core@7.22.5)
       '@babel/preset-typescript': 7.22.5(@babel/core@7.22.5)
-      '@oclif/core': 2.8.8(@types/node@20.3.2)(typescript@5.1.3)
-      '@oclif/plugin-help': 5.2.10(@types/node@20.3.2)(typescript@5.1.3)
-      '@oclif/plugin-not-found': 2.3.26(@types/node@20.3.2)(typescript@5.1.3)
-      '@oclif/plugin-plugins': 3.1.5(@types/node@20.3.2)(typescript@5.1.3)
+      '@oclif/core': 2.8.8(@types/node@20.3.2)(typescript@5.1.5)
+      '@oclif/plugin-help': 5.2.10(@types/node@20.3.2)(typescript@5.1.5)
+      '@oclif/plugin-not-found': 2.3.26(@types/node@20.3.2)(typescript@5.1.5)
+      '@oclif/plugin-plugins': 3.1.5(@types/node@20.3.2)(typescript@5.1.5)
       '@rollup/plugin-auto-install': 3.0.4(rollup@2.79.1)
       '@rollup/plugin-commonjs': 25.0.2(rollup@2.79.1)
       '@rollup/plugin-node-resolve': 15.1.0(rollup@2.79.1)
       '@rollup/plugin-virtual': 3.0.1(rollup@2.79.1)
       '@types/ini': 1.3.31
       '@types/prompts': 2.4.4
-      '@xata.io/client': 0.24.3(typescript@5.1.3)
+      '@xata.io/client': 0.24.3(typescript@5.1.5)
       '@xata.io/codegen': 0.23.5
-      '@xata.io/importer': 0.3.18(typescript@5.1.3)
+      '@xata.io/importer': 0.3.18(typescript@5.1.5)
       ansi-regex: 6.0.1
       babel-plugin-module-extension-resolver: 1.0.0
       chalk: 5.2.0
@@ -3220,12 +3220,12 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@xata.io/client@0.24.3(typescript@5.1.3):
+  /@xata.io/client@0.24.3(typescript@5.1.5):
     resolution: {integrity: sha512-TaGEBSKBfMBuLM1eakyx2aRFMNmhEhQC7q/KCURJpUoCPYfpG9dfmgnDecnkmauZ4eHpZA/ktIgK7ko2PZrJTQ==}
     peerDependencies:
       typescript: '>=4.5'
     dependencies:
-      typescript: 5.1.3
+      typescript: 5.1.5
 
   /@xata.io/codegen@0.23.5:
     resolution: {integrity: sha512-H/1uZzXDohJVVREJTMKo0tX8tsdrov7r05FcWtPSzCHyf7keShdEhh3ZEoktIqn5iD2v9ok7DT513BTgl+ie+Q==}
@@ -3233,15 +3233,15 @@ packages:
       case: 1.6.3
       prettier: 2.8.8
       ts-morph: 18.0.0
-      typescript: 5.1.3
+      typescript: 5.1.5
       zod: 3.21.4
     dev: true
 
-  /@xata.io/importer@0.3.18(typescript@5.1.3):
+  /@xata.io/importer@0.3.18(typescript@5.1.5):
     resolution: {integrity: sha512-EaLEXmzf6zNNeD+RGXNfi8iqzZZiGW7gM5yp6Ybz6Xs05ISeDyVNm7n8ny4b7H+Jzhhl0u9kIGPOCYPefIcnYw==}
     dependencies:
       '@faker-js/faker': 8.0.2
-      '@xata.io/client': 0.24.3(typescript@5.1.3)
+      '@xata.io/client': 0.24.3(typescript@5.1.5)
       camelcase: 7.0.1
       csvtojson: 2.0.10
       transliteration: 2.3.5
@@ -4295,7 +4295,7 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
-  /eslint-config-next@13.4.7(eslint@8.43.0)(typescript@5.1.3):
+  /eslint-config-next@13.4.7(eslint@8.43.0)(typescript@5.1.5):
     resolution: {integrity: sha512-+IRAyD0+J1MZaTi9RQMPUfr6Q+GCZ1wOkK6XM52Vokh7VI4R6YFGOFzdkEFHl4ZyIX4FKa5vcwUP2WscSFNjNQ==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
@@ -4306,7 +4306,7 @@ packages:
     dependencies:
       '@next/eslint-plugin-next': 13.4.7
       '@rushstack/eslint-patch': 1.3.2
-      '@typescript-eslint/parser': 5.60.1(eslint@8.43.0)(typescript@5.1.3)
+      '@typescript-eslint/parser': 5.60.1(eslint@8.43.0)(typescript@5.1.5)
       eslint: 8.43.0
       eslint-import-resolver-node: 0.3.7
       eslint-import-resolver-typescript: 3.5.5(@typescript-eslint/parser@5.60.1)(eslint-import-resolver-node@0.3.7)(eslint-plugin-import@2.27.5)(eslint@8.43.0)
@@ -4314,7 +4314,7 @@ packages:
       eslint-plugin-jsx-a11y: 6.7.1(eslint@8.43.0)
       eslint-plugin-react: 7.32.2(eslint@8.43.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.43.0)
-      typescript: 5.1.3
+      typescript: 5.1.5
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
       - supports-color
@@ -4393,7 +4393,7 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.60.1(eslint@8.43.0)(typescript@5.1.3)
+      '@typescript-eslint/parser': 5.60.1(eslint@8.43.0)(typescript@5.1.5)
       debug: 3.2.7
       eslint: 8.43.0
       eslint-import-resolver-node: 0.3.7
@@ -4412,7 +4412,7 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.60.1(eslint@8.43.0)(typescript@5.1.3)
+      '@typescript-eslint/parser': 5.60.1(eslint@8.43.0)(typescript@5.1.5)
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1
@@ -5641,16 +5641,8 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /lucide-react@0.252.0(react@18.2.0):
-    resolution: {integrity: sha512-98hUdm23F3YlC3UN4mzv1FAsWr81YYdxF31cYhm19c51FwOph4dn5B4NjKp45UXBiR1Xx+cKrdmSIZX0ldS8zw==}
-    peerDependencies:
-      react: ^16.5.1 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: false
-
-  /lucide-react@0.255.0(react@18.2.0):
-    resolution: {integrity: sha512-BsnpjPy2Dv3nqzZGgb6e/2WFp327Sa5sre5pFTBlAsSmmvOJ9y6tQ2VhgG7+mwaBS+9nYMR3BNaGLasAdCbhbQ==}
+  /lucide-react@0.256.0(react@18.2.0):
+    resolution: {integrity: sha512-uqw4MijZS29zePSBtkEIdOAp2Mn2mE6lVgFxaUd/MpclVUOuwacpRF67s1y3ErEIcR9aSBO0F1e6G56Ci8VUKA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -6458,8 +6450,8 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
-  /react-hook-form@7.45.0(react@18.2.0):
-    resolution: {integrity: sha512-AbHeZ4ad+0dEIknSW9dBgIwcvRDfZ1O97sgj75WaMdOX0eg8TBiUf9wxzVkIjZbk76BBIE9lmFOzyD4PN80ZQg==}
+  /react-hook-form@7.45.1(react@18.2.0):
+    resolution: {integrity: sha512-6dWoFJwycbuFfw/iKMcl+RdAOAOHDiF11KWYhNDRN/OkUt+Di5qsZHwA0OwsVnu9y135gkHpTw9DJA+WzCeR9w==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -6900,8 +6892,8 @@ packages:
       snake-case: 3.0.4
       type-fest: 2.19.0
 
-  /sonner@0.4.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-zEU/Mzur39xYPpyQOOCmN6YQftl5v+TSmdsmWEbWf6ovnOvnHyRwR7+/6BIBbzwRa8+3v06FJlpF7J3KS4Ll9Q==}
+  /sonner@0.5.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-V5L4918wScYxpe3x1H92MV0vSkUqRREu8dwFf7dDTQmRMQ58r1vzSKCsULZ5HCTqxNkfCdhQXHf7rRMaj/MukQ==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -7253,7 +7245,7 @@ packages:
       code-block-writer: 12.0.0
     dev: true
 
-  /ts-node@10.9.1(@types/node@20.3.2)(typescript@5.1.3):
+  /ts-node@10.9.1(@types/node@20.3.2)(typescript@5.1.5):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -7279,7 +7271,7 @@ packages:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 5.1.3
+      typescript: 5.1.5
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     dev: true
@@ -7302,14 +7294,14 @@ packages:
   /tslib@2.6.0:
     resolution: {integrity: sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==}
 
-  /tsutils@3.21.0(typescript@5.1.3):
+  /tsutils@3.21.0(typescript@5.1.5):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
     engines: {node: '>= 6'}
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: 1.14.1
-      typescript: 5.1.3
+      typescript: 5.1.5
     dev: false
 
   /tunnel-agent@0.6.0:
@@ -7411,8 +7403,8 @@ packages:
       is-typed-array: 1.1.10
     dev: false
 
-  /typescript@5.1.3:
-    resolution: {integrity: sha512-XH627E9vkeqhlZFQuL+UsyAXEnibT0kWR2FWONlr4sTjvxyJYnyefgrkyECLzM5NenmKzRAy2rR/OlYLA1HkZw==}
+  /typescript@5.1.5:
+    resolution: {integrity: sha512-FOH+WN/DQjUvN6WgW+c4Ml3yi0PH+a/8q+kNIfRehv1wLhWONedw85iu+vQ39Wp49IzTJEsZ2lyLXpBF7mkF1g==}
     engines: {node: '>=14.17'}
     hasBin: true
 
