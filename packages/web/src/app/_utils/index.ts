@@ -34,6 +34,6 @@ export const getWebhookUrl = (sourceId: string) => {
   return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/${path}`;
 };
 
-export const getCliCommand = (orgOrUserId: string, sourceId: string) => {
+export const getCliCommand = (sourceId: string) => {
   return `trout listen --id ${sourceId}`;
 };

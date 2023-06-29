@@ -86,9 +86,7 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         {/* copy webhook URL */}
         <DropdownMenuItem
           onClick={async () => {
-            await navigator.clipboard.writeText(
-              getWebhookUrl(lookupId, props.row.id)
-            );
+            await navigator.clipboard.writeText(getWebhookUrl(props.row.id));
             toast.success("Copied webhook URL");
           }}
         >
@@ -97,9 +95,7 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         {/* copy CLI command */}
         <DropdownMenuItem
           onClick={async () => {
-            await navigator.clipboard.writeText(
-              getCliCommand(lookupId, props.row.id)
-            );
+            await navigator.clipboard.writeText(getCliCommand(props.row.id));
             toast.success("Copied CLI command");
           }}
         >
