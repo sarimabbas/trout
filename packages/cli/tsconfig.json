@@ -1,10 +1,9 @@
 {
   "extends": "tsconfig/base.json",
   "compilerOptions": {
-    "jsx": "preserve",
-    "moduleResolution": "node16",
+    "jsx": "react-jsx",
     "module": "Node16",
-    "outDir": "dist"
+    "moduleResolution": "Node16"
   },
   "include": ["src"]
 }
