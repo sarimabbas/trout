@@ -85,9 +85,15 @@ importers:
 
   packages/shared:
     dependencies:
+      '@t3-oss/env-nextjs':
+        specifier: ^0.6.0
+        version: 0.6.0(typescript@5.1.6)(zod@3.21.4)
       '@xata.io/client':
         specifier: ^0.24.3
         version: 0.24.3(typescript@5.1.6)
+      zod:
+        specifier: ^3.21.4
+        version: 3.21.4
     devDependencies:
       '@xata.io/cli':
         specifier: ^0.12.6

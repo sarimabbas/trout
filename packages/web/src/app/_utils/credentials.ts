@@ -1,5 +1,5 @@
 import { xata } from "@trout/shared";
-import { env } from "@/env.mjs";
+import { env } from ".";
 
 interface CreateCredentialsResponse {
   credential_id: string;
