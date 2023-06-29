@@ -95,7 +95,9 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         {/* copy CLI command */}
         <DropdownMenuItem
           onClick={async () => {
-            await navigator.clipboard.writeText(getCliCommand(props.row.id));
+            await navigator.clipboard.writeText(
+              getCliCommand(lookupId, props.row.id)
+            );
             toast.success("Copied CLI command");
           }}
         >
