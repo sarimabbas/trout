@@ -1,9 +1,10 @@
 {
-	"extends": "@sindresorhus/tsconfig",
-	"compilerOptions": {
-		"moduleResolution": "node16",
-		"module": "Node16",
-		"outDir": "dist"
-	},
-	"include": ["src"]
+  "extends": "tsconfig/base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "moduleResolution": "node16",
+    "module": "Node16",
+    "outDir": "dist"
+  },
+  "include": ["src"]
 }

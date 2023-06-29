@@ -14,6 +14,10 @@ const tables = [
       { name: "clerkOrgOrUserId", type: "string" },
     ],
   },
+  {
+    name: "accessTokens",
+    columns: [{ name: "clerkOrgOrUserId", type: "string" }],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;
@@ -22,8 +26,12 @@ export type InferredTypes = SchemaInference<SchemaTables>;
 export type Sources = InferredTypes["sources"];
 export type SourcesRecord = Sources & XataRecord;
 
+export type AccessTokens = InferredTypes["accessTokens"];
+export type AccessTokensRecord = AccessTokens & XataRecord;
+
 export type DatabaseSchema = {
   sources: SourcesRecord;
+  accessTokens: AccessTokensRecord;
 };
 
 const DatabaseClient = buildClient();
