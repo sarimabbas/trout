@@ -1,5 +1,5 @@
 import { auth, useAuth } from "@clerk/nextjs";
-import { SelectedPick, SourcesRecord } from "@trout/xata";
+import { SelectedPick, SourcesRecord } from "@trout/shared";
 import Haikunator from "haikunator";
 import crypto from "crypto";
 import { NextRequest } from "next/server";

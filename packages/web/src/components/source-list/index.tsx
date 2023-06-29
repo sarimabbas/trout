@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
   toast,
 } from "@sarim.garden/ui/client";
-import { SelectedPick, SourcesRecord } from "@trout/xata";
+import { SelectedPick, SourcesRecord } from "@trout/shared";
 import { MoreHorizontal } from "lucide-react";
 import { useTransition } from "react";
 import { EditSourceDialog } from "../edit-source-dialog/edit-source-dialog";

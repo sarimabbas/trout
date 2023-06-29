@@ -12,7 +12,7 @@
     "dist"
   ],
   "dependencies": {
-    "@trout/xata": "workspace:*",
+    "@trout/shared": "workspace:*",
     "ink": "^4.2.0",
     "kafkajs": "^2.2.4",
     "pastel": "^2.0.2",

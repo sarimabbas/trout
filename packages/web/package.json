@@ -12,7 +12,7 @@
     "@clerk/nextjs": "^4.21.12",
     "@sarim.garden/ui": "^2.1.5",
     "@t3-oss/env-nextjs": "^0.6.0",
-    "@trout/xata": "workspace:*",
+    "@trout/shared": "workspace:*",
     "@types/node": "20.3.2",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",

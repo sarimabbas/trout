@@ -1,6 +1,6 @@
 import { deserializeRequest, serializeRequest } from "@/app/_utils";
 import { env } from "@/env.mjs";
-import { xata } from "@trout/xata";
+import { xata } from "@trout/shared";
 import { Kafka } from "kafkajs";
 import { type NextRequest } from "next/server";
 

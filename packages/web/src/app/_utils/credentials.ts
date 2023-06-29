@@ -1,4 +1,4 @@
-import { xata } from "@trout/xata";
+import { xata } from "@trout/shared";
 import { env } from "@/env.mjs";
 
 interface CreateCredentialsResponse {

@@ -3,7 +3,7 @@ import "./src/env.mjs";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["@trout/xata"],
+  transpilePackages: ["@trout/shared"],
   experimental: {
     serverActions: true,
   },

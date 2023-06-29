@@ -1,7 +1,7 @@
 "use server";
 
 import { getRandomSourceName, getOrgOrUserId } from "../_utils";
-import { xata } from "@trout/xata";
+import { xata } from "@trout/shared";
 import { revalidatePath } from "next/cache";
 
 // fetches all sources
