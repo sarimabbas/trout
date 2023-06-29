@@ -34,7 +34,8 @@ export const GET = async (
   }
 
   // create topic if it doesn't exist
-  await createTopic(params.sourceId);
+  // the userID is used as a topic prefix
+  await createTopic(`${source.clerkOrgOrUserId}/${source.id}`);
 
   const serializedRequest = serializeRequest(req);
   console.log("serializedRequest", serializedRequest);
