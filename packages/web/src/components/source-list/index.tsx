@@ -1,7 +1,12 @@
 "use client";
 
 import type { ICreateSource, IDeleteSource, IEditSource } from "@/app/_actions";
-import { Source } from "@/app/_utils";
+import {
+  Source,
+  getCliCommand,
+  getWebhookUrl,
+  useOrgOrUserId,
+} from "@/app/_utils";
 import {
   Button,
   ColumnDef,
@@ -67,6 +72,7 @@ interface ActionsMenuProps {
 
 const ActionsMenu = (props: ActionsMenuProps) => {
   const [isPending, startTransition] = useTransition();
+  const lookupId = useOrgOrUserId();
 
   return (
     <DropdownMenu>
@@ -77,6 +83,28 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
+        {/* copy webhook URL */}
+        <DropdownMenuItem
+          onClick={async () => {
+            await navigator.clipboard.writeText(
+              getWebhookUrl(lookupId, props.row.id)
+            );
+            toast.success("Copied webhook URL");
+          }}
+        >
+          Copy webhook URL
+        </DropdownMenuItem>
+        {/* copy CLI command */}
+        <DropdownMenuItem
+          onClick={async () => {
+            await navigator.clipboard.writeText(
+              getCliCommand(lookupId, props.row.id)
+            );
+            toast.success("Copied CLI command");
+          }}
+        >
+          Copy CLI command
+        </DropdownMenuItem>
         {/* edit a source */}
         <DropdownMenuLabel>
           <EditSourceDialog
