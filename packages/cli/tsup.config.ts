@@ -6,4 +6,5 @@ export default defineConfig({
   clean: true,
   format: ["esm"],
   env: process.env as Record<string, string>,
+  noExternal: ["@trout/shared"],
 });

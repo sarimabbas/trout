@@ -1,8 +1,9 @@
 import { Text } from "ink";
 import { useCallback, useEffect, useState } from "react";
 import zod from "zod";
-import { IAPICredentialsResponse, getCredentialsFromAPI } from "../utils.js";
+import { IAPICredentialsResponse, getCredentialsFromAPI } from "../utils";
 import { Kafka } from "kafkajs";
+import { getTopicId } from "@trout/shared/isomorphic";
 
 export const options = zod.object({
   sourceId: zod.string().describe("Source ID"),
@@ -70,7 +71,10 @@ export default function Listen({ options }: Props) {
 
     console.log("Subscribing consumer to topic: ", options.sourceId);
     await consumer.subscribe({
-      topic: `${credentials.accessToken?.clerkOrgOrUserId}.${options.sourceId}`,
+      topic: getTopicId(
+        credentials.accessToken?.clerkOrgOrUserId!,
+        options.sourceId
+      ),
     });
 
     console.log("Listening for messages...");
