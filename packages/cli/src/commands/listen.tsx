@@ -21,6 +21,11 @@ const createKafkaConsumer = (credentials: IAPICredentialsResponse) => {
   ) {
     return;
   }
+
+  console.log({
+    "creating with credentials": credentials,
+  });
+
   const kafka = new Kafka({
     brokers: ["cheerful-perch-5591-us1-kafka.upstash.io:9092"],
     sasl: {
@@ -41,8 +46,12 @@ export default function Listen({ options }: Props) {
 
   const getCredentials = useCallback(async () => {
     const credentials = await getCredentialsFromAPI(options.accessToken);
-    if (!credentials.accessToken?.clerkOrgOrUserId) {
-      throw new Error("No user ID associated with credentials");
+    if (
+      !credentials.accessToken?.clerkOrgOrUserId ||
+      !credentials.username ||
+      !credentials.password
+    ) {
+      throw new Error("Credentials incomplete");
     }
     setCredentials(credentials);
   }, [options.accessToken]);
@@ -60,7 +69,9 @@ export default function Listen({ options }: Props) {
     await consumer.connect();
 
     console.log("Subscribing consumer to topic: ", options.sourceId);
-    await consumer.subscribe({ topic: options.sourceId });
+    await consumer.subscribe({
+      topic: `${credentials.accessToken?.clerkOrgOrUserId}.${options.sourceId}`,
+    });
 
     console.log("Listening for messages...");
 
@@ -86,9 +97,7 @@ export default function Listen({ options }: Props) {
   }, [getCredentials]);
 
   useEffect(() => {
-    return () => {
-      subscribeConsumerToTopic();
-    };
+    subscribeConsumerToTopic();
   }, [subscribeConsumerToTopic]);
 
   return (

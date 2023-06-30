@@ -39,7 +39,11 @@ export const createSource = async () => {
 
   // create topic in kafka if it doesn't exist
   // the userID is used as a topic prefix
-  await createTopic(getTopicId(source.clerkOrgOrUserId, source.id));
+  try {
+    await createTopic(getTopicId(source.clerkOrgOrUserId, source.id));
+  } catch (e) {
+    console.error(e);
+  }
 
   revalidatePath("/");
 
@@ -87,7 +91,11 @@ export const deleteSource = async (props: { sourceId: string }) => {
   });
 
   // delete from Kafka as well
-  await deleteTopic(getTopicId(lookupId, sourceId));
+  try {
+    await deleteTopic(getTopicId(lookupId, sourceId));
+  } catch (e) {
+    console.error(e);
+  }
 
   revalidatePath("/");
 };

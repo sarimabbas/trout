@@ -50,8 +50,8 @@ export const getKafkaCredentialsForAccessToken = async (
     body: JSON.stringify({
       credential_name: accessTokenRecord.id,
       cluster_id: privateEnv.KAFKA_CLUSTER_ID,
-      topic: `${accessTokenRecord.clerkOrgOrUserId}/*`,
-      permissions: "CONSUME",
+      topic: `${accessTokenRecord.clerkOrgOrUserId}.*`,
+      permissions: "ALL",
     }),
     headers: {
       Authorization:

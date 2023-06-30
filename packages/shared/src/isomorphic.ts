@@ -34,6 +34,6 @@ export const getPublicEnv = () => {
 };
 
 export const getTopicId = (orgOrUserId: string, sourceId: string) => {
-  const topic = `${orgOrUserId}---${sourceId}`;
+  const topic = `${orgOrUserId}.${sourceId}`;
   return topic;
 };
