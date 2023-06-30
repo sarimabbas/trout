@@ -139,7 +139,7 @@ interface SourceListProps {
   deleteSource: IDeleteSource;
 }
 
-export const SourceList = (props: SourceListProps) => {
+export const AccessTokensSection = (props: SourceListProps) => {
   const { sources, createSource, editSource, deleteSource } = props;
   const [isPending, startTransition] = useTransition();
 
