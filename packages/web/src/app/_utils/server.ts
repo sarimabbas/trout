@@ -1,7 +1,9 @@
-import { xata } from "@trout/shared";
-import { env } from ".";
+import { xata } from "@trout/shared/server";
+import { getPrivateEnv } from "@trout/shared/isomorphic";
 
-interface CreateCredentialsResponse {
+const privateEnv = getPrivateEnv();
+
+interface UpstashCreateCredentialsResponse {
   credential_id: string;
   credential_name: string;
   topic: string;
@@ -33,6 +35,7 @@ export const getKafkaCredentialsForAccessToken = async (
 
   // check if credentials already exist
   const foundCredentialsRecord = await xata.db.kafkaCredentials
+    .select(["*", "accessToken.*"])
     .filter({
       "accessToken.id": accessTokenRecord.id,
     })
@@ -46,17 +49,21 @@ export const getKafkaCredentialsForAccessToken = async (
     method: "POST",
     body: JSON.stringify({
       credential_name: accessTokenRecord.id,
-      cluster_id: env.KAFKA_CLUSTER_ID,
+      cluster_id: privateEnv.KAFKA_CLUSTER_ID,
       topic: `${accessTokenRecord.clerkOrgOrUserId}/*`,
       permissions: "CONSUME",
     }),
     headers: {
       Authorization:
         "Basic " +
-        btoa(env.UPSTASH_ADMIN_EMAIL + ":" + env.UPSTASH_ADMIN_API_KEY),
+        btoa(
+          privateEnv.UPSTASH_ADMIN_EMAIL +
+            ":" +
+            privateEnv.UPSTASH_ADMIN_API_KEY
+        ),
     },
   });
-  const data: CreateCredentialsResponse = await response.json();
+  const data: UpstashCreateCredentialsResponse = await response.json();
 
   // create credentials record
   const createdCredentialsRecord = await xata.db.kafkaCredentials.create({
@@ -67,5 +74,11 @@ export const getKafkaCredentialsForAccessToken = async (
     password: data.password,
   });
 
-  return createdCredentialsRecord;
+  return {
+    ...createdCredentialsRecord,
+    accessToken: {
+      ...createdCredentialsRecord.accessToken,
+      ...accessTokenRecord,
+    },
+  };
 };

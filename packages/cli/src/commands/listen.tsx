@@ -1,10 +1,8 @@
 import { Text } from "ink";
 import { useCallback, useEffect, useState } from "react";
 import zod from "zod";
-import {
-  IApiCredentialsResponse,
-  getCredentialsForAccessToken,
-} from "../utils.js";
+import { IAPICredentialsResponse, getCredentialsFromAPI } from "../utils.js";
+import { Kafka } from "kafkajs";
 
 export const options = zod.object({
   sourceId: zod.string().describe("Source ID"),
@@ -15,17 +13,83 @@ type Props = {
   options: zod.infer<typeof options>;
 };
 
+const createKafkaConsumer = (credentials: IAPICredentialsResponse) => {
+  if (
+    !credentials?.username ||
+    !credentials?.password ||
+    !credentials.accessToken?.clerkOrgOrUserId
+  ) {
+    return;
+  }
+  const kafka = new Kafka({
+    brokers: ["cheerful-perch-5591-us1-kafka.upstash.io:9092"],
+    sasl: {
+      mechanism: "scram-sha-256",
+      username: credentials.username,
+      password: credentials.password,
+    },
+    ssl: true,
+  });
+  const consumer = kafka.consumer({
+    groupId: credentials.accessToken.clerkOrgOrUserId,
+  });
+  return consumer;
+};
+
 export default function Listen({ options }: Props) {
-  const [credentials, setCredentials] = useState<IApiCredentialsResponse>();
+  const [credentials, setCredentials] = useState<IAPICredentialsResponse>();
 
   const getCredentials = useCallback(async () => {
-    const credentials = await getCredentialsForAccessToken(options.accessToken);
+    const credentials = await getCredentialsFromAPI(options.accessToken);
+    if (!credentials.accessToken?.clerkOrgOrUserId) {
+      throw new Error("No user ID associated with credentials");
+    }
     setCredentials(credentials);
   }, [options.accessToken]);
+
+  const subscribeConsumerToTopic = useCallback(async () => {
+    if (!options.sourceId || !credentials) {
+      return;
+    }
+    const consumer = createKafkaConsumer(credentials);
+    if (!consumer) {
+      return;
+    }
+
+    console.log("Connecting consumer...");
+    await consumer.connect();
+
+    console.log("Subscribing consumer to topic: ", options.sourceId);
+    await consumer.subscribe({ topic: options.sourceId });
+
+    console.log("Listening for messages...");
+
+    // this will block forever
+    await consumer.run({
+      eachMessage: async ({ topic, partition, message }) => {
+        console.log({
+          partition,
+          offset: message.offset,
+          value: message.value?.toString(),
+        });
+      },
+    });
+
+    return async () => {
+      console.log("Disconnecting consumer...");
+      await consumer.disconnect();
+    };
+  }, [options.sourceId, credentials]);
 
   useEffect(() => {
     getCredentials();
   }, [getCredentials]);
+
+  useEffect(() => {
+    return () => {
+      subscribeConsumerToTopic();
+    };
+  }, [subscribeConsumerToTopic]);
 
   return (
     <Text>

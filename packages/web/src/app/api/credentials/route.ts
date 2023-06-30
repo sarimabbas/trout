@@ -1,4 +1,4 @@
-import { getKafkaCredentialsForAccessToken } from "@/app/_utils/credentials";
+import { getKafkaCredentialsForAccessToken } from "@/app/_utils/server";
 import { NextResponse, type NextRequest } from "next/server";
 
 export const POST = async (req: NextRequest) => {

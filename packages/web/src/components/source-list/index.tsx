@@ -1,12 +1,12 @@
 "use client";
 
 import type { ICreateSource, IDeleteSource, IEditSource } from "@/app/_actions";
+import type { Source } from "@/app/_utils/isomorphic";
 import {
-  Source,
   getCliCommand,
   getWebhookUrl,
   useOrgOrUserId,
-} from "@/app/_utils";
+} from "@/app/_utils/isomorphic";
 import {
   Button,
   ColumnDef,
@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
   toast,
 } from "@sarim.garden/ui/client";
-import { SelectedPick, SourcesRecord } from "@trout/shared";
+import type { SelectedPick, SourcesRecord } from "@trout/shared/server";
 import { MoreHorizontal } from "lucide-react";
 import { useTransition } from "react";
 import { EditSourceDialog } from "../edit-source-dialog/edit-source-dialog";

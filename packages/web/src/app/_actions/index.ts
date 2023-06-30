@@ -1,8 +1,8 @@
 "use server";
 
-import { getRandomSourceName, getOrgOrUserId } from "../_utils";
-import { xata } from "@trout/shared";
+import { xata } from "@trout/shared/server";
 import { revalidatePath } from "next/cache";
+import { getOrgOrUserId, getRandomSourceName } from "../_utils/isomorphic";
 
 // fetches all sources
 export const getSources = async () => {

@@ -1,7 +1,7 @@
 "use client";
 
 import type { IEditSource } from "@/app/_actions";
-import { Source } from "@/app/_utils";
+import type { Source } from "@/app/_utils/isomorphic";
 import {
   Button,
   Dialog,

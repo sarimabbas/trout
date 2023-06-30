@@ -1,14 +1,17 @@
-import { deserializeRequest, env, serializeRequest } from "@/app/_utils";
-import { xata } from "@trout/shared";
+import { deserializeRequest, serializeRequest } from "@/app/_utils/isomorphic";
+import { getPrivateEnv } from "@trout/shared/isomorphic";
+import { xata } from "@trout/shared/server";
 import { Kafka } from "kafkajs";
 import { type NextRequest } from "next/server";
 
+const privateEnv = getPrivateEnv();
+
 const kafka = new Kafka({
-  brokers: [env.KAFKA_BROKER],
+  brokers: [privateEnv.KAFKA_BROKER],
   sasl: {
     mechanism: "scram-sha-256",
-    username: env.KAFKA_USERNAME,
-    password: env.KAFKA_PASSWORD,
+    username: privateEnv.KAFKA_USERNAME,
+    password: privateEnv.KAFKA_PASSWORD,
   },
   ssl: true,
 });
