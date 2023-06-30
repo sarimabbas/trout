@@ -3,6 +3,8 @@
 import { xata } from "@trout/shared/server";
 import { revalidatePath } from "next/cache";
 import { getOrgOrUserId, getRandomSourceName } from "../_utils/isomorphic";
+import { createTopic, deleteTopic } from "../api/sources/[sourceId]/route";
+import { getTopicId } from "@trout/shared/isomorphic";
 
 // fetches all sources
 export const getSources = async () => {
@@ -34,6 +36,10 @@ export const createSource = async () => {
     clerkOrgOrUserId: lookupId,
     name: getRandomSourceName(),
   });
+
+  // create topic in kafka if it doesn't exist
+  // the userID is used as a topic prefix
+  await createTopic(getTopicId(source.clerkOrgOrUserId, source.id));
 
   revalidatePath("/");
 
@@ -79,6 +85,9 @@ export const deleteSource = async (props: { sourceId: string }) => {
   await xata.db.sources.delete({
     id: sourceId as string,
   });
+
+  // delete from Kafka as well
+  await deleteTopic(getTopicId(lookupId, sourceId));
 
   revalidatePath("/");
 };

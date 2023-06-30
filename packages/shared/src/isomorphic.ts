@@ -32,3 +32,8 @@ const publicEnvSchema = z.object({
 export const getPublicEnv = () => {
   return publicEnvSchema.parse(process.env);
 };
+
+export const getTopicId = (orgOrUserId: string, sourceId: string) => {
+  const topic = `${orgOrUserId}---${sourceId}`;
+  return topic;
+};

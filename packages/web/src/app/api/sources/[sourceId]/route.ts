@@ -1,5 +1,5 @@
 import { deserializeRequest, serializeRequest } from "@/app/_utils/isomorphic";
-import { getPrivateEnv } from "@trout/shared/isomorphic";
+import { getPrivateEnv, getTopicId } from "@trout/shared/isomorphic";
 import { xata } from "@trout/shared/server";
 import { Kafka } from "kafkajs";
 import { type NextRequest } from "next/server";
@@ -35,10 +35,6 @@ export const GET = async (
     return new Response("Not found", { status: 404 });
   }
 
-  // create topic if it doesn't exist
-  // the userID is used as a topic prefix
-  await createTopic(`${source.clerkOrgOrUserId}/${source.id}`);
-
   const serializedRequest = serializeRequest(req);
   console.log("serializedRequest", serializedRequest);
 
@@ -47,7 +43,7 @@ export const GET = async (
 
   await producer.connect();
   await producer.send({
-    topic: params.sourceId,
+    topic: getTopicId(source.clerkOrgOrUserId, source.id),
     messages: [{ value: serializedRequest }],
   });
   await producer.disconnect();
@@ -62,4 +58,12 @@ export const createTopic = async (topic: string) => {
   });
   await admin.disconnect();
   return isSuccess;
+};
+
+export const deleteTopic = async (topic: string) => {
+  await admin.connect();
+  await admin.deleteTopics({
+    topics: [topic],
+  });
+  await admin.disconnect();
 };
