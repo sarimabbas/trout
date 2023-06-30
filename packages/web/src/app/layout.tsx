@@ -21,8 +21,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn(inter.className, "mx-auto container p-4 md:p-8")}>
-          {children}
+        <body className={inter.className}>
+          {/* container should NOT be body, otherwise this happens https://github.com/radix-ui/primitives/discussions/2101 */}
+          <div className="mx-auto container p-4 md:p-8">{children}</div>
           <Analytics />
           <Toaster />
         </body>
