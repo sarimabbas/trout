@@ -155,10 +155,10 @@ export const AccessTokensSection = (props: SourceListProps) => {
 
   return (
     <div className="flex flex-col gap-8">
-      <TypographyH2>Sources</TypographyH2>
+      <TypographyH2>Access tokens</TypographyH2>
       <TypographySubtle>
-        Create sources to receive events. Each source has its own dedicated URL
-        that you can copy and paste into your webhook sender.
+        Use access tokens to authorize the CLI to receive events. Keep these
+        safe!
       </TypographySubtle>
       <Button
         onClick={() =>
