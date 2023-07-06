@@ -1,9 +1,8 @@
 import { auth, useAuth } from "@clerk/nextjs";
 import { getApiUrl } from "@trout/shared/isomorphic";
-import type { NextRequest } from "next/server";
 import crypto from "crypto";
 import Haikunator from "haikunator";
-import type { SelectedPick, SourcesRecord } from "@trout/shared/server";
+import type { NextRequest } from "next/server";
 
 export const getOrgOrUserId = () => {
   const { orgId, userId } = auth();
@@ -59,8 +58,6 @@ export const deserializeRequest = (serializedRequest: string) => {
 
 const haikunator = new Haikunator();
 
-export const getRandomSourceName = () => {
+export const getRandomName = () => {
   return haikunator.haikunate();
 };
-
-export type Source = Readonly<SelectedPick<SourcesRecord, ["*"]>>;

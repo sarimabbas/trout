@@ -3,7 +3,7 @@
 import { NavigationLinks } from "@/components/navbar/navbar";
 import { xata } from "@trout/shared/server";
 import { revalidatePath } from "next/cache";
-import { getOrgOrUserId, getRandomSourceName } from "../app/_utils/isomorphic";
+import { getOrgOrUserId, getRandomName } from "../app/_utils/isomorphic";
 
 const route = NavigationLinks.find((link) => link.label === "Sinks").href;
 
@@ -14,7 +14,7 @@ export const CREATE = async () => {
   }
   const sink = await xata.db.sinks.create({
     clerkOrgOrUserId: lookupId,
-    name: getRandomSourceName(),
+    name: `snk-${getRandomName()}`,
   });
   revalidatePath(route);
   return sink;

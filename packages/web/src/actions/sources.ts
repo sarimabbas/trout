@@ -2,7 +2,7 @@
 
 import { xata } from "@trout/shared/server";
 import { revalidatePath } from "next/cache";
-import { getOrgOrUserId, getRandomSourceName } from "../app/_utils/isomorphic";
+import { getOrgOrUserId, getRandomName } from "../app/_utils/isomorphic";
 import { createTopic, deleteTopic } from "../app/api/sources/[sourceId]/route";
 import { getTopicId } from "@trout/shared/isomorphic";
 import { NavigationLinks } from "@/components/navbar/navbar";
@@ -16,7 +16,7 @@ export const CREATE = async () => {
   }
   const source = await xata.db.sources.create({
     clerkOrgOrUserId: lookupId,
-    name: getRandomSourceName(),
+    name: `src-${getRandomName()}`,
   });
   // create topic in kafka if it doesn't exist
   // the userID is used as a topic prefix
