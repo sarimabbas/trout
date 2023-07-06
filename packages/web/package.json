@@ -9,11 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.21.13",
-    "@sarim.garden/ui": "^2.1.5",
+    "@clerk/nextjs": "^4.21.14",
+    "@sarim.garden/ui": "^2.2.0",
     "@t3-oss/env-nextjs": "^0.6.0",
     "@trout/shared": "workspace:*",
-    "@types/node": "20.3.3",
+    "@types/node": "20.4.0",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@vercel/analytics": "^1.0.1",
@@ -33,7 +33,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@clerk/clerk-sdk-node": "^4.10.14",
+    "@clerk/clerk-sdk-node": "^4.10.15",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*"
   }
