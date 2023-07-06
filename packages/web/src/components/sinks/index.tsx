@@ -1,12 +1,7 @@
 "use client";
 
-import type { ICreateSource, IDeleteSource, IEditSource } from "@/app/_actions";
-import type { Source } from "@/app/_utils/isomorphic";
-import {
-  getCliCommand,
-  getWebhookUrl,
-  useOrgOrUserId,
-} from "@/app/_utils/isomorphic";
+import * as sinkActions from "@/actions/sinks";
+import { useOrgOrUserId } from "@/app/_utils/isomorphic";
 import {
   Button,
   ColumnDef,
@@ -14,25 +9,65 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuTrigger,
   TypographyH2,
   TypographySubtle,
   toast,
 } from "@sarim.garden/ui/client";
-import type { SelectedPick, SourcesRecord } from "@trout/shared/server";
 import { MoreHorizontal } from "lucide-react";
 import { useTransition } from "react";
-import { EditSourceDialog } from "../edit-source-dialog/edit-source-dialog";
 
-type SourceWithActions = Source & {
+interface SinksSectionProps {
+  sinks: Awaited<ReturnType<typeof sinkActions.READ>>;
+  CREATE: typeof sinkActions.CREATE;
+  UPDATE: typeof sinkActions.UPDATE;
+  DELETE: typeof sinkActions.DELETE;
+}
+
+type Sink = Awaited<ReturnType<typeof sinkActions.READ>>[number];
+type SinkWithActions = Sink & {
   actions: {
-    editSource: IEditSource;
-    deleteSource: IDeleteSource;
+    UPDATE: typeof sinkActions.UPDATE;
+    DELETE: typeof sinkActions.DELETE;
   };
 };
 
-export const columns: ColumnDef<SourceWithActions>[] = [
+export const SinksSection = (props: SinksSectionProps) => {
+  const { sinks, CREATE, UPDATE, DELETE } = props;
+  const [isPending, startTransition] = useTransition();
+  const sinksWithActions: SinkWithActions[] = sinks.map((s) => {
+    return {
+      ...s,
+      actions: {
+        UPDATE,
+        DELETE,
+      },
+    };
+  });
+
+  return (
+    <div className="flex flex-col gap-8">
+      <TypographyH2>Sinks</TypographyH2>
+      <TypographySubtle>
+        Sinks are where your events are consumed.
+      </TypographySubtle>
+      <Button
+        onClick={() =>
+          startTransition(async () => {
+            const sink = await CREATE();
+            toast.success(`Created sink "${sink.name}"`);
+          })
+        }
+        className="ml-auto w-fit"
+      >
+        {isPending ? "Creating..." : "Create new sink"}
+      </Button>
+      <DataTable columns={columns} data={sinksWithActions} />
+    </div>
+  );
+};
+
+export const columns: ColumnDef<SinkWithActions>[] = [
   {
     accessorKey: "id",
     header: "ID",
@@ -40,6 +75,10 @@ export const columns: ColumnDef<SourceWithActions>[] = [
   {
     accessorKey: "name",
     header: "Name",
+  },
+  {
+    accessorKey: "url",
+    header: "URL",
   },
   {
     accessorKey: "xata.createdAt",
@@ -69,7 +108,7 @@ export const columns: ColumnDef<SourceWithActions>[] = [
 ];
 
 interface ActionsMenuProps {
-  row: SourceWithActions;
+  row: SinkWithActions;
 }
 
 const ActionsMenu = (props: ActionsMenuProps) => {
@@ -85,43 +124,23 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {/* copy webhook URL */}
-        <DropdownMenuItem
-          onClick={async () => {
-            await navigator.clipboard.writeText(getWebhookUrl(props.row.id));
-            toast.success("Copied webhook URL");
-          }}
-        >
-          Copy webhook URL
-        </DropdownMenuItem>
-        {/* copy CLI command */}
-        <DropdownMenuItem
-          onClick={async () => {
-            await navigator.clipboard.writeText(
-              getCliCommand(lookupId, props.row.id)
-            );
-            toast.success("Copied CLI command");
-          }}
-        >
-          Copy CLI command
-        </DropdownMenuItem>
-        {/* edit a source */}
-        <DropdownMenuLabel>
+        {/* edit a sink */}
+        {/* <DropdownMenuLabel>
           <EditSourceDialog
             editSource={props.row.actions.editSource}
             data={props.row}
           >
             Edit
           </EditSourceDialog>
-        </DropdownMenuLabel>
+        </DropdownMenuLabel> */}
         {/* delete a source */}
         <DropdownMenuItem
           onClick={() =>
             startTransition(async () => {
-              await props.row.actions.deleteSource({
-                sourceId: props.row.id,
+              await props.row.actions.DELETE({
+                sinkId: props.row.id,
               });
-              toast.success(`Deleted source "${props.row.name}"`);
+              toast.success(`Deleted sink "${props.row.name}"`);
             })
           }
         >
@@ -129,48 +148,5 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
-
-interface SourceListProps {
-  sources: Readonly<SelectedPick<SourcesRecord, ["*"]>>[];
-  createSource: ICreateSource;
-  editSource: IEditSource;
-  deleteSource: IDeleteSource;
-}
-
-export const SinksSection = (props: SourceListProps) => {
-  const { sources, createSource, editSource, deleteSource } = props;
-  const [isPending, startTransition] = useTransition();
-
-  const sourcesWithActions = sources.map((source) => {
-    return {
-      ...source,
-      actions: {
-        editSource,
-        deleteSource,
-      },
-    };
-  });
-
-  return (
-    <div className="flex flex-col gap-8">
-      <TypographyH2>Sinks</TypographyH2>
-      <TypographySubtle>
-        Sinks are where your events are consumed.
-      </TypographySubtle>
-      <Button
-        onClick={() =>
-          startTransition(async () => {
-            const source = await createSource();
-            toast.success(`Created source "${source.name}"`);
-          })
-        }
-        className="ml-auto w-fit"
-      >
-        {isPending ? "Creating..." : "Create new source"}
-      </Button>
-      <DataTable columns={columns} data={sourcesWithActions} />
-    </div>
   );
 };

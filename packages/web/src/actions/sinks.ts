@@ -7,7 +7,7 @@ import { getOrgOrUserId, getRandomSourceName } from "../app/_utils/isomorphic";
 
 const route = NavigationLinks.find((link) => link.label === "Sinks").href;
 
-export const createAction = async () => {
+export const CREATE = async () => {
   const lookupId = getOrgOrUserId();
   if (!lookupId) {
     throw new Error("lookupId is not defined");
@@ -20,7 +20,7 @@ export const createAction = async () => {
   return sink;
 };
 
-export const readAction = async () => {
+export const READ = async () => {
   const lookupId = getOrgOrUserId();
   if (!lookupId) {
     throw new Error("lookupId is not defined");
@@ -34,7 +34,7 @@ export const readAction = async () => {
   return sinks;
 };
 
-export const updateAction = async (props: {
+export const UPDATE = async (props: {
   sinkId: string;
   name: string;
   url: string;
@@ -55,7 +55,7 @@ export const updateAction = async (props: {
   revalidatePath(route);
 };
 
-export const deleteAction = async (props: { sinkId: string }) => {
+export const DELETE = async (props: { sinkId: string }) => {
   const { sinkId } = props;
   if (!sinkId) {
     throw new Error("sinkId is not defined");
