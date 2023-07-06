@@ -32,6 +32,14 @@ const tables = [
       { name: "clerkOrgOrUserId", type: "string" },
     ],
   },
+  {
+    name: "connections",
+    columns: [
+      { name: "source", type: "link", link: { table: "sources" } },
+      { name: "sink", type: "link", link: { table: "sinks" } },
+      { name: "clerkOrgOrUserId", type: "string" },
+    ],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;
@@ -46,10 +54,14 @@ export type AccessTokensRecord = AccessTokens & XataRecord;
 export type Sinks = InferredTypes["sinks"];
 export type SinksRecord = Sinks & XataRecord;
 
+export type Connections = InferredTypes["connections"];
+export type ConnectionsRecord = Connections & XataRecord;
+
 export type DatabaseSchema = {
   sources: SourcesRecord;
   accessTokens: AccessTokensRecord;
   sinks: SinksRecord;
+  connections: ConnectionsRecord;
 };
 
 const DatabaseClient = buildClient();
