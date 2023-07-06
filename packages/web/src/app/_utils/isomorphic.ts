@@ -1,6 +1,5 @@
 import { auth, useAuth } from "@clerk/nextjs";
 import { getApiUrl } from "@trout/shared/isomorphic";
-import crypto from "crypto";
 import Haikunator from "haikunator";
 import type { NextRequest } from "next/server";
 
@@ -20,15 +19,7 @@ export const getWebhookUrl = (sourceId: string) => {
 };
 
 export const getCliCommand = (orgOrUserId: string, sourceId: string) => {
-  return `trout listen --id ${sourceId} --access-token ${getRootAccessToken(
-    orgOrUserId
-  )}`;
-};
-
-export const getRootAccessToken = (orgOrUserId: string) => {
-  const hash = crypto.createHash("sha256");
-  hash.update(orgOrUserId);
-  return hash.digest("hex");
+  return `trout listen --id ${sourceId}}`;
 };
 
 export const serializeRequest = (req: NextRequest) => {
