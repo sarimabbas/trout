@@ -1,21 +1,3 @@
-import { xata } from "@trout/shared/server";
-import { getPrivateEnv } from "@trout/shared/isomorphic";
-
-const privateEnv = getPrivateEnv();
-
-interface UpstashCreateCredentialsResponse {
-  credential_id: string;
-  credential_name: string;
-  topic: string;
-  permissions: string;
-  cluster_id: string;
-  cluster_slug: string;
-  username: string;
-  creation_time: number;
-  password: string;
-  state: string;
-}
-
 /**
  * Creates Kafka credentials for an access token
  * Gives access to all topics prefixed with the orgOrUserId

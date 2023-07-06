@@ -1,7 +1,6 @@
 "use client";
 
-import * as sinkActions from "@/actions/sinks";
-import { useOrgOrUserId } from "@/app/_utils/isomorphic";
+import * as accessTokenActions from "@/actions/accessTokens";
 import {
   Button,
   ColumnDef,
@@ -17,57 +16,60 @@ import {
 import { MoreHorizontal } from "lucide-react";
 import { useTransition } from "react";
 
-interface SinksSectionProps {
-  sinks: Awaited<ReturnType<typeof sinkActions.READ>>;
-  CREATE: typeof sinkActions.CREATE;
-  UPDATE: typeof sinkActions.UPDATE;
-  DELETE: typeof sinkActions.DELETE;
+interface AccessTokensSectionProps {
+  accessTokens: Awaited<ReturnType<typeof accessTokenActions.READ>>;
+  CREATE: typeof accessTokenActions.CREATE;
+  UPDATE: typeof accessTokenActions.UPDATE;
+  DELETE: typeof accessTokenActions.DELETE;
 }
 
-type Sink = Awaited<ReturnType<typeof sinkActions.READ>>[number];
-type SinkWithActions = Sink & {
+type AccessToken = Awaited<ReturnType<typeof accessTokenActions.READ>>[number];
+type AccessTokenWithActions = AccessToken & {
   actions: {
-    UPDATE: typeof sinkActions.UPDATE;
-    DELETE: typeof sinkActions.DELETE;
+    UPDATE: typeof accessTokenActions.UPDATE;
+    DELETE: typeof accessTokenActions.DELETE;
   };
 };
 
-export const SinksSection = (props: SinksSectionProps) => {
-  const { sinks, CREATE, UPDATE, DELETE } = props;
+export const AccessTokensSection = (props: AccessTokensSectionProps) => {
+  const { accessTokens, CREATE, UPDATE, DELETE } = props;
   const [isPending, startTransition] = useTransition();
-  const sinksWithActions: SinkWithActions[] = sinks.map((s) => {
-    return {
-      ...s,
-      actions: {
-        UPDATE,
-        DELETE,
-      },
-    };
-  });
+  const accessTokensWithActions: AccessTokenWithActions[] = accessTokens.map(
+    (accessToken) => {
+      return {
+        ...accessToken,
+        actions: {
+          UPDATE,
+          DELETE,
+        },
+      };
+    }
+  );
 
   return (
     <div className="flex flex-col gap-8">
-      <TypographyH2>Sinks</TypographyH2>
+      <TypographyH2>Access tokens</TypographyH2>
       <TypographySubtle>
-        Sinks are where your events are consumed.
+        Use access tokens to authorize the CLI to receive events. Keep these
+        safe!
       </TypographySubtle>
       <Button
         onClick={() =>
           startTransition(async () => {
-            const sink = await CREATE();
-            toast.success(`Created sink "${sink.name}"`);
+            const accessToken = await CREATE();
+            toast.success(`Created access token "${accessToken.name}"`);
           })
         }
         className="ml-auto w-fit"
       >
-        {isPending ? "Creating..." : "Create new sink"}
+        {isPending ? "Creating..." : "Create new access token"}
       </Button>
-      <DataTable columns={columns} data={sinksWithActions} />
+      <DataTable columns={columns} data={accessTokensWithActions} />
     </div>
   );
 };
 
-export const columns: ColumnDef<SinkWithActions>[] = [
+export const columns: ColumnDef<AccessTokenWithActions>[] = [
   {
     accessorKey: "id",
     header: "ID",
@@ -77,25 +79,21 @@ export const columns: ColumnDef<SinkWithActions>[] = [
     header: "Name",
   },
   {
-    accessorKey: "url",
-    header: "URL",
-  },
-  {
     accessorKey: "xata.createdAt",
     header: "Created at",
     id: "createdAt",
-    accessorFn: (sink) => {
+    accessorFn: (accessToken) => {
       // human readable date time
-      return new Date(sink.xata.createdAt).toLocaleDateString();
+      return new Date(accessToken.xata.createdAt).toLocaleDateString();
     },
   },
   {
     accessorKey: "xata.updatedAt",
     header: "Updated at",
     id: "updatedAt",
-    accessorFn: (sink) => {
+    accessorFn: (accessToken) => {
       // human readable date time
-      return new Date(sink.xata.updatedAt).toLocaleDateString();
+      return new Date(accessToken.xata.updatedAt).toLocaleDateString();
     },
   },
   {
@@ -108,13 +106,11 @@ export const columns: ColumnDef<SinkWithActions>[] = [
 ];
 
 interface ActionsMenuProps {
-  row: SinkWithActions;
+  row: AccessTokenWithActions;
 }
 
 const ActionsMenu = (props: ActionsMenuProps) => {
   const [isPending, startTransition] = useTransition();
-  const lookupId = useOrgOrUserId();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -124,7 +120,16 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {/* edit a sink */}
+        {/* copy token */}
+        <DropdownMenuItem
+          onClick={async () => {
+            await navigator.clipboard.writeText(props.row.id);
+            toast.success("Copied access token");
+          }}
+        >
+          Copy access token
+        </DropdownMenuItem>
+        {/* edit an access token */}
         {/* <DropdownMenuLabel>
           <EditSourceDialog
             editSource={props.row.actions.editSource}
@@ -133,14 +138,14 @@ const ActionsMenu = (props: ActionsMenuProps) => {
             Edit
           </EditSourceDialog>
         </DropdownMenuLabel> */}
-        {/* delete a source */}
+        {/* delete an access token */}
         <DropdownMenuItem
           onClick={() =>
             startTransition(async () => {
               await props.row.actions.DELETE({
-                sinkId: props.row.id,
+                accessTokenId: props.row.id,
               });
-              toast.success(`Deleted sink "${props.row.name}"`);
+              toast.success(`Deleted access token "${props.row.name}"`);
             })
           }
         >

@@ -1,21 +1,15 @@
-import { AccessTokensSection } from "@/components/access-token-section";
-import {
-  createSource,
-  deleteSource,
-  editSource,
-  getSources,
-} from "../../actions/sources";
+import * as accessTokenActions from "@/actions/accessTokens";
+import { AccessTokensSection } from "@/components/access-tokens";
 
 export default async function AccessTokensPage() {
-  const sources = await getSources();
-
+  const accessTokens = await accessTokenActions.READ();
   return (
     <div className="flex flex-col gap-8">
       <AccessTokensSection
-        sources={sources}
-        createSource={createSource}
-        editSource={editSource}
-        deleteSource={deleteSource}
+        accessTokens={accessTokens}
+        CREATE={accessTokenActions.CREATE}
+        UPDATE={accessTokenActions.UPDATE}
+        DELETE={accessTokenActions.DELETE}
       />
     </div>
   );
