@@ -1,11 +1,6 @@
 "use client";
 
-import type {
-  ICreateSource,
-  IDeleteSource,
-  IEditSource,
-} from "@/actions/sources";
-import type { Source } from "@/app/_utils/isomorphic";
+import * as sourceActions from "@/actions/sources";
 import {
   getCliCommand,
   getWebhookUrl,
@@ -24,16 +19,59 @@ import {
   TypographySubtle,
   toast,
 } from "@sarim.garden/ui/client";
-import type { SelectedPick, SourcesRecord } from "@trout/shared/server";
 import { MoreHorizontal } from "lucide-react";
 import { useTransition } from "react";
 import { EditSourceDialog } from "../edit-source-dialog/edit-source-dialog";
 
+interface SourceListProps {
+  sources: Awaited<ReturnType<typeof sourceActions.READ>>;
+  CREATE: typeof sourceActions.CREATE;
+  UPDATE: typeof sourceActions.UPDATE;
+  DELETE: typeof sourceActions.DELETE;
+}
+
+type Source = Awaited<ReturnType<typeof sourceActions.READ>>[number];
 type SourceWithActions = Source & {
   actions: {
-    editSource: IEditSource;
-    deleteSource: IDeleteSource;
+    UPDATE: typeof sourceActions.UPDATE;
+    DELETE: typeof sourceActions.DELETE;
   };
+};
+
+export const SourcesSection = (props: SourceListProps) => {
+  const { sources, CREATE, UPDATE, DELETE } = props;
+  const [isPending, startTransition] = useTransition();
+  const sourcesWithActions: SourceWithActions[] = sources.map((source) => {
+    return {
+      ...source,
+      actions: {
+        UPDATE,
+        DELETE,
+      },
+    };
+  });
+
+  return (
+    <div className="flex flex-col gap-8">
+      <TypographyH2>Sources</TypographyH2>
+      <TypographySubtle>
+        Create sources to receive events. Each source has its own dedicated URL
+        that you can copy and paste into your webhook sender.
+      </TypographySubtle>
+      <Button
+        onClick={() =>
+          startTransition(async () => {
+            const source = await CREATE();
+            toast.success(`Created source "${source.name}"`);
+          })
+        }
+        className="ml-auto w-fit"
+      >
+        {isPending ? "Creating..." : "Create new source"}
+      </Button>
+      <DataTable columns={columns} data={sourcesWithActions} />
+    </div>
+  );
 };
 
 export const columns: ColumnDef<SourceWithActions>[] = [
@@ -112,7 +150,7 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         {/* edit a source */}
         <DropdownMenuLabel>
           <EditSourceDialog
-            editSource={props.row.actions.editSource}
+            editSource={props.row.actions.UPDATE}
             data={props.row}
           >
             Edit
@@ -122,7 +160,7 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         <DropdownMenuItem
           onClick={() =>
             startTransition(async () => {
-              await props.row.actions.deleteSource({
+              await props.row.actions.DELETE({
                 sourceId: props.row.id,
               });
               toast.success(`Deleted source "${props.row.name}"`);
@@ -133,49 +171,5 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
-
-interface SourceListProps {
-  sources: Readonly<SelectedPick<SourcesRecord, ["*"]>>[];
-  createSource: ICreateSource;
-  editSource: IEditSource;
-  deleteSource: IDeleteSource;
-}
-
-export const SourceList = (props: SourceListProps) => {
-  const { sources, createSource, editSource, deleteSource } = props;
-  const [isPending, startTransition] = useTransition();
-
-  const sourcesWithActions = sources.map((source) => {
-    return {
-      ...source,
-      actions: {
-        editSource,
-        deleteSource,
-      },
-    };
-  });
-
-  return (
-    <div className="flex flex-col gap-8">
-      <TypographyH2>Sources</TypographyH2>
-      <TypographySubtle>
-        Create sources to receive events. Each source has its own dedicated URL
-        that you can copy and paste into your webhook sender.
-      </TypographySubtle>
-      <Button
-        onClick={() =>
-          startTransition(async () => {
-            const source = await createSource();
-            toast.success(`Created source "${source.name}"`);
-          })
-        }
-        className="ml-auto w-fit"
-      >
-        {isPending ? "Creating..." : "Create new source"}
-      </Button>
-      <DataTable columns={columns} data={sourcesWithActions} />
-    </div>
   );
 };

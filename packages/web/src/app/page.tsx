@@ -1,21 +1,15 @@
-import { SourceList } from "../components/source-list";
-import {
-  createSource,
-  deleteSource,
-  editSource,
-  getSources,
-} from "../actions/sources";
+import { SourcesSection } from "../components/sources";
+import * as sourceActions from "@/actions/sources";
 
-export default async function Home() {
-  const sources = await getSources();
-
+export default async function SourcesPage() {
+  const sources = await sourceActions.READ();
   return (
     <div className="flex flex-col gap-8">
-      <SourceList
+      <SourcesSection
         sources={sources}
-        createSource={createSource}
-        editSource={editSource}
-        deleteSource={deleteSource}
+        CREATE={sourceActions.CREATE}
+        UPDATE={sourceActions.UPDATE}
+        DELETE={sourceActions.DELETE}
       />
     </div>
   );

@@ -9,37 +9,15 @@ import { NavigationLinks } from "@/components/navbar/navbar";
 
 const route = NavigationLinks.find((link) => link.label === "Sources").href;
 
-// fetches all sources
-export const getSources = async () => {
+export const CREATE = async () => {
   const lookupId = getOrgOrUserId();
   if (!lookupId) {
     throw new Error("lookupId is not defined");
   }
-
-  const sources = await xata.db.sources
-    .filter({
-      clerkOrgOrUserId: lookupId,
-    })
-    .select(["*"])
-    .getAll();
-
-  return sources;
-};
-
-export type IGetSources = typeof getSources;
-
-// creates a new source
-export const createSource = async () => {
-  const lookupId = getOrgOrUserId();
-  if (!lookupId) {
-    throw new Error("lookupId is not defined");
-  }
-
   const source = await xata.db.sources.create({
     clerkOrgOrUserId: lookupId,
     name: getRandomSourceName(),
   });
-
   // create topic in kafka if it doesn't exist
   // the userID is used as a topic prefix
   try {
@@ -47,60 +25,57 @@ export const createSource = async () => {
   } catch (e) {
     console.error(e);
   }
-
   revalidatePath(route);
-
   return source;
 };
 
-export type ICreateSource = typeof createSource;
+export const READ = async () => {
+  const lookupId = getOrgOrUserId();
+  if (!lookupId) {
+    throw new Error("lookupId is not defined");
+  }
+  const sources = await xata.db.sources
+    .filter({
+      clerkOrgOrUserId: lookupId,
+    })
+    .select(["*"])
+    .getAll();
+  return sources;
+};
 
-// updates an existing source with name
-export const editSource = async (props: { sourceId: string; name: string }) => {
+export const UPDATE = async (props: { sourceId: string; name: string }) => {
   const { sourceId, name } = props;
   if (!sourceId) {
     throw new Error("sourceId is not defined");
   }
-
   const lookupId = getOrgOrUserId();
   if (!lookupId) {
     throw new Error("lookupId is not defined");
   }
-
   await xata.db.sources.update({
     id: sourceId as string,
     name,
   });
-
   revalidatePath(route);
 };
 
-export type IEditSource = typeof editSource;
-
-// deletes an existing source
-export const deleteSource = async (props: { sourceId: string }) => {
+export const DELETE = async (props: { sourceId: string }) => {
   const { sourceId } = props;
   if (!sourceId) {
     throw new Error("sourceId is not defined");
   }
-
   const lookupId = getOrgOrUserId();
   if (!lookupId) {
     throw new Error("lookupId is not defined");
   }
-
   await xata.db.sources.delete({
     id: sourceId as string,
   });
-
   // delete from Kafka as well
   try {
     await deleteTopic(getTopicId(lookupId, sourceId));
   } catch (e) {
     console.error(e);
   }
-
   revalidatePath(route);
 };
-
-export type IDeleteSource = typeof deleteSource;
