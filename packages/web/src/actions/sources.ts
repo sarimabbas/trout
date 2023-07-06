@@ -2,9 +2,12 @@
 
 import { xata } from "@trout/shared/server";
 import { revalidatePath } from "next/cache";
-import { getOrgOrUserId, getRandomSourceName } from "../_utils/isomorphic";
-import { createTopic, deleteTopic } from "../api/sources/[sourceId]/route";
+import { getOrgOrUserId, getRandomSourceName } from "../app/_utils/isomorphic";
+import { createTopic, deleteTopic } from "../app/api/sources/[sourceId]/route";
 import { getTopicId } from "@trout/shared/isomorphic";
+import { NavigationLinks } from "@/components/navbar/navbar";
+
+const route = NavigationLinks.find((link) => link.label === "Sources").href;
 
 // fetches all sources
 export const getSources = async () => {
@@ -45,7 +48,7 @@ export const createSource = async () => {
     console.error(e);
   }
 
-  revalidatePath("/");
+  revalidatePath(route);
 
   return source;
 };
@@ -69,7 +72,7 @@ export const editSource = async (props: { sourceId: string; name: string }) => {
     name,
   });
 
-  revalidatePath("/");
+  revalidatePath(route);
 };
 
 export type IEditSource = typeof editSource;
@@ -97,7 +100,7 @@ export const deleteSource = async (props: { sourceId: string }) => {
     console.error(e);
   }
 
-  revalidatePath("/");
+  revalidatePath(route);
 };
 
 export type IDeleteSource = typeof deleteSource;

@@ -2,7 +2,7 @@ import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { Button } from "@sarim.garden/ui/client";
 import Link from "next/link";
 
-const links = [
+export const NavigationLinks = [
   {
     href: "/",
     label: "Sources",
@@ -19,7 +19,7 @@ const links = [
     href: "/access-tokens",
     label: "Access tokens",
   },
-];
+] as const;
 
 export const Navbar = () => {
   return (
@@ -28,7 +28,7 @@ export const Navbar = () => {
         <div className="text-2xl font-semibold">🐟 Trout</div>
         <OrganizationSwitcher />
         <ul className="flex items-center gap-4">
-          {links.map(({ href, label }) => (
+          {NavigationLinks.map(({ href, label }) => (
             <li key={href}>
               <Link href={href}>
                 <Button variant="link">{label}</Button>

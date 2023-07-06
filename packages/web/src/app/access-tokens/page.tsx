@@ -4,7 +4,7 @@ import {
   deleteSource,
   editSource,
   getSources,
-} from "../_actions";
+} from "../../actions/sources";
 
 export default async function AccessTokensPage() {
   const sources = await getSources();

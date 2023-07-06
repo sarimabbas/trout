@@ -1,6 +1,6 @@
 "use client";
 
-import type { IEditSource } from "@/app/_actions";
+import type { IEditSource } from "@/actions/sources";
 import type { Source } from "@/app/_utils/isomorphic";
 import {
   Button,

@@ -1,7 +1,12 @@
 "use client";
 
 import { TypographyH2, TypographySubtle } from "@sarim.garden/ui/client";
-import ReactFlow from "reactflow";
+import ReactFlow, {
+  Background,
+  BackgroundVariant,
+  Controls,
+  MiniMap,
+} from "reactflow";
 
 const initialNodes = [
   { id: "1", position: { x: 0, y: 0 }, data: { label: "1" } },
@@ -18,7 +23,15 @@ export const ConnectionsSection = (props: ConnectionsProps) => {
       <TypographySubtle>
         Connections direct events from your data sources to your sinks.
       </TypographySubtle>
-      <ReactFlow nodes={initialNodes} edges={initialEdges} />
+      <ReactFlow
+        nodes={initialNodes}
+        edges={initialEdges}
+        className="border rounded-md"
+      >
+        <Controls />
+        <MiniMap />
+        <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
+      </ReactFlow>
     </div>
   );
 };

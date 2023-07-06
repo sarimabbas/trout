@@ -1,6 +1,10 @@
 "use client";
 
-import type { ICreateSource, IDeleteSource, IEditSource } from "@/app/_actions";
+import type {
+  ICreateSource,
+  IDeleteSource,
+  IEditSource,
+} from "@/actions/sources";
 import type { Source } from "@/app/_utils/isomorphic";
 import {
   getCliCommand,

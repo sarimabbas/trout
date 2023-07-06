@@ -1,5 +1,10 @@
 import { SourceList } from "../components/source-list";
-import { createSource, deleteSource, editSource, getSources } from "./_actions";
+import {
+  createSource,
+  deleteSource,
+  editSource,
+  getSources,
+} from "../actions/sources";
 
 export default async function Home() {
   const sources = await getSources();

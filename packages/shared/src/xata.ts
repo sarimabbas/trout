@@ -26,6 +26,14 @@ const tables = [
       { name: "accessToken", type: "link", link: { table: "accessTokens" } },
     ],
   },
+  {
+    name: "sinks",
+    columns: [
+      { name: "name", type: "string" },
+      { name: "url", type: "string" },
+      { name: "clerkOrgOrUserId", type: "string" },
+    ],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;
@@ -40,10 +48,14 @@ export type AccessTokensRecord = AccessTokens & XataRecord;
 export type KafkaCredentials = InferredTypes["kafkaCredentials"];
 export type KafkaCredentialsRecord = KafkaCredentials & XataRecord;
 
+export type Sinks = InferredTypes["sinks"];
+export type SinksRecord = Sinks & XataRecord;
+
 export type DatabaseSchema = {
   sources: SourcesRecord;
   accessTokens: AccessTokensRecord;
   kafkaCredentials: KafkaCredentialsRecord;
+  sinks: SinksRecord;
 };
 
 const DatabaseClient = buildClient();
