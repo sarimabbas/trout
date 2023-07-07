@@ -1,6 +1,43 @@
 import { getPrivateEnv } from "@trout/shared/isomorphic";
+import { Kafka } from "kafkajs";
 
 const privateEnv = getPrivateEnv();
+
+const kafka = new Kafka({
+  brokers: [privateEnv.KAFKA_BROKER],
+  sasl: {
+    mechanism: "scram-sha-256",
+    username: privateEnv.KAFKA_USERNAME,
+    password: privateEnv.KAFKA_PASSWORD,
+  },
+  ssl: true,
+});
+
+export const kafkaAdmin = kafka.admin();
+
+export const kafkaProducer = kafka.producer({
+  // not supported by Upstash yet, so we need to use createTopic
+  // allowAutoTopicCreation: true,
+});
+
+export const createKafkaTopic = async (topic: string) => {
+  await kafkaAdmin.connect();
+  const isSuccess = await kafkaAdmin.createTopics({
+    topics: [{ topic }],
+  });
+  await kafkaAdmin.disconnect();
+  return isSuccess;
+};
+
+export const deleteKafkaTopic = async (topic: string) => {
+  await kafkaAdmin.connect();
+  await kafkaAdmin.deleteTopics({
+    topics: [topic],
+  });
+  await kafkaAdmin.disconnect();
+};
+
+// -----------
 
 interface UpstashCreateCredentialsResponse {
   credential_id: string;

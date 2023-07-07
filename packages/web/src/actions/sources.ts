@@ -3,9 +3,9 @@
 import { xata } from "@trout/shared/server";
 import { revalidatePath } from "next/cache";
 import { getOrgOrUserId, getRandomName } from "../app/_utils/isomorphic";
-import { createTopic, deleteTopic } from "../app/api/sources/[sourceId]/route";
 import { getTopicId } from "@trout/shared/isomorphic";
 import { NavigationLinks } from "@/components/navbar/navbar";
+import { createKafkaTopic, deleteKafkaTopic } from "./kafka";
 
 const route = NavigationLinks.find((link) => link.label === "Sources").href;
 
@@ -21,7 +21,7 @@ export const CREATE = async () => {
   // create topic in kafka if it doesn't exist
   // the userID is used as a topic prefix
   try {
-    await createTopic(getTopicId(source.clerkOrgOrUserId, source.id));
+    await createKafkaTopic(getTopicId(source.clerkOrgOrUserId, source.id));
   } catch (e) {
     console.error(e);
   }
@@ -80,7 +80,7 @@ export const DELETE = async (props: { sourceId: string }) => {
   });
   // delete from Kafka as well
   try {
-    await deleteTopic(getTopicId(lookupId, sourceId));
+    await deleteKafkaTopic(getTopicId(lookupId, sourceId));
   } catch (e) {
     console.error(e);
   }
