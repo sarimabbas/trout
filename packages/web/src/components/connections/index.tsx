@@ -66,6 +66,8 @@ export const ConnectionsSection = (props: ConnectionsSectionProps) => {
         Connections direct events from your data sources to your sinks.
       </TypographySubtle>
       <ReactFlow
+        // force refresh when org changes
+        key={props.sources.length + props.sinks.length}
         defaultNodes={initialNodes}
         defaultEdges={initialEdges}
         defaultEdgeOptions={{
