@@ -2,7 +2,7 @@ import { kafkaProducer } from "@/actions/kafka";
 import { serializeRequest } from "@/app/_utils/isomorphic";
 import { getTopicId } from "@trout/shared/isomorphic";
 import { xata } from "@trout/shared/server";
-import { type NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 // receives webhook requests from external sources and 1) forwards them to Kafka
 // for CLI and 2) forwards them to all connections
@@ -15,7 +15,7 @@ const handler = async (
     .filter({ id: params.sourceId })
     .getFirst();
   if (!source) {
-    return new Response("Not found", { status: 404 });
+    return NextResponse.json({ error: "Source not found" }, { status: 404 });
   }
 
   const serializedRequest = serializeRequest(req);
@@ -30,7 +30,7 @@ const handler = async (
 
   // todo(sarim): send to all connections
 
-  return new Response(params.sourceId);
+  return NextResponse.json({ success: true, sourceId: source.id });
 };
 
 export const POST = handler;
