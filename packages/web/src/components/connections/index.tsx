@@ -3,7 +3,13 @@
 import * as connectionActions from "@/actions/connections";
 import * as sinkActions from "@/actions/sinks";
 import * as sourceActions from "@/actions/sources";
-import { TypographyH2, TypographySubtle } from "@sarim.garden/ui/client";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  TypographyH2,
+  TypographySubtle,
+} from "@sarim.garden/ui/client";
 import ReactFlow, {
   Background,
   BackgroundVariant,
@@ -14,6 +20,7 @@ import ReactFlow, {
   Node,
 } from "reactflow";
 import { CustomNode } from "./node";
+import { Info } from "lucide-react";
 
 const nodeTypes = {
   custom: CustomNode,
@@ -117,6 +124,15 @@ export const ConnectionsSection = (props: ConnectionsSectionProps) => {
         <MiniMap />
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
       </ReactFlow>
+      <div className="flex items-center gap-4 p-4 border rounded-md">
+        <TypographySubtle>
+          <Info size={24} />
+        </TypographySubtle>
+        <TypographySubtle>
+          Drag from a source outlet to a sink inlet to create a connection.
+          Select a connection and hit backspace on your keyboard to delete it.
+        </TypographySubtle>
+      </div>
     </div>
   );
 };
