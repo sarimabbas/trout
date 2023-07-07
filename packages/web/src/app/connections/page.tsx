@@ -14,8 +14,10 @@ export default async function ConnectionsPage() {
         sources={sources}
         sinks={sinks}
         connections={connections}
-        CRUPDATE={connectionActions.CRUPDATE}
-        DELETE={connectionActions.DELETE}
+        connectionCRUPDATE={connectionActions.CRUPDATE}
+        connectionDELETE={connectionActions.DELETE}
+        sourceUPDATE={sourceActions.UPDATE}
+        sinkUPDATE={sinkActions.UPDATE}
       />
     </div>
   );

@@ -36,10 +36,12 @@ export const READ = async () => {
 
 export const UPDATE = async (props: {
   sinkId: string;
-  name: string;
-  url: string;
+  name?: string;
+  url?: string;
+  diagramPosX?: number;
+  diagramPosY?: number;
 }) => {
-  const { sinkId, name, url } = props;
+  const { sinkId, name, url, diagramPosX, diagramPosY } = props;
   if (!sinkId) {
     throw new Error("sinkId is not defined");
   }
@@ -51,6 +53,8 @@ export const UPDATE = async (props: {
     id: sinkId as string,
     name,
     url,
+    diagramPosX,
+    diagramPosY,
   });
   revalidatePath(route);
 };

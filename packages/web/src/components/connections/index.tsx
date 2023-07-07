@@ -19,15 +19,17 @@ const nodeTypes = {
   custom: CustomNode,
 };
 
-interface ConnectionsProps {
+interface ConnectionsSectionProps {
   sources: Awaited<ReturnType<typeof sourceActions.READ>>;
   sinks: Awaited<ReturnType<typeof sinkActions.READ>>;
   connections: Awaited<ReturnType<typeof connectionActions.READ>>;
-  CRUPDATE: typeof connectionActions.CRUPDATE;
-  DELETE: typeof connectionActions.DELETE;
+  connectionCRUPDATE: typeof connectionActions.CRUPDATE;
+  connectionDELETE: typeof connectionActions.DELETE;
+  sourceUPDATE: typeof sourceActions.UPDATE;
+  sinkUPDATE: typeof sinkActions.UPDATE;
 }
 
-export const ConnectionsSection = (props: ConnectionsProps) => {
+export const ConnectionsSection = (props: ConnectionsSectionProps) => {
   const initialNodes: Node[] = props.sources
     .map((c, idx) => {
       return {
@@ -81,7 +83,7 @@ export const ConnectionsSection = (props: ConnectionsProps) => {
         }}
         nodeTypes={nodeTypes}
         onConnect={async (c) => {
-          await props.CRUPDATE({
+          await props.connectionCRUPDATE({
             sourceId: c.source,
             sinkId: c.target,
           });
@@ -89,11 +91,26 @@ export const ConnectionsSection = (props: ConnectionsProps) => {
         onEdgesDelete={async (c) => {
           await Promise.all(
             c.map((edge) => {
-              return props.DELETE({
+              return props.connectionDELETE({
                 connectionId: edge.id,
               });
             })
           );
+        }}
+        onNodeDragStop={async (e, node, nodes) => {
+          if (node.data.type === "source") {
+            await props.sourceUPDATE({
+              sourceId: node.id,
+              diagramPosX: Math.round(node.position.x),
+              diagramPosY: Math.round(node.position.y),
+            });
+          } else {
+            await props.sinkUPDATE({
+              sinkId: node.id,
+              diagramPosX: Math.round(node.position.x),
+              diagramPosY: Math.round(node.position.y),
+            });
+          }
         }}
       >
         <Controls />

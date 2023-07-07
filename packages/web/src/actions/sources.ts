@@ -43,8 +43,13 @@ export const READ = async () => {
   return sources;
 };
 
-export const UPDATE = async (props: { sourceId: string; name: string }) => {
-  const { sourceId, name } = props;
+export const UPDATE = async (props: {
+  sourceId: string;
+  name?: string;
+  diagramPosX?: number;
+  diagramPosY?: number;
+}) => {
+  const { sourceId, name, diagramPosX, diagramPosY } = props;
   if (!sourceId) {
     throw new Error("sourceId is not defined");
   }
@@ -55,6 +60,8 @@ export const UPDATE = async (props: { sourceId: string; name: string }) => {
   await xata.db.sources.update({
     id: sourceId as string,
     name,
+    diagramPosX,
+    diagramPosY,
   });
   revalidatePath(route);
 };
