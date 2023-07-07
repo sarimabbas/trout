@@ -1,32 +1,20 @@
+"use client";
+
+import { NavigationLinks } from "@/app/_utils/isomorphic";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
-import { Button } from "@sarim.garden/ui/client";
+import { dark } from "@clerk/themes";
+import { Button, DarkModeToggle, useTheme } from "@sarim.garden/ui/client";
 import Link from "next/link";
 
-export const NavigationLinks = [
-  {
-    href: "/",
-    label: "Sources",
-  },
-  {
-    href: "/sinks",
-    label: "Sinks",
-  },
-  {
-    href: "/connections",
-    label: "Connections",
-  },
-  {
-    href: "/access-tokens",
-    label: "Access tokens",
-  },
-] as const;
-
 export const Navbar = () => {
+  const { theme } = useTheme();
   return (
-    <div className="container flex items-center justify-between gap-4 p-8 mx-auto bg-gray-50">
+    <div className="container flex items-center justify-between gap-4 p-8 mx-auto bg-gray-50 dark:bg-zinc-900">
       <div className="flex items-center gap-12">
         <div className="text-2xl font-semibold">🐟 Trout</div>
-        <OrganizationSwitcher />
+        <OrganizationSwitcher
+          appearance={theme === "dark" ? { baseTheme: dark } : {}}
+        />
         <ul className="flex items-center gap-4">
           {NavigationLinks.map(({ href, label }) => (
             <li key={href}>
@@ -37,7 +25,10 @@ export const Navbar = () => {
           ))}
         </ul>
       </div>
-      <UserButton />
+      <div className="flex items-center gap-12">
+        <DarkModeToggle />
+        <UserButton appearance={theme === "dark" ? { baseTheme: dark } : {}} />
+      </div>
     </div>
   );
 };

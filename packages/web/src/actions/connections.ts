@@ -1,9 +1,8 @@
 "use server";
 
-import { NavigationLinks } from "@/components/navbar/navbar";
 import { xata } from "@trout/shared/server";
 import { revalidatePath } from "next/cache";
-import { getOrgOrUserId } from "../app/_utils/isomorphic";
+import { NavigationLinks, getOrgOrUserId } from "../app/_utils/isomorphic";
 
 const route = NavigationLinks.find((link) => link.label === "Connections").href;
 

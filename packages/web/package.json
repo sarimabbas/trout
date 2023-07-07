@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.21.14",
-    "@sarim.garden/ui": "^2.3.0",
+    "@clerk/themes": "^1.7.5",
+    "@sarim.garden/ui": "^2.4.1",
     "@t3-oss/env-nextjs": "^0.6.0",
     "@trout/shared": "workspace:*",
     "@types/node": "20.4.0",

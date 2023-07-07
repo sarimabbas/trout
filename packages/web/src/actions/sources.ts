@@ -2,9 +2,12 @@
 
 import { xata } from "@trout/shared/server";
 import { revalidatePath } from "next/cache";
-import { getOrgOrUserId, getRandomName } from "../app/_utils/isomorphic";
+import {
+  NavigationLinks,
+  getOrgOrUserId,
+  getRandomName,
+} from "../app/_utils/isomorphic";
 import { getTopicId } from "@trout/shared/isomorphic";
-import { NavigationLinks } from "@/components/navbar/navbar";
 import { createKafkaTopic, deleteKafkaTopic } from "./kafka";
 
 const route = NavigationLinks.find((link) => link.label === "Sources").href;

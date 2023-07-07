@@ -17,7 +17,7 @@ const CustomNodeInner = (props: CustomNodeProps) => {
   return (
     <div
       className={cn(
-        "bg-white border-2 rounded-md shadow-md flex flex-col items-center gap-2 px-4 py-2",
+        "bg-white dark:bg-black border-2 rounded-md shadow-md flex flex-col items-center gap-2 px-4 py-2",
         {
           "!border-green-400": data.type === "source",
           "!border-orange-400": data.type === "sink",

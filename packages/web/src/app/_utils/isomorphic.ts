@@ -52,3 +52,22 @@ const haikunator = new Haikunator();
 export const getRandomName = () => {
   return haikunator.haikunate();
 };
+
+export const NavigationLinks = [
+  {
+    href: "/",
+    label: "Sources",
+  },
+  {
+    href: "/sinks",
+    label: "Sinks",
+  },
+  {
+    href: "/connections",
+    label: "Connections",
+  },
+  {
+    href: "/access-tokens",
+    label: "Access tokens",
+  },
+] as const;

@@ -109,9 +109,12 @@ importers:
       '@clerk/nextjs':
         specifier: ^4.21.14
         version: 4.21.14(next@13.4.9)(react-dom@18.2.0)(react@18.2.0)
+      '@clerk/themes':
+        specifier: ^1.7.5
+        version: 1.7.5(react@18.2.0)
       '@sarim.garden/ui':
-        specifier: ^2.3.0
-        version: 2.3.0(@types/react-dom@18.2.6)(@types/react@18.2.14)(tailwindcss@3.3.2)
+        specifier: ^2.4.1
+        version: 2.4.1(@types/react-dom@18.2.6)(@types/react@18.2.14)(next@13.4.9)(tailwindcss@3.3.2)
       '@t3-oss/env-nextjs':
         specifier: ^0.6.0
         version: 0.6.0(typescript@5.1.6)(zod@3.21.4)
@@ -668,6 +671,15 @@ packages:
       js-cookie: 3.0.1
       react: 18.2.0
       swr: 1.3.0(react@18.2.0)
+    dev: false
+
+  /@clerk/themes@1.7.5(react@18.2.0):
+    resolution: {integrity: sha512-kIdCIBSCp6t1saGAzbelcfZi5P+L3+CuVFwSjpulwGTRxeOOs/S8hB4CAHVbTwfxPw5Ms+AnN4dXJKHjSnxPIg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@clerk/types@3.46.1:
@@ -3282,8 +3294,8 @@ packages:
     resolution: {integrity: sha512-V+MvGwaHH03hYhY+k6Ef/xKd6RYlc4q8WBx+2ANmipHJcKuktNcI/NgEsJgdSUF6Lw32njT6OnrRsKYCdgHjYw==}
     dev: false
 
-  /@sarim.garden/ui@2.3.0(@types/react-dom@18.2.6)(@types/react@18.2.14)(tailwindcss@3.3.2):
-    resolution: {integrity: sha512-xO0dC75qpsup95/zLAYo2i5XCEEGgIA/diT2W+l6/KBDRsapnNVV2umgXLCS2ekAYSqL6ihck/hu2CxMa4qRAQ==}
+  /@sarim.garden/ui@2.4.1(@types/react-dom@18.2.6)(@types/react@18.2.14)(next@13.4.9)(tailwindcss@3.3.2):
+    resolution: {integrity: sha512-tlu3EGX/yPU0uQvdZygV7JVWnMV0JL8zHGlbuDG+H9wsQTA3ag55VK5TXxsunmUXKR8JIb1I1EQfdL8l4/e6oA==}
     dependencies:
       '@faker-js/faker': 8.0.2
       '@hookform/resolvers': 3.1.1(react-hook-form@7.45.1)
@@ -3319,6 +3331,7 @@ packages:
       cmdk: 0.2.0(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
       csstype: 3.1.2
       lucide-react: 0.258.0(react@18.2.0)
+      next-themes: 0.2.1(next@13.4.9)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-hook-form: 7.45.1(react@18.2.0)
@@ -3330,6 +3343,7 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
+      - next
       - tailwindcss
     dev: false
 
@@ -6837,6 +6851,18 @@ packages:
   /neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
+
+  /next-themes@0.2.1(next@13.4.9)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.4.9(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /next@13.4.8(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-lxUjndYKjZHGK3CWeN2RI+/6ni6EUvjiqGWXAYPxUfGIdFGQ5XoisrqAJ/dF74aP27buAfs8MKIbIMMdxjqSBg==}

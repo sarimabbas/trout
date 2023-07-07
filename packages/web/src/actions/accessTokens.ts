@@ -1,10 +1,13 @@
 "use server";
 
 import * as kafkaActions from "@/actions/kafka";
-import { NavigationLinks } from "@/components/navbar/navbar";
 import { xata } from "@trout/shared/server";
 import { revalidatePath } from "next/cache";
-import { getOrgOrUserId, getRandomName } from "../app/_utils/isomorphic";
+import {
+  NavigationLinks,
+  getOrgOrUserId,
+  getRandomName,
+} from "../app/_utils/isomorphic";
 
 const route = NavigationLinks.find(
   (link) => link.label === "Access tokens"
