@@ -1,10 +1,12 @@
-import { kafkaAdmin, kafkaProducer } from "@/actions/kafka";
-import { deserializeRequest, serializeRequest } from "@/app/_utils/isomorphic";
+import { kafkaProducer } from "@/actions/kafka";
+import { serializeRequest } from "@/app/_utils/isomorphic";
 import { getTopicId } from "@trout/shared/isomorphic";
 import { xata } from "@trout/shared/server";
 import { type NextRequest } from "next/server";
 
-export const GET = async (
+// receives webhook requests from external sources and 1) forwards them to Kafka
+// for CLI and 2) forwards them to all connections
+const handler = async (
   req: NextRequest,
   { params }: { params: { sourceId: string } }
 ) => {
@@ -17,11 +19,8 @@ export const GET = async (
   }
 
   const serializedRequest = serializeRequest(req);
-  console.log("serializedRequest", serializedRequest);
 
-  const deserializedRequest = deserializeRequest(serializedRequest);
-  console.log("deserializedRequest", deserializedRequest);
-
+  // send to CLI
   await kafkaProducer.connect();
   await kafkaProducer.send({
     topic: getTopicId(source.clerkOrgOrUserId, source.id),
@@ -29,5 +28,10 @@ export const GET = async (
   });
   await kafkaProducer.disconnect();
 
+  // todo(sarim): send to all connections
+
   return new Response(params.sourceId);
 };
+
+export const POST = handler;
+export const GET = handler;
