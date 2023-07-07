@@ -20,6 +20,7 @@ import {
   toast,
 } from "@sarim.garden/ui/client";
 import { MoreHorizontal } from "lucide-react";
+import Link from "next/link";
 import { useTransition } from "react";
 import { UpdateSourceDialog } from "./update-source-dialog";
 
@@ -55,8 +56,12 @@ export const SourcesSection = (props: SourceListProps) => {
     <div className="flex flex-col gap-8">
       <TypographyH2>Sources</TypographyH2>
       <TypographySubtle>
-        Create sources to receive events. Each source has its own dedicated URL
-        that you can copy and paste into your webhook sender.
+        Sources receive events from external parties and send them to{" "}
+        <Link href="/sinks" className="underline underline-offset-2">
+          Sinks
+        </Link>
+        . Each source has its own dedicated URL that you can copy and paste in
+        your external sender.
       </TypographySubtle>
       <Button
         onClick={() =>
