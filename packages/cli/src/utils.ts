@@ -1,18 +1,10 @@
-import type {
-  SelectedPick,
-  KafkaCredentialsRecord,
-} from "@trout/shared/server";
+import type { AccessTokensRecord } from "@trout/shared/server";
 
-export type IAPICredentialsResponse = SelectedPick<
-  KafkaCredentialsRecord,
-  ("*" | "accessToken.*")[]
->;
-
-export const getCredentialsFromAPI = async (
+export const getAccessTokenDetails = async (
   accessToken: string
-): Promise<IAPICredentialsResponse> => {
+): Promise<AccessTokensRecord> => {
   const response = await fetch(
-    process.env.NEXT_PUBLIC_BASE_URL + "/api/credentials",
+    process.env.NEXT_PUBLIC_BASE_URL + "/api/v0/access-tokens",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

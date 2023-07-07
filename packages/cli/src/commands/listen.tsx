@@ -1,9 +1,10 @@
+import { getTopicId } from "@trout/shared/isomorphic";
+import { AccessTokensRecord } from "@trout/shared/server";
 import { Text } from "ink";
+import { Kafka } from "kafkajs";
 import { useCallback, useEffect, useState } from "react";
 import zod from "zod";
-import { IAPICredentialsResponse, getCredentialsFromAPI } from "../utils";
-import { Kafka } from "kafkajs";
-import { getTopicId } from "@trout/shared/isomorphic";
+import { getAccessTokenDetails } from "../utils";
 
 export const options = zod.object({
   sourceId: zod.string().describe("Source ID"),
@@ -14,54 +15,26 @@ type Props = {
   options: zod.infer<typeof options>;
 };
 
-const createKafkaConsumer = (credentials: IAPICredentialsResponse) => {
-  if (
-    !credentials?.username ||
-    !credentials?.password ||
-    !credentials.accessToken?.clerkOrgOrUserId
-  ) {
-    return;
-  }
-
-  console.log({
-    "creating with credentials": credentials,
-  });
-
-  const kafka = new Kafka({
-    brokers: ["cheerful-perch-5591-us1-kafka.upstash.io:9092"],
-    sasl: {
-      mechanism: "scram-sha-256",
-      username: credentials.username,
-      password: credentials.password,
-    },
-    ssl: true,
-  });
-  const consumer = kafka.consumer({
-    groupId: credentials.accessToken.clerkOrgOrUserId,
-  });
-  return consumer;
-};
-
 export default function Listen({ options }: Props) {
-  const [credentials, setCredentials] = useState<IAPICredentialsResponse>();
+  const [accessToken, setAccessToken] = useState<AccessTokensRecord>();
 
-  const getCredentials = useCallback(async () => {
-    const credentials = await getCredentialsFromAPI(options.accessToken);
+  const setAccessTokenDetails = useCallback(async () => {
+    const accessToken = await getAccessTokenDetails(options.accessToken);
     if (
-      !credentials.accessToken?.clerkOrgOrUserId ||
-      !credentials.username ||
-      !credentials.password
+      !accessToken?.clerkOrgOrUserId ||
+      !accessToken?.kafkaCredentialUsername ||
+      !accessToken?.kafkaCredentialPassword
     ) {
-      throw new Error("Credentials incomplete");
+      throw new Error("Access token credentials incomplete");
     }
-    setCredentials(credentials);
+    setAccessToken(accessToken);
   }, [options.accessToken]);
 
   const subscribeConsumerToTopic = useCallback(async () => {
-    if (!options.sourceId || !credentials) {
+    if (!options.sourceId || !accessToken) {
       return;
     }
-    const consumer = createKafkaConsumer(credentials);
+    const consumer = createKafkaConsumer(accessToken);
     if (!consumer) {
       return;
     }
@@ -71,10 +44,7 @@ export default function Listen({ options }: Props) {
 
     console.log("Subscribing consumer to topic: ", options.sourceId);
     await consumer.subscribe({
-      topic: getTopicId(
-        credentials.accessToken?.clerkOrgOrUserId!,
-        options.sourceId
-      ),
+      topic: getTopicId(accessToken?.clerkOrgOrUserId!, options.sourceId),
     });
 
     console.log("Listening for messages...");
@@ -94,11 +64,11 @@ export default function Listen({ options }: Props) {
       console.log("Disconnecting consumer...");
       await consumer.disconnect();
     };
-  }, [options.sourceId, credentials]);
+  }, [options.sourceId, accessToken]);
 
   useEffect(() => {
-    getCredentials();
-  }, [getCredentials]);
+    setAccessTokenDetails();
+  }, [setAccessTokenDetails]);
 
   useEffect(() => {
     subscribeConsumerToTopic();
@@ -106,7 +76,35 @@ export default function Listen({ options }: Props) {
 
   return (
     <Text>
-      Hello, <Text color="green">{JSON.stringify(credentials)}</Text>
+      Hello, <Text color="green">{JSON.stringify(accessToken)}</Text>
     </Text>
   );
 }
+
+const createKafkaConsumer = (accessToken: AccessTokensRecord) => {
+  if (
+    !accessToken?.clerkOrgOrUserId ||
+    !accessToken?.kafkaCredentialUsername ||
+    !accessToken?.kafkaCredentialPassword
+  ) {
+    return;
+  }
+
+  console.log({
+    "creating with credentials": accessToken,
+  });
+
+  const kafka = new Kafka({
+    brokers: ["cheerful-perch-5591-us1-kafka.upstash.io:9092"],
+    sasl: {
+      mechanism: "scram-sha-256",
+      username: accessToken.kafkaCredentialUsername,
+      password: accessToken.kafkaCredentialPassword,
+    },
+    ssl: true,
+  });
+  const consumer = kafka.consumer({
+    groupId: accessToken.clerkOrgOrUserId,
+  });
+  return consumer;
+};
