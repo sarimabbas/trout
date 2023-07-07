@@ -13,6 +13,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "next": "13.4.8"
+    "next": "13.4.9"
   }
 }
