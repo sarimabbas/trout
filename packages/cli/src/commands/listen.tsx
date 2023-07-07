@@ -91,7 +91,7 @@ const createKafkaConsumer = (accessToken: AccessTokensRecord) => {
   }
 
   console.log({
-    "creating with credentials": accessToken,
+    "creating with access token": accessToken,
   });
 
   const kafka = new Kafka({
