@@ -168,7 +168,7 @@ interface ToggleHiddenFieldProps {
 const ToggleHiddenField = (props: ToggleHiddenFieldProps) => {
   const [isHidden, setIsHidden] = useState(true);
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 w-fit">
       <Toggle
         pressed={isHidden}
         onPressedChange={setIsHidden}
