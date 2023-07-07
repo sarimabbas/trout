@@ -3,13 +3,8 @@
 import * as connectionActions from "@/actions/connections";
 import * as sinkActions from "@/actions/sinks";
 import * as sourceActions from "@/actions/sources";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  TypographyH2,
-  TypographySubtle,
-} from "@sarim.garden/ui/client";
+import { TypographyH2, TypographySubtle } from "@sarim.garden/ui/client";
+import { Info } from "lucide-react";
 import ReactFlow, {
   Background,
   BackgroundVariant,
@@ -20,7 +15,6 @@ import ReactFlow, {
   Node,
 } from "reactflow";
 import { CustomNode } from "./node";
-import { Info } from "lucide-react";
 
 const nodeTypes = {
   custom: CustomNode,
