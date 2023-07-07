@@ -9,12 +9,14 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  Toggle,
   TypographyH2,
+  TypographyInlineCode,
   TypographySubtle,
   toast,
 } from "@sarim.garden/ui/client";
-import { MoreHorizontal } from "lucide-react";
-import { useTransition } from "react";
+import { Dot, Eye, EyeOff, MoreHorizontal } from "lucide-react";
+import { useState, useTransition } from "react";
 
 interface AccessTokensSectionProps {
   accessTokens: Awaited<ReturnType<typeof accessTokenActions.READ>>;
@@ -72,7 +74,10 @@ export const AccessTokensSection = (props: AccessTokensSectionProps) => {
 export const columns: ColumnDef<AccessTokenWithActions>[] = [
   {
     accessorKey: "id",
-    header: "ID",
+    header: "Token",
+    cell: ({ row }) => {
+      return <ToggleHiddenField value={row.original.id} />;
+    },
   },
   {
     accessorKey: "name",
@@ -153,5 +158,35 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+};
+
+interface ToggleHiddenFieldProps {
+  value: string;
+}
+
+const ToggleHiddenField = (props: ToggleHiddenFieldProps) => {
+  const [isHidden, setIsHidden] = useState(true);
+  return (
+    <div className="flex items-center gap-2">
+      <Toggle
+        pressed={isHidden}
+        onPressedChange={setIsHidden}
+        aria-label="Toggle access token visibility"
+      >
+        {isHidden ? (
+          <EyeOff className="w-4 h-4" />
+        ) : (
+          <Eye className="w-4 h-4" />
+        )}
+      </Toggle>
+      {isHidden ? (
+        Array(10)
+          .fill(0)
+          .map((_, idx) => <Dot key={idx} className="w-4 h-4" />)
+      ) : (
+        <TypographyInlineCode>{props.value}</TypographyInlineCode>
+      )}
+    </div>
   );
 };
