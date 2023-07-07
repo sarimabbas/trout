@@ -21,7 +21,7 @@ import {
 } from "@sarim.garden/ui/client";
 import { MoreHorizontal } from "lucide-react";
 import { useTransition } from "react";
-import { EditSourceDialog } from "../edit-source-dialog/edit-source-dialog";
+import { UpdateSourceDialog } from "./update-dialog";
 
 interface SourceListProps {
   sources: Awaited<ReturnType<typeof sourceActions.READ>>;
@@ -149,12 +149,12 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         </DropdownMenuItem>
         {/* edit a source */}
         <DropdownMenuLabel>
-          <EditSourceDialog
-            editSource={props.row.actions.UPDATE}
-            data={props.row}
+          <UpdateSourceDialog
+            UPDATE={props.row.actions.UPDATE}
+            source={props.row}
           >
             Edit
-          </EditSourceDialog>
+          </UpdateSourceDialog>
         </DropdownMenuLabel>
         {/* delete a source */}
         <DropdownMenuItem

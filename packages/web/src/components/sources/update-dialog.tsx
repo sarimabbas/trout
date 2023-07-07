@@ -1,7 +1,6 @@
 "use client";
 
-import type { IEditSource } from "@/actions/sources";
-import type { Source } from "@/app/_utils/isomorphic";
+import * as sourceActions from "@/actions/sources";
 import {
   Button,
   Dialog,
@@ -15,23 +14,23 @@ import {
 } from "@sarim.garden/ui/client";
 import { useState, useTransition } from "react";
 
-interface EditSourceDialogProps {
+interface UpdateSourceDialogProps {
+  source: Awaited<ReturnType<typeof sourceActions.READ>>[number];
+  UPDATE: typeof sourceActions.UPDATE;
   children: React.ReactNode;
-  editSource: IEditSource;
-  data: Source;
 }
 
-export const EditSourceDialog = (props: EditSourceDialogProps) => {
+export const UpdateSourceDialog = (props: UpdateSourceDialogProps) => {
   const [open, setOpen] = useState(false);
-  const { children, editSource } = props;
+  const { children, source, UPDATE } = props;
   const [isPending, startTransition] = useTransition();
-  const [name, setName] = useState(props.data.name);
+  const [name, setName] = useState(source.name);
 
   const onSubmit = () => {
     startTransition(async () => {
-      await editSource({
+      await UPDATE({
         name,
-        sourceId: props.data.id,
+        sourceId: source.id,
       });
       setOpen(false);
       toast.success(`Updated source ${name}`);
@@ -43,7 +42,7 @@ export const EditSourceDialog = (props: EditSourceDialogProps) => {
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit source</DialogTitle>
+          <DialogTitle>Update source</DialogTitle>
         </DialogHeader>
         <Label>Name</Label>
         <Input
