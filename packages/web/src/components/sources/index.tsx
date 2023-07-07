@@ -81,10 +81,6 @@ export const SourcesSection = (props: SourceListProps) => {
 
 export const columns: ColumnDef<SourceWithActions>[] = [
   {
-    accessorKey: "id",
-    header: "ID",
-  },
-  {
     accessorKey: "name",
     header: "Name",
   },
