@@ -21,7 +21,7 @@ import {
 } from "@sarim.garden/ui/client";
 import { MoreHorizontal } from "lucide-react";
 import { useTransition } from "react";
-import { UpdateSourceDialog } from "./update-dialog";
+import { UpdateSourceDialog } from "./update-source-dialog";
 
 interface SourceListProps {
   sources: Awaited<ReturnType<typeof sourceActions.READ>>;
