@@ -8,6 +8,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuTrigger,
   Toggle,
   TypographyH2,
@@ -17,6 +18,7 @@ import {
 } from "@sarim.garden/ui/client";
 import { Dot, Eye, EyeOff, MoreHorizontal } from "lucide-react";
 import { useState, useTransition } from "react";
+import { UpdateAccessTokenDialog } from "./update-access-token-dialog";
 
 interface AccessTokensSectionProps {
   accessTokens: Awaited<ReturnType<typeof accessTokenActions.READ>>;
@@ -135,14 +137,14 @@ const ActionsMenu = (props: ActionsMenuProps) => {
           Copy access token
         </DropdownMenuItem>
         {/* edit an access token */}
-        {/* <DropdownMenuLabel>
-          <EditSourceDialog
-            editSource={props.row.actions.editSource}
-            data={props.row}
+        <DropdownMenuLabel>
+          <UpdateAccessTokenDialog
+            UPDATE={props.row.actions.UPDATE}
+            accessToken={props.row}
           >
             Edit
-          </EditSourceDialog>
-        </DropdownMenuLabel> */}
+          </UpdateAccessTokenDialog>
+        </DropdownMenuLabel>
         {/* delete an access token */}
         <DropdownMenuItem
           onClick={() =>
