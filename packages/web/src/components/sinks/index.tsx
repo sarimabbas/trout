@@ -9,6 +9,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuTrigger,
   TypographyH2,
   TypographySubtle,
@@ -16,6 +17,7 @@ import {
 } from "@sarim.garden/ui/client";
 import { MoreHorizontal } from "lucide-react";
 import { useTransition } from "react";
+import { UpdateSinkDialog } from "./update-sink-dialog";
 
 interface SinksSectionProps {
   sinks: Awaited<ReturnType<typeof sinkActions.READ>>;
@@ -69,10 +71,6 @@ export const SinksSection = (props: SinksSectionProps) => {
 
 export const columns: ColumnDef<SinkWithActions>[] = [
   {
-    accessorKey: "id",
-    header: "ID",
-  },
-  {
     accessorKey: "name",
     header: "Name",
   },
@@ -125,14 +123,11 @@ const ActionsMenu = (props: ActionsMenuProps) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         {/* edit a sink */}
-        {/* <DropdownMenuLabel>
-          <EditSourceDialog
-            editSource={props.row.actions.editSource}
-            data={props.row}
-          >
+        <DropdownMenuLabel>
+          <UpdateSinkDialog UPDATE={props.row.actions.UPDATE} sink={props.row}>
             Edit
-          </EditSourceDialog>
-        </DropdownMenuLabel> */}
+          </UpdateSinkDialog>
+        </DropdownMenuLabel>
         {/* delete a source */}
         <DropdownMenuItem
           onClick={() =>
