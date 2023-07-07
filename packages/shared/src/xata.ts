@@ -12,6 +12,8 @@ const tables = [
     columns: [
       { name: "name", type: "string" },
       { name: "clerkOrgOrUserId", type: "string" },
+      { name: "diagramPosX", type: "int" },
+      { name: "diagramPosY", type: "int" },
     ],
   },
   {
@@ -30,6 +32,8 @@ const tables = [
       { name: "name", type: "string" },
       { name: "url", type: "string" },
       { name: "clerkOrgOrUserId", type: "string" },
+      { name: "diagramPosX", type: "int" },
+      { name: "diagramPosY", type: "int" },
     ],
   },
   {

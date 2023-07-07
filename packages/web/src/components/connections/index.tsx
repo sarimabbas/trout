@@ -23,14 +23,16 @@ interface ConnectionsProps {
   sources: Awaited<ReturnType<typeof sourceActions.READ>>;
   sinks: Awaited<ReturnType<typeof sinkActions.READ>>;
   connections: Awaited<ReturnType<typeof connectionActions.READ>>;
+  CRUPDATE: typeof connectionActions.CRUPDATE;
+  DELETE: typeof connectionActions.DELETE;
 }
 
 export const ConnectionsSection = (props: ConnectionsProps) => {
-  const nodes: Node[] = props.sources
+  const initialNodes: Node[] = props.sources
     .map((c, idx) => {
       return {
         id: c.id,
-        position: { x: 0, y: idx * 100 },
+        position: { x: c.diagramPosX ?? 0, y: c.diagramPosY ?? idx * 100 },
         data: { label: c.name, type: "source" },
         type: "custom",
       };
@@ -39,24 +41,18 @@ export const ConnectionsSection = (props: ConnectionsProps) => {
       props.sinks.map((c, idx) => {
         return {
           id: c.id,
-          position: { x: 300, y: idx * 100 },
+          position: { x: c.diagramPosX ?? 300, y: c.diagramPosY ?? idx * 100 },
           data: { label: c.name, type: "sink" },
           type: "custom",
         };
       })
     );
 
-  const edges: Edge[] = props.connections.map((c) => {
+  const initialEdges: Edge[] = props.connections.map((c) => {
     return {
       id: c.id,
       source: c.source.id,
       target: c.sink.id,
-      type: "smoothstep",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-        width: 20,
-        height: 20,
-      },
     };
   });
 
@@ -67,14 +63,38 @@ export const ConnectionsSection = (props: ConnectionsProps) => {
         Connections direct events from your data sources to your sinks.
       </TypographySubtle>
       <ReactFlow
-        nodes={nodes}
-        edges={edges}
+        defaultNodes={initialNodes}
+        defaultEdges={initialEdges}
+        defaultEdgeOptions={{
+          type: "smoothstep",
+          animated: true,
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+            width: 20,
+            height: 20,
+          },
+        }}
         className="border rounded-md"
         fitView
         fitViewOptions={{
           padding: 0.5,
         }}
         nodeTypes={nodeTypes}
+        onConnect={async (c) => {
+          await props.CRUPDATE({
+            sourceId: c.source,
+            sinkId: c.target,
+          });
+        }}
+        onEdgesDelete={async (c) => {
+          await Promise.all(
+            c.map((edge) => {
+              return props.DELETE({
+                connectionId: edge.id,
+              });
+            })
+          );
+        }}
       >
         <Controls />
         <MiniMap />

@@ -14,6 +14,8 @@ export default async function ConnectionsPage() {
         sources={sources}
         sinks={sinks}
         connections={connections}
+        CRUPDATE={connectionActions.CRUPDATE}
+        DELETE={connectionActions.DELETE}
       />
     </div>
   );

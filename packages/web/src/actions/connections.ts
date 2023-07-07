@@ -7,10 +7,12 @@ import { getOrgOrUserId } from "../app/_utils/isomorphic";
 
 const route = NavigationLinks.find((link) => link.label === "Connections").href;
 
-export const CREATE = async ({
+export const CRUPDATE = async ({
+  connectionId,
   sourceId,
   sinkId,
 }: {
+  connectionId?: string;
   sourceId: string;
   sinkId: string;
 }) => {
@@ -21,7 +23,8 @@ export const CREATE = async ({
   if (!sourceId || !sinkId) {
     throw new Error("sourceId or sinkId is not defined");
   }
-  const connection = await xata.db.connections.create({
+  const connectionRecord = await xata.db.connections.createOrReplace({
+    id: connectionId,
     clerkOrgOrUserId: lookupId,
     source: {
       id: sourceId,
@@ -31,7 +34,7 @@ export const CREATE = async ({
     },
   });
   revalidatePath(route);
-  return connection;
+  return connectionRecord;
 };
 
 export const READ = async () => {
@@ -46,32 +49,6 @@ export const READ = async () => {
     .select(["*", "source.*", "sink.*"])
     .getAll();
   return connections;
-};
-
-export const UPDATE = async (props: {
-  connectionId: string;
-  sourceId: string;
-  sinkId: string;
-}) => {
-  const { connectionId, sourceId, sinkId } = props;
-  const lookupId = getOrgOrUserId();
-  if (!lookupId) {
-    throw new Error("lookupId is not defined");
-  }
-  if (!sourceId || !sinkId) {
-    throw new Error("sourceId or sinkId is not defined");
-  }
-  const connectionRecord = await xata.db.connections.update({
-    id: connectionId,
-    source: {
-      id: sourceId,
-    },
-    sink: {
-      id: sinkId,
-    },
-  });
-  revalidatePath(route);
-  return connectionRecord;
 };
 
 export const DELETE = async (props: { connectionId: string }) => {

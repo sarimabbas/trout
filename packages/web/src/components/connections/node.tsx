@@ -28,8 +28,11 @@ const CustomNodeInner = (props: CustomNodeProps) => {
         {data.type}
       </Badge>
       <div className="text-lg">{data.label}</div>
-      <Handle type="target" position={Position.Top} />
-      <Handle type="source" position={Position.Bottom} />
+      {data.type === "source" ? (
+        <Handle type="source" position={Position.Right} />
+      ) : (
+        <Handle type="target" position={Position.Left} />
+      )}
     </div>
   );
 };
