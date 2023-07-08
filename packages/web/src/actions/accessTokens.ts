@@ -28,6 +28,7 @@ export const CREATE = async () => {
     kafkaCredentialId: kafkaCredentials.credential_id,
     kafkaCredentialUsername: kafkaCredentials.username,
     kafkaCredentialPassword: kafkaCredentials.password,
+    value: createAccessTokenValue(accessToken.id),
   });
   revalidatePath(route);
   return accessToken;
@@ -81,4 +82,19 @@ export const DELETE = async (props: { accessTokenId: string }) => {
     id: accessToken.id,
   });
   revalidatePath(route);
+};
+
+/**
+ *
+ * @param accessTokenId - the ID of the accessToken record
+ * @returns a value that can be used as the accessToken value
+ */
+export const createAccessTokenValue = (accessTokenId: string) => {
+  // use the record ID to ensure it is unique
+  // use the crypto randomUUID to make it harder to guess
+  // replace _ with - for consistent formatting
+  // replace rec with tkn for readability
+  return `${accessTokenId}-${crypto.randomUUID()}`
+    .replaceAll("_", "-")
+    .replaceAll("rec", "tkn");
 };

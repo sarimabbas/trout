@@ -24,6 +24,7 @@ const tables = [
       { name: "kafkaCredentialUsername", type: "string" },
       { name: "kafkaCredentialPassword", type: "string" },
       { name: "kafkaCredentialId", type: "string" },
+      { name: "value", type: "string" },
     ],
   },
   {
