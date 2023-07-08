@@ -3,7 +3,12 @@
 import { NavigationLinks } from "@/app/_utils/isomorphic";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import { Button, DarkModeToggle, useTheme } from "@sarim.garden/ui/client";
+import {
+  Badge,
+  Button,
+  DarkModeToggle,
+  useTheme,
+} from "@sarim.garden/ui/client";
 import Link from "next/link";
 
 export const Navbar = () => {
@@ -11,8 +16,12 @@ export const Navbar = () => {
   return (
     <div className="container flex items-center justify-between gap-4 p-8 mx-auto bg-gray-50 dark:bg-zinc-900">
       <div className="flex items-center gap-12">
-        <Link href="/" className="text-2xl font-semibold">
-          🐟 Trout
+        <Link
+          href="/"
+          className="flex items-start gap-2 text-2xl font-semibold"
+        >
+          <span>🐟 Trout</span>
+          <Badge>BETA</Badge>
         </Link>
         <OrganizationSwitcher
           appearance={theme === "dark" ? { baseTheme: dark } : {}}

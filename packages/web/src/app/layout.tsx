@@ -1,10 +1,10 @@
 import { Navbar } from "@/components/navbar/navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster, ThemeProvider } from "@sarim.garden/ui/client";
-import "@sarim.garden/ui/css";
 import { Analytics } from "@vercel/analytics/react";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import "@sarim.garden/ui/css";
+import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
