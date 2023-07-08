@@ -78,7 +78,7 @@ export const columns: ColumnDef<AccessTokenWithActions>[] = [
     accessorKey: "id",
     header: "Token",
     cell: ({ row }) => {
-      return <ToggleHiddenField value={row.original.id} />;
+      return <ToggleHiddenField value={row.original.value} />;
     },
   },
   {

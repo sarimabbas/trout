@@ -53,7 +53,7 @@ interface UpstashCreateCredentialsResponse {
 }
 
 export const CREATE = async (
-  accessTokenValue: string,
+  accessTokenId: string,
   clerkOrgOrUserId: string
 ) => {
   const response = await fetch("https://api.upstash.com/v2/kafka/credential", {
@@ -61,7 +61,7 @@ export const CREATE = async (
     body: JSON.stringify({
       cluster_id: privateEnv.KAFKA_CLUSTER_ID,
       permissions: "ALL",
-      credential_name: accessTokenValue,
+      credential_name: accessTokenId,
       topic: `${clerkOrgOrUserId}.*`, // allow access to all topics for the clerk org or user
     }),
     headers: {
