@@ -23,7 +23,7 @@
     "eslint-config-next": "^13.4.9",
     "haikunator": "^2.1.2",
     "kafkajs": "^2.2.4",
-    "lucide-react": "^0.258.0",
+    "lucide-react": "^0.259.0",
     "next": "13.4.9",
     "postcss": "8.4.25",
     "react": "^18.2.0",
