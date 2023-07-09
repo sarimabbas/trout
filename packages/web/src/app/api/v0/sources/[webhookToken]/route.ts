@@ -70,7 +70,7 @@ const handler = async (
       })
   );
 
-  return NextResponse.json({ success: true, sourceId: source.id });
+  return NextResponse.json({ success: true });
 };
 
 export const POST = handler;
