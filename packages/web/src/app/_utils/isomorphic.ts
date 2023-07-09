@@ -22,7 +22,7 @@ export const getCliCommand = (cliToken: string) => {
   return `@trout.run/cli listen --source ${cliToken}`;
 };
 
-export const serializeRequest = (req: NextRequest) => {
+export const serializeRequest = (req: Request) => {
   return JSON.stringify(req, [
     "body",
     "cookies",

@@ -12,12 +12,11 @@ export const getApiUrl = () => {
 
 const privateEnvSchema = z.object({
   CLERK_SECRET_KEY: z.string(),
-  UPSTASH_ADMIN_API_KEY: z.string(),
-  UPSTASH_ADMIN_EMAIL: z.string(),
   PUSHER_APP_ID: z.string(),
   PUSHER_KEY: z.string(),
   PUSHER_SECRET: z.string(),
   QSTASH_TOKEN: z.string(),
+  QSTASH_URL: z.string(),
 });
 
 export const getPrivateEnv = () => {
