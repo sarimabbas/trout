@@ -1,7 +1,7 @@
 import { SinksSection } from "@/components/sinks";
 import * as sinkActions from "@/actions/sinks";
 
-export default async function AccessTokensPage() {
+export default async function SinksPage() {
   const sinks = await sinkActions.READ();
 
   return (

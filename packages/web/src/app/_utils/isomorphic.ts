@@ -66,8 +66,4 @@ export const NavigationLinks = [
     href: "/connections",
     label: "Connections",
   },
-  {
-    href: "/access-tokens",
-    label: "Access tokens",
-  },
 ] as const;

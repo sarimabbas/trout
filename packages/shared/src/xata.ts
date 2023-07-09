@@ -18,17 +18,6 @@ const tables = [
     ],
   },
   {
-    name: "accessTokens",
-    columns: [
-      { name: "clerkOrgOrUserId", type: "string" },
-      { name: "name", type: "string" },
-      { name: "kafkaCredentialUsername", type: "string" },
-      { name: "kafkaCredentialPassword", type: "string" },
-      { name: "kafkaCredentialId", type: "string" },
-      { name: "value", type: "string" },
-    ],
-  },
-  {
     name: "sinks",
     columns: [
       { name: "name", type: "string" },
@@ -54,9 +43,6 @@ export type InferredTypes = SchemaInference<SchemaTables>;
 export type Sources = InferredTypes["sources"];
 export type SourcesRecord = Sources & XataRecord;
 
-export type AccessTokens = InferredTypes["accessTokens"];
-export type AccessTokensRecord = AccessTokens & XataRecord;
-
 export type Sinks = InferredTypes["sinks"];
 export type SinksRecord = Sinks & XataRecord;
 
@@ -65,7 +51,6 @@ export type ConnectionsRecord = Connections & XataRecord;
 
 export type DatabaseSchema = {
   sources: SourcesRecord;
-  accessTokens: AccessTokensRecord;
   sinks: SinksRecord;
   connections: ConnectionsRecord;
 };
