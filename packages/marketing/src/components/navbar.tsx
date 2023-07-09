@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const Navbar = () => {
   return (
-    <div className="flex items-center justify-between w-full px-8 py-6 border-4 border-blue-200 shadow-sm rounded-xl">
+    <div className="flex items-center justify-between w-full px-8 py-6 bg-white border-4 border-blue-200 shadow-sm rounded-xl">
       <TypographyH3 className={cn(bungee.className, "m-0 text-blue-500")}>
         🐟 Trout
       </TypographyH3>

@@ -15,10 +15,8 @@ const bungee = Bungee({ subsets: ["latin"], weight: "400" });
 
 export default function Home() {
   return (
-    <main className="container flex flex-col items-center gap-16 pb-10 mx-auto text-center md:pb-20 md:px-40 lg:px-64">
-      <div className="sticky top-0 w-full pt-8 bg-white">
-        <Navbar />
-      </div>
+    <main className="container flex flex-col items-center gap-16 py-10 mx-auto text-center md:px-40 lg:px-64">
+      <Navbar />
       {/* headline */}
       <div className={cn("text-6xl text-blue-500 ", bungee.className)}>
         Webhooks 🎣 made easy
