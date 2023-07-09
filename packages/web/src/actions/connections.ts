@@ -1,6 +1,6 @@
 "use server";
 
-import { xata } from "@trout/shared/server";
+import { xata } from "@trout.run/shared/server";
 import { revalidatePath } from "next/cache";
 import { NavigationLinks, getOrgOrUserId } from "../app/_utils/isomorphic";
 

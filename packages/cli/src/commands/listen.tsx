@@ -1,5 +1,5 @@
-import { defaultPusherChannel } from "@trout/shared/isomorphic";
-import { SourcesRecord } from "@trout/shared/server";
+import { defaultPusherChannel } from "@trout.run/shared/isomorphic";
+import { SourcesRecord } from "@trout.run/shared/server";
 import { Text } from "ink";
 import { useCallback, useEffect, useState } from "react";
 import zod from "zod";

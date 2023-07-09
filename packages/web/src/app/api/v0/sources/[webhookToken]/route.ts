@@ -1,7 +1,7 @@
 import { pusher } from "@/actions/pusher";
 import { serializeRequest } from "@/app/_utils/isomorphic";
-import { defaultPusherChannel } from "@trout/shared/isomorphic";
-import { xata } from "@trout/shared/server";
+import { defaultPusherChannel } from "@trout.run/shared/isomorphic";
+import { xata } from "@trout.run/shared/server";
 import { NextResponse, type NextRequest } from "next/server";
 
 // receives webhook requests from external sources and 1) forwards them to CLI

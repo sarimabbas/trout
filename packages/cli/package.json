@@ -28,7 +28,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@trout/shared": "workspace:*",
+    "@trout.run/shared": "workspace:*",
     "@types/node": "20.4.1",
     "@types/react": "^18.0.32",
     "chalk": "^5.3.0",

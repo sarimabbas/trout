@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["@trout/shared"],
+  transpilePackages: ["@trout.run/shared"],
   experimental: {
     serverActions: true,
   },

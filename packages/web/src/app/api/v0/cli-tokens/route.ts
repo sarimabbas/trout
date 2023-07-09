@@ -1,4 +1,4 @@
-import { xata } from "@trout/shared/server";
+import { xata } from "@trout.run/shared/server";
 import { NextResponse, type NextRequest } from "next/server";
 
 // returns details about a source by looking at the cli token

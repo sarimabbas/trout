@@ -1,5 +1,5 @@
 import { auth, useAuth } from "@clerk/nextjs";
-import { getApiUrl } from "@trout/shared/isomorphic";
+import { getApiUrl } from "@trout.run/shared/isomorphic";
 import Haikunator from "haikunator";
 import type { NextRequest } from "next/server";
 
