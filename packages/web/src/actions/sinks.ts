@@ -71,8 +71,28 @@ export const DELETE = async (props: { sinkId: string }) => {
   if (!lookupId) {
     throw new Error("lookupId is not defined");
   }
+  const sink = await xata.db.sources.read(sinkId);
+  if (!sink) {
+    throw new Error("sink not found");
+  }
   await xata.db.sinks.delete({
-    id: sinkId as string,
+    id: sink.id,
   });
+  // delete all connections as well
+  const connections = await xata.db.connections
+    .filter({
+      sink: {
+        id: sink.id,
+      },
+    })
+    .getAll();
+  await Promise.all(
+    connections.map((connection) =>
+      xata.db.connections.delete({
+        id: connection.id,
+      })
+    )
+  );
+  // revalidate the page
   revalidatePath(route);
 };

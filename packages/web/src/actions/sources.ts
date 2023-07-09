@@ -78,14 +78,34 @@ export const DELETE = async (props: { sourceId: string }) => {
   if (!lookupId) {
     throw new Error("lookupId is not defined");
   }
+  const source = await xata.db.sources.read(sourceId);
+  if (!source) {
+    throw new Error("source not found");
+  }
   await xata.db.sources.delete({
-    id: sourceId as string,
+    id: source.id,
   });
   // delete from Kafka as well
   try {
-    await deleteKafkaTopic(getTopicId(lookupId, sourceId));
+    await deleteKafkaTopic(getTopicId(lookupId, source.id));
   } catch (e) {
     console.error(e);
   }
+  // delete all connections as well
+  const connections = await xata.db.connections
+    .filter({
+      source: {
+        id: sourceId,
+      },
+    })
+    .getAll();
+  await Promise.all(
+    connections.map((connection) =>
+      xata.db.connections.delete({
+        id: connection.id,
+      })
+    )
+  );
+  // revalidate the page
   revalidatePath(route);
 };
