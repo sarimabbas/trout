@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "partykit": "0.0.0-a12b450",
-    "y-partykit": "0.0.0-a12b450"
+    "y-partykit": "0.0.0"
   },
   "devDependencies": {
     "typescript": "^5.1.6"
