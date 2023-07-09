@@ -15,7 +15,7 @@ const bungee = Bungee({ subsets: ["latin"], weight: "400" });
 
 export default function Home() {
   return (
-    <main className="container flex flex-col items-center gap-16 py-10 mx-auto text-center md:px-40 lg:px-64">
+    <main className="container flex flex-col items-center gap-16 py-10 mx-auto text-center md:px-16 lg:px-32 xl:px-56">
       <Navbar />
       {/* headline */}
       <div className={cn("text-6xl text-blue-500 ", bungee.className)}>
