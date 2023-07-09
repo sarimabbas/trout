@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "partykit": "0.0.0-a12b450",
+    "partykit": "0.0.0",
     "y-partykit": "0.0.0-a12b450"
   },
   "devDependencies": {
