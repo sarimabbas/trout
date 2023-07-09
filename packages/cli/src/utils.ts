@@ -1,4 +1,5 @@
 import type { AccessTokensRecord } from "@trout/shared/server";
+import Pusher from "pusher-js";
 
 export const getAccessTokenDetails = async (
   accessToken: string
@@ -13,3 +14,7 @@ export const getAccessTokenDetails = async (
   );
   return response.json();
 };
+
+export const pusherClient = new Pusher(process.env.PUSHER_KEY!, {
+  cluster: "us2",
+});

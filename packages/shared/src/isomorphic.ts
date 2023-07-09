@@ -18,6 +18,9 @@ const privateEnvSchema = z.object({
   KAFKA_CLUSTER_ID: z.string(),
   UPSTASH_ADMIN_API_KEY: z.string(),
   UPSTASH_ADMIN_EMAIL: z.string(),
+  PUSHER_APP_ID: z.string(),
+  PUSHER_KEY: z.string(),
+  PUSHER_SECRET: z.string(),
 });
 
 export const getPrivateEnv = () => {
@@ -37,3 +40,29 @@ export const getTopicId = (orgOrUserId: string, sourceId: string) => {
   const topic = `${orgOrUserId}.${sourceId}`;
   return topic;
 };
+
+export const ZWebRequest = z.preprocess(
+  (val) => {
+    return JSON.parse(val as string);
+  },
+  z.object({
+    body: z.any(),
+    cookies: z.any(),
+    headers: z.any(),
+    method: z.any(),
+    url: z.any(),
+    credentials: z.any(),
+    destination: z.any(),
+    geo: z.any(),
+    integrity: z.any(),
+    ip: z.any(),
+    keepalive: z.any(),
+    mode: z.any(),
+    nextUrl: z.any(),
+    redirect: z.any(),
+    referrer: z.any(),
+    referrerPolicy: z.any(),
+  })
+);
+
+export const defaultPusherChannel = "webhook-event";

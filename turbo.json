@@ -9,7 +9,10 @@
     "NEXT_PUBLIC_BASE_URL",
     "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
     "UPSTASH_ADMIN_API_KEY",
-    "UPSTASH_ADMIN_EMAIL"
+    "UPSTASH_ADMIN_EMAIL",
+    "PUSHER_APP_ID",
+    "PUSHER_KEY",
+    "PUSHER_SECRET"
   ],
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],

@@ -1,6 +1,6 @@
-import { kafkaProducer } from "@/actions/kafka";
+import { pusher } from "@/actions/pusher";
 import { serializeRequest } from "@/app/_utils/isomorphic";
-import { getTopicId } from "@trout/shared/isomorphic";
+import { defaultPusherChannel } from "@trout/shared/isomorphic";
 import { xata } from "@trout/shared/server";
 import { NextResponse, type NextRequest } from "next/server";
 
@@ -21,12 +21,7 @@ const handler = async (
   const serializedRequest = serializeRequest(req);
 
   // send to CLI
-  await kafkaProducer.connect();
-  await kafkaProducer.send({
-    topic: getTopicId(source.clerkOrgOrUserId, source.id),
-    messages: [{ value: serializedRequest }],
-  });
-  await kafkaProducer.disconnect();
+  await pusher.trigger(source.id, defaultPusherChannel, serializedRequest);
 
   // todo(sarim): send to all connections
 
