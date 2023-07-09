@@ -19,7 +19,7 @@ export const getWebhookUrl = (webhookToken: string) => {
 };
 
 export const getCliCommand = (cliToken: string) => {
-  return `@trout.run/cli listen --source ${cliToken}`;
+  return `trout listen --source ${cliToken}`;
 };
 
 export const serializeRequest = (req: Request) => {
