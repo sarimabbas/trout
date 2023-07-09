@@ -2,7 +2,9 @@
   "name": "@trout.run/cli",
   "version": "2.0.0",
   "license": "MIT",
-  "bin": "./dist/cli.js",
+  "bin": {
+    "trout": "./dist/cli.js"
+  },
   "type": "module",
   "engines": {
     "node": ">=18"
