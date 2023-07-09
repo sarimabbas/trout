@@ -54,8 +54,8 @@ export const ConnectionsSection = (props: ConnectionsSectionProps) => {
   const initialEdges: Edge[] = props.connections.map((c) => {
     return {
       id: c.id,
-      source: c.source.id,
-      target: c.sink.id,
+      source: c.source?.id,
+      target: c.sink?.id,
     };
   });
 
