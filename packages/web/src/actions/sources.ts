@@ -21,6 +21,7 @@ export const CREATE = async () => {
   });
   await source.update({
     cliToken: createCLIToken(source.id),
+    webhookToken: createWebhookToken(source.id),
   });
   revalidatePath(route);
   return source;
@@ -107,8 +108,23 @@ export const createCLIToken = (sourceId: string) => {
   // use the record ID to ensure it is unique
   // use the crypto randomUUID to make it harder to guess
   // replace _ with - for consistent formatting
-  // replace rec with tkn for readability
+  // replace rec for readability
   return `${sourceId}-${crypto.randomUUID()}`
     .replaceAll("_", "-")
-    .replaceAll("rec", "tkn");
+    .replaceAll("rec", "src");
+};
+
+/**
+ *
+ * @param sourceId - the ID of the source record
+ * @returns a value that can be used as the CLI token
+ */
+export const createWebhookToken = (sourceId: string) => {
+  // use the record ID to ensure it is unique
+  // use the crypto randomUUID to make it harder to guess
+  // replace _ with - for consistent formatting
+  // replace rec for readability
+  return `${sourceId}-${crypto.randomUUID()}`
+    .replaceAll("_", "-")
+    .replaceAll("rec", "hook");
 };

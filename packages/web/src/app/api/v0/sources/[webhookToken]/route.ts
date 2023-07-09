@@ -8,11 +8,11 @@ import { NextResponse, type NextRequest } from "next/server";
 // and 2) forwards them to all connections
 const handler = async (
   req: NextRequest,
-  { params }: { params: { sourceId: string } }
+  { params }: { params: { webhookToken: string } }
 ) => {
   // check source exists
   const source = await xata.db.sources
-    .filter({ id: params.sourceId })
+    .filter({ webhookToken: params.webhookToken })
     .getFirst();
   if (!source) {
     return NextResponse.json({ error: "Source not found" }, { status: 404 });

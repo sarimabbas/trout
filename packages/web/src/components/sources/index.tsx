@@ -131,7 +131,9 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         {/* copy webhook URL */}
         <DropdownMenuItem
           onClick={async () => {
-            await navigator.clipboard.writeText(getWebhookUrl(props.row.id));
+            await navigator.clipboard.writeText(
+              getWebhookUrl(props.row.webhookToken)
+            );
             toast.success("Copied webhook URL");
           }}
         >

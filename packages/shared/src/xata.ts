@@ -15,6 +15,7 @@ const tables = [
       { name: "diagramPosX", type: "int" },
       { name: "diagramPosY", type: "int" },
       { name: "cliToken", type: "string" },
+      { name: "webhookToken", type: "string" },
     ],
   },
   {

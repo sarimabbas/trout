@@ -13,8 +13,8 @@ export const useOrgOrUserId = () => {
   return orgId ?? userId;
 };
 
-export const getWebhookUrl = (sourceId: string) => {
-  const path = `api/sources/${sourceId}`;
+export const getWebhookUrl = (webhookToken: string) => {
+  const path = `api/v0/sources/${webhookToken}`;
   return `${getApiUrl()}/${path}`;
 };
 
