@@ -51,7 +51,7 @@ export default function Home() {
             Listen to events locally using the CLI
             <br />
             <TypographyInlineCode className="w-fit">
-              npm i @trout.run/cli
+              npm i @trout.run/cli -g
             </TypographyInlineCode>
           </TypographyP>
         </GridItem>
