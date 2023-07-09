@@ -1,17 +1,13 @@
 import { Navbar } from "@/components/navbar";
 import {
   Button,
-  TypographyH1,
-  TypographyH2,
   TypographyH4,
   TypographyInlineCode,
-  TypographyLead,
   TypographyP,
-  TypographySmall,
 } from "@sarim.garden/ui/client";
 import { cn } from "@sarim.garden/ui/isomorphic";
-import { Bungee, Sen } from "next/font/google";
-import { Inbox, Send, Split, TerminalSquare } from "lucide-react";
+import { Inbox, Send, TerminalSquare } from "lucide-react";
+import { Bungee } from "next/font/google";
 import Link from "next/link";
 
 const bungee = Bungee({ subsets: ["latin"], weight: "400" });
@@ -74,9 +70,11 @@ export default function Home() {
             Sign up
           </Button>
         </Link>
-        <Button variant="secondary" className="px-8 py-6 text-lg" disabled>
-          Read the docs
-        </Button>
+        <Link href="https://docs.trout.run">
+          <Button variant="secondary" className="px-8 py-6 text-lg" disabled>
+            Read the docs
+          </Button>
+        </Link>
       </div>
     </main>
   );

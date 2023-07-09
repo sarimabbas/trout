@@ -16,7 +16,9 @@ export const Navbar = () => {
           </Link>
         </li>
         <li>
-          <TypographyLink>Pricing</TypographyLink>
+          <Link href="https://docs.trout.run" legacyBehavior>
+            <TypographyLink>Docs</TypographyLink>
+          </Link>
         </li>
       </ul>
     </div>
