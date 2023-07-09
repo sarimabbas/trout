@@ -21,7 +21,10 @@ const handler = async (
   }
 
   // send to CLI
-  const serializedRequest = requestProcessor.serializeRequest(originalReq);
+  const serializedRequest = await requestProcessor.serializeRequest(
+    originalReq
+  );
+  console.log({ serializedRequest });
   await pusher.trigger(source.id, defaultPusherChannel, serializedRequest);
 
   // send to all sinks
