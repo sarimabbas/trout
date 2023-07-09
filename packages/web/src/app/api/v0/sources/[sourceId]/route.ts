@@ -4,8 +4,8 @@ import { defaultPusherChannel } from "@trout/shared/isomorphic";
 import { xata } from "@trout/shared/server";
 import { NextResponse, type NextRequest } from "next/server";
 
-// receives webhook requests from external sources and 1) forwards them to Kafka
-// for CLI and 2) forwards them to all connections
+// receives webhook requests from external sources and 1) forwards them to CLI
+// and 2) forwards them to all connections
 const handler = async (
   req: NextRequest,
   { params }: { params: { sourceId: string } }

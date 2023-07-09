@@ -1,12 +1,12 @@
-import { AccessTokensRecord } from "@trout/shared/server";
+import { defaultPusherChannel } from "@trout/shared/isomorphic";
+import { SourcesRecord } from "@trout/shared/server";
 import { Text } from "ink";
 import { useCallback, useEffect, useState } from "react";
 import zod from "zod";
-import { getAccessTokenDetails, pusherClient } from "../utils";
+import { pusherClient } from "../utils";
 
 export const options = zod.object({
-  sourceId: zod.string().describe("Source ID"),
-  accessToken: zod.string().describe("Access token"),
+  source: zod.string().describe("CLI token for the source"),
 });
 
 type Props = {
@@ -14,50 +14,50 @@ type Props = {
 };
 
 export default function Listen({ options }: Props) {
-  const [accessToken, setAccessToken] = useState<AccessTokensRecord>();
+  const [source, setSource] = useState<SourcesRecord>();
 
-  const setAccessTokenDetails = useCallback(async () => {
-    const accessToken = await getAccessTokenDetails(options.accessToken);
-    if (
-      !accessToken?.clerkOrgOrUserId ||
-      !accessToken?.kafkaCredentialUsername ||
-      !accessToken?.kafkaCredentialPassword
-    ) {
-      throw new Error("Access token credentials incomplete");
-    }
-    setAccessToken(accessToken);
-  }, [options.accessToken]);
+  const getSource = useCallback(async () => {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + "/api/v0/cli-tokens",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cliToken: options.source }),
+      }
+    );
+    const source = await response.json();
+    setSource(source);
+  }, [options.source]);
 
-  const subscribeConsumerToTopic = useCallback(async () => {
-    if (!options.sourceId || !accessToken) {
+  const listenForEvents = useCallback(async () => {
+    if (!source?.id) {
       return;
     }
 
-    console.log("Listening for messages...");
-
-    const channel = pusherClient.subscribe(options.sourceId);
-
-    channel.bind("webhook-event", (data: string) => {
+    const channel = pusherClient.subscribe(source.id);
+    channel.bind(defaultPusherChannel, (data: string) => {
       console.log({ data });
     });
 
     return () => {
       console.log("Disconnecting consumer...");
-      pusherClient.unsubscribe(options.sourceId);
+      pusherClient.unsubscribe(source.id);
     };
-  }, [options.sourceId, accessToken]);
+  }, [source?.id]);
 
   useEffect(() => {
-    setAccessTokenDetails();
-  }, [setAccessTokenDetails]);
+    getSource();
+  }, [getSource]);
 
   useEffect(() => {
-    subscribeConsumerToTopic();
-  }, [subscribeConsumerToTopic]);
+    listenForEvents();
+  }, [listenForEvents]);
 
-  return (
+  return source?.id ? (
     <Text>
-      Hello, <Text color="green">{JSON.stringify(accessToken)}</Text>
+      Listening for events on source <Text color="green">{source.name}</Text>...
     </Text>
+  ) : (
+    <Text>Waiting for source...</Text>
   );
 }

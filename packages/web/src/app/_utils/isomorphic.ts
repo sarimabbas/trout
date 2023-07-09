@@ -18,8 +18,8 @@ export const getWebhookUrl = (sourceId: string) => {
   return `${getApiUrl()}/${path}`;
 };
 
-export const getCliCommand = (orgOrUserId: string, sourceId: string) => {
-  return `trout listen --id ${sourceId}}`;
+export const getCliCommand = (cliToken: string) => {
+  return `@trout.run/cli listen --source ${cliToken}`;
 };
 
 export const serializeRequest = (req: NextRequest) => {

@@ -14,6 +14,7 @@ const tables = [
       { name: "clerkOrgOrUserId", type: "string" },
       { name: "diagramPosX", type: "int" },
       { name: "diagramPosY", type: "int" },
+      { name: "cliToken", type: "string" },
     ],
   },
   {

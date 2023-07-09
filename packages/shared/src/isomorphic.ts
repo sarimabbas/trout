@@ -12,10 +12,6 @@ export const getApiUrl = () => {
 
 const privateEnvSchema = z.object({
   CLERK_SECRET_KEY: z.string(),
-  KAFKA_BROKER: z.string(),
-  KAFKA_PASSWORD: z.string(),
-  KAFKA_USERNAME: z.string(),
-  KAFKA_CLUSTER_ID: z.string(),
   UPSTASH_ADMIN_API_KEY: z.string(),
   UPSTASH_ADMIN_EMAIL: z.string(),
   PUSHER_APP_ID: z.string(),

@@ -7,8 +7,6 @@ import {
   getOrgOrUserId,
   getRandomName,
 } from "../app/_utils/isomorphic";
-import { getTopicId } from "@trout/shared/isomorphic";
-import { createKafkaTopic, deleteKafkaTopic } from "./kafka";
 
 const route = NavigationLinks.find((link) => link.label === "Sources").href;
 
@@ -21,13 +19,9 @@ export const CREATE = async () => {
     clerkOrgOrUserId: lookupId,
     name: `src-${getRandomName()}`,
   });
-  // create topic in kafka if it doesn't exist
-  // the userID is used as a topic prefix
-  try {
-    await createKafkaTopic(getTopicId(source.clerkOrgOrUserId, source.id));
-  } catch (e) {
-    console.error(e);
-  }
+  await source.update({
+    cliToken: createCLIToken(source.id),
+  });
   revalidatePath(route);
   return source;
 };
@@ -85,12 +79,6 @@ export const DELETE = async (props: { sourceId: string }) => {
   await xata.db.sources.delete({
     id: source.id,
   });
-  // delete from Kafka as well
-  try {
-    await deleteKafkaTopic(getTopicId(lookupId, source.id));
-  } catch (e) {
-    console.error(e);
-  }
   // delete all connections as well
   const connections = await xata.db.connections
     .filter({
@@ -108,4 +96,19 @@ export const DELETE = async (props: { sourceId: string }) => {
   );
   // revalidate the page
   revalidatePath(route);
+};
+
+/**
+ *
+ * @param sourceId - the ID of the source record
+ * @returns a value that can be used as the CLI token
+ */
+export const createCLIToken = (sourceId: string) => {
+  // use the record ID to ensure it is unique
+  // use the crypto randomUUID to make it harder to guess
+  // replace _ with - for consistent formatting
+  // replace rec with tkn for readability
+  return `${sourceId}-${crypto.randomUUID()}`
+    .replaceAll("_", "-")
+    .replaceAll("rec", "tkn");
 };
