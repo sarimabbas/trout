@@ -10,23 +10,30 @@ export default defineConfig({
     starlight({
       title: "🐟 Trout",
       social: {
-        github: "https://github.com/withastro/starlight",
+        github: "https://github.com/sarimabbas/trout",
       },
       sidebar: [
         {
-          label: "Quick start",
-          link: "/",
-        },
-        {
-          label: "Guides",
+          label: "External links",
           items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", link: "/guides/example/" },
+            {
+              label: "🏠 Landing page",
+              link: "https://trout.run",
+            },
+            {
+              label: "🐟 Go to app",
+              link: "https://web.trout.run",
+            },
+            {
+              label: "📢 Feedback",
+              link: "https://trout.canny.io",
+            },
           ],
         },
+
         {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
+          label: "Tutorial",
+          autogenerate: { directory: "tutorial" },
         },
       ],
     }),
