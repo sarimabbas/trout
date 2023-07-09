@@ -17,6 +17,7 @@ const privateEnvSchema = z.object({
   PUSHER_APP_ID: z.string(),
   PUSHER_KEY: z.string(),
   PUSHER_SECRET: z.string(),
+  QSTASH_TOKEN: z.string(),
 });
 
 export const getPrivateEnv = () => {

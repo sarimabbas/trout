@@ -8,7 +8,8 @@
     "UPSTASH_ADMIN_EMAIL",
     "PUSHER_APP_ID",
     "PUSHER_KEY",
-    "PUSHER_SECRET"
+    "PUSHER_SECRET",
+    "QSTASH_TOKEN"
   ],
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
