@@ -71,7 +71,7 @@ export default function Home() {
           </Button>
         </Link>
         <Link href="https://docs.trout.run">
-          <Button variant="secondary" className="px-8 py-6 text-lg" disabled>
+          <Button variant="secondary" className="px-8 py-6 text-lg">
             Read the docs
           </Button>
         </Link>
