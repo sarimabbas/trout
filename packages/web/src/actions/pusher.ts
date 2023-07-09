@@ -1,12 +1,9 @@
-import { getPrivateEnv } from "@trout/shared/isomorphic";
 import Pusher from "pusher";
 
-const privateEnv = getPrivateEnv();
-
 export const pusher = new Pusher({
-  appId: privateEnv.PUSHER_APP_ID,
-  key: privateEnv.PUSHER_KEY,
-  secret: privateEnv.PUSHER_SECRET,
+  appId: process.env.PUSHER_APP_ID,
+  key: process.env.PUSHER_KEY,
+  secret: process.env.PUSHER_SECRET,
   cluster: "us2",
   useTLS: true,
 });

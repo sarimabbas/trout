@@ -10,28 +10,6 @@ export const getApiUrl = () => {
   return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/`;
 };
 
-const privateEnvSchema = z.object({
-  CLERK_SECRET_KEY: z.string(),
-  PUSHER_APP_ID: z.string(),
-  PUSHER_KEY: z.string(),
-  PUSHER_SECRET: z.string(),
-  QSTASH_TOKEN: z.string(),
-  QSTASH_URL: z.string(),
-});
-
-export const getPrivateEnv = () => {
-  return privateEnvSchema.parse(process.env);
-};
-
-const publicEnvSchema = z.object({
-  NEXT_PUBLIC_BASE_URL: z.string().url(),
-  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
-});
-
-export const getPublicEnv = () => {
-  return publicEnvSchema.parse(process.env);
-};
-
 export const getTopicId = (orgOrUserId: string, sourceId: string) => {
   const topic = `${orgOrUserId}.${sourceId}`;
   return topic;

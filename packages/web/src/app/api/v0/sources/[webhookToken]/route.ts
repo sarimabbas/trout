@@ -1,10 +1,8 @@
 import { pusher } from "@/actions/pusher";
 import { serializeRequest } from "@/app/_utils/isomorphic";
-import { defaultPusherChannel, getPrivateEnv } from "@trout/shared/isomorphic";
+import { defaultPusherChannel } from "@trout/shared/isomorphic";
 import { xata } from "@trout/shared/server";
 import { NextResponse, type NextRequest } from "next/server";
-
-const privateEnv = getPrivateEnv();
 
 // receives webhook requests from external sources and 1) forwards them to CLI
 // and 2) forwards them to all connections
@@ -50,14 +48,14 @@ const handler = async (
           nextUrl.searchParams.set(key, value);
         });
 
-        return fetch(`${privateEnv.QSTASH_URL}${nextUrl.toString()}`, {
+        return fetch(`${process.env.QSTASH_URL}${nextUrl.toString()}`, {
           method: clonedReq.method,
           body: clonedReq.body,
           cache: clonedReq.cache,
           credentials: clonedReq.credentials,
           headers: {
             ...Object.fromEntries(clonedReq.headers.entries()),
-            Authorization: `Bearer ${privateEnv.QSTASH_TOKEN}`,
+            Authorization: `Bearer ${process.env.QSTASH_TOKEN}`,
           },
           integrity: clonedReq.integrity,
           keepalive: clonedReq.keepalive,
