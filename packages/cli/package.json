@@ -19,7 +19,6 @@
     "dist"
   ],
   "dependencies": {
-    "@trout/shared": "workspace:*",
     "ink": "^4.2.0",
     "pastel": "^2.0.2",
     "pusher-js": "^8.2.0",
@@ -27,6 +26,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@trout/shared": "workspace:*",
     "@types/node": "20.4.0",
     "@types/react": "^18.0.32",
     "chalk": "^5.3.0",
