@@ -2,6 +2,7 @@
   "name": "@trout/shared",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "exports": {
     "./server": "./src/server.ts",
     "./isomorphic": "./src/isomorphic.ts",
