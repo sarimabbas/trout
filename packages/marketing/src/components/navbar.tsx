@@ -1,6 +1,7 @@
 import { bungee } from "@/fonts";
 import { TypographyH3, TypographyLink } from "@sarim.garden/ui/client";
 import { cn } from "@sarim.garden/ui/isomorphic";
+import Link from "next/link";
 
 export const Navbar = () => {
   return (
@@ -10,7 +11,9 @@ export const Navbar = () => {
       </TypographyH3>
       <ul className="flex items-center gap-4">
         <li>
-          <TypographyLink>Sign up</TypographyLink>
+          <Link href="https://getwaitlist.com/waitlist/8877" legacyBehavior>
+            <TypographyLink>Sign up</TypographyLink>
+          </Link>
         </li>
         <li>
           <TypographyLink>Pricing</TypographyLink>
