@@ -8,6 +8,7 @@ import {
 import { cn } from "@sarim.garden/ui/isomorphic";
 import { Inbox, Send, TerminalSquare } from "lucide-react";
 import { Bungee } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 
 const bungee = Bungee({ subsets: ["latin"], weight: "400" });
@@ -23,7 +24,12 @@ export default function Home() {
         Webhooks 🎣 made easy
       </div>
       {/* cover */}
-      <div className="w-full bg-gray-200 shadow-sm rounded-xl aspect-video" />
+      {/* <div className="w-full bg-gray-200 shadow-sm rounded-xl aspect-video" /> */}
+      <img
+        alt="cover"
+        src="/cover.png"
+        className="object-scale-down w-full shadow-lg rounded-xl"
+      />
       {/* feature section header */}
       <div className={cn("text-2xl text-blue-500 ", bungee.className)}>
         All the features an indie needs
