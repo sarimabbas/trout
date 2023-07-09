@@ -1,6 +1,8 @@
 import { pusher } from "@/actions/pusher";
-import { serializeRequest } from "@/app/_utils/isomorphic";
-import { defaultPusherChannel } from "@trout.run/shared/isomorphic";
+import {
+  defaultPusherChannel,
+  requestProcessor,
+} from "@trout.run/shared/isomorphic";
 import { xata } from "@trout.run/shared/server";
 import { NextResponse, type NextRequest } from "next/server";
 
@@ -19,8 +21,7 @@ const handler = async (
   }
 
   // send to CLI
-  const clonedReqForCLI = originalReq.clone();
-  const serializedRequest = serializeRequest(clonedReqForCLI);
+  const serializedRequest = requestProcessor.serializeRequest(originalReq);
   await pusher.trigger(source.id, defaultPusherChannel, serializedRequest);
 
   // send to all sinks
@@ -37,24 +38,25 @@ const handler = async (
     connections
       .filter((c) => !!c.sink.url)
       .map((connection) => {
-        // remove bad headers from request
+        // copy the request so we can modify it
         const clonedReq = originalReq.clone();
-        clonedReq.headers.delete("host");
+
+        // clean headers from source
+        const cleanHeaders = requestProcessor.cleanHeaders(clonedReq.headers);
 
         // add query params from source to sink
-        const reqUrl = new URL(clonedReq.url);
-        const nextUrl = new URL(connection.sink.url);
-        reqUrl.searchParams.forEach((value, key) => {
-          nextUrl.searchParams.set(key, value);
-        });
+        const nextUrl = requestProcessor.copyParamsToUrl(
+          clonedReq.url,
+          connection.sink.url
+        );
 
-        return fetch(`${process.env.QSTASH_URL}${nextUrl.toString()}`, {
+        return fetch(`${process.env.QSTASH_URL}${nextUrl}`, {
           method: clonedReq.method,
           body: clonedReq.body,
           cache: clonedReq.cache,
           credentials: clonedReq.credentials,
           headers: {
-            ...Object.fromEntries(clonedReq.headers.entries()),
+            ...Object.fromEntries(cleanHeaders.entries()),
             Authorization: `Bearer ${process.env.QSTASH_TOKEN}`,
           },
           integrity: clonedReq.integrity,

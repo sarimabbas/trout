@@ -22,31 +22,6 @@ export const getCliCommand = (cliToken: string) => {
   return `trout listen --source ${cliToken}`;
 };
 
-export const serializeRequest = (req: Request) => {
-  return JSON.stringify(req, [
-    "body",
-    "cookies",
-    "headers",
-    "method",
-    "url",
-    "credentials",
-    "destination",
-    "geo",
-    "integrity",
-    "ip",
-    "keepalive",
-    "mode",
-    "nextUrl",
-    "redirect",
-    "referrer",
-    "referrerPolicy",
-  ]);
-};
-
-export const deserializeRequest = (serializedRequest: string) => {
-  return JSON.parse(serializedRequest);
-};
-
 const haikunator = new Haikunator();
 
 export const getRandomName = () => {
