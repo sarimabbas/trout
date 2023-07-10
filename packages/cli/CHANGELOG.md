@@ -1,5 +1,11 @@
 # @trout.run/cli
 
+## 2.1.2
+
+### Patch Changes
+
+- 002bfa3: Test prod secrets
+
 ## 2.1.1
 
 ### Patch Changes
