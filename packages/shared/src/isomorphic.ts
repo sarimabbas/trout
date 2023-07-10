@@ -13,6 +13,6 @@ export const getTopicId = (orgOrUserId: string, sourceId: string) => {
   return topic;
 };
 
-export const defaultPusherChannel = "webhook-event";
+export const defaultPusherEventName = "webhook-event";
 
 export * as requestProcessor from "./utils/requestProcessor";

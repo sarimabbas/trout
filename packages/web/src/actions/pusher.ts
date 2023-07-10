@@ -7,5 +7,3 @@ export const pusher = new Pusher({
   cluster: "us2",
   useTLS: true,
 });
-
-export const defaultPusherChannel = "webhook-event";

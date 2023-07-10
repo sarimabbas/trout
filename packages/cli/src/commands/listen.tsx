@@ -1,16 +1,20 @@
-import { defaultPusherChannel } from "@trout.run/shared/isomorphic";
+import {
+  defaultPusherEventName,
+  requestProcessor,
+} from "@trout.run/shared/isomorphic";
 import { SourcesRecord } from "@trout.run/shared/server";
 import { Text } from "ink";
 import { useCallback, useEffect, useState } from "react";
-import zod from "zod";
+import { z } from "zod";
 import { pusherClient } from "../utils";
 
-export const options = zod.object({
-  source: zod.string().describe("CLI token for the source"),
+export const options = z.object({
+  source: z.string().describe("CLI token for the source"),
+  forward: z.string().url().describe("URL to forward events to"),
 });
 
 type Props = {
-  options: zod.infer<typeof options>;
+  options: z.infer<typeof options>;
 };
 
 export default function Listen({ options }: Props) {
@@ -35,9 +39,20 @@ export default function Listen({ options }: Props) {
     }
 
     const channel = pusherClient.subscribe(source.id);
-    channel.bind(defaultPusherChannel, (data: string) => {
-      console.log({ data });
-    });
+    channel.bind(
+      defaultPusherEventName,
+      async (data: { serializedRequest: string }) => {
+        const requestInit = requestProcessor.deserializeRequest(
+          data.serializedRequest
+        );
+        const destUrl = requestProcessor.copyParamsToUrl(
+          requestInit.url,
+          options.forward
+        );
+        const response = await fetch(destUrl, requestInit);
+        console.log(await response.json());
+      }
+    );
 
     return () => {
       console.log("Disconnecting consumer...");

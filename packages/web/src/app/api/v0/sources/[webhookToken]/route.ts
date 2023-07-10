@@ -1,6 +1,6 @@
 import { pusher } from "@/actions/pusher";
 import {
-  defaultPusherChannel,
+  defaultPusherEventName,
   requestProcessor,
 } from "@trout.run/shared/isomorphic";
 import { xata } from "@trout.run/shared/server";
@@ -24,8 +24,9 @@ const handler = async (
   const serializedRequest = await requestProcessor.serializeRequest(
     originalReq
   );
-  console.log({ serializedRequest });
-  await pusher.trigger(source.id, defaultPusherChannel, serializedRequest);
+  await pusher.trigger(source.id, defaultPusherEventName, {
+    serializedRequest,
+  });
 
   // send to all sinks
   const connections = await xata.db.connections

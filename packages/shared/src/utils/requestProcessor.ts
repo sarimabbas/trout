@@ -21,6 +21,7 @@ export const copyParamsToUrl = (srcUrl: string, destUrl: string): string => {
 export const cleanHeaders = (headers: Headers) => {
   const copiedHeaders = new Headers(headers);
   copiedHeaders.delete("host");
+  copiedHeaders.delete("connection");
   return copiedHeaders;
 };
 
@@ -45,7 +46,8 @@ export const serializeRequest = async (req: Request) => {
     redirect: clonedReq.redirect, // string
     referrer: clonedReq.referrer, // string
     referrerPolicy: clonedReq.referrerPolicy, // string
-  } as RequestInit);
+    url: clonedReq.url, // string
+  } as RequestInit & { url: string });
 };
 
 /**
@@ -53,7 +55,9 @@ export const serializeRequest = async (req: Request) => {
  * @param serializedRequest a stringified RequestInit object
  * Returns a RequestInit object
  */
-export const deserializeRequest = (serializedRequest: string): RequestInit => {
+export const deserializeRequest = (
+  serializedRequest: string
+): RequestInit & { url: string } => {
   const parsed = JSON.parse(serializedRequest);
   return parsed;
 };
