@@ -13,8 +13,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "doppler run -- tsup --config ./tsup.config.ts",
-    "dev": "pnpm run build --watch",
+    "build": "tsup --config ./tsup.config.ts",
+    "dev": "doppler run -- pnpm run build --watch",
     "prepublishOnly": "pnpm run build"
   },
   "files": [
