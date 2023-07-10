@@ -24,7 +24,7 @@ jobs:
         uses: pnpm/action-setup@v2.2.4
 
       - name: Export all repo secrets to ENV (e.g. GITHUB_TOKEN)
-        uses: oNaiPs/secrets-to-env-action@v1
+        uses: oNaiPs/secrets-to-env-action@v1.3
         with:
           secrets: ${{ toJSON(secrets) }}
 
