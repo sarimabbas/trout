@@ -1,5 +1,11 @@
 # @trout.run/cli
 
+## 2.1.1
+
+### Patch Changes
+
+- 2eac483: Fix CLI forward option
+
 ## 2.1.0
 
 ### Minor Changes
