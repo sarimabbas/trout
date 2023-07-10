@@ -1,6 +1,6 @@
 {
   "name": "@trout.run/cli",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "license": "MIT",
   "bin": {
     "trout": "./dist/cli.js"
