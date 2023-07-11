@@ -20,8 +20,9 @@ export const Navbar = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="flex items-center justify-between gap-4 p-8 bg-white border-4 border-blue-200 shadow-sm dark:bg-zinc-900 rounded-xl">
-      <div className="flex items-center gap-12">
+    <div className="flex flex-wrap items-center justify-center gap-8 p-8 bg-white border-4 border-blue-200 shadow-sm md:justify-between dark:bg-zinc-900 rounded-xl">
+      {/* left */}
+      <div className="flex flex-wrap items-center justify-center gap-8 md:justify-between">
         <Link
           href="/"
           className="flex items-start gap-2 text-2xl font-semibold"
@@ -31,21 +32,24 @@ export const Navbar = () => {
           </TypographyH3>
           <Badge>BETA</Badge>
         </Link>
-        <OrganizationSwitcher
-          appearance={theme === "dark" ? { baseTheme: dark } : {}}
-        />
-        <ul className="flex items-center gap-4">
+        <ul className="flex items-center gap-8 md:justify-between">
           {NavigationLinks.map(({ href, label }) => (
             <li key={href}>
               <Link href={href}>
-                <Button variant="link">{label}</Button>
+                <Button variant="link" className="p-0">
+                  {label}
+                </Button>
               </Link>
             </li>
           ))}
         </ul>
       </div>
+      {/* right */}
       <div className="flex items-center gap-12">
         <DarkModeToggle />
+        <OrganizationSwitcher
+          appearance={theme === "dark" ? { baseTheme: dark } : {}}
+        />
         <UserButton appearance={theme === "dark" ? { baseTheme: dark } : {}} />
       </div>
     </div>
