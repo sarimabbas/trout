@@ -5,7 +5,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "release": "turbo run build lint --filter=@trout.run/cli && changeset version && changeset publish"
+    "release": "turbo run build --filter=@trout.run/cli lint --filter=@trout.run/cli"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
