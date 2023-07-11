@@ -23,9 +23,11 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-            <Navbar />
             {/* container should NOT be body, otherwise this happens https://github.com/radix-ui/primitives/discussions/2101 */}
-            <div className="container p-8 mx-auto">{children}</div>
+            <div className="container flex flex-col gap-8 p-4 mx-auto md:p-8">
+              <Navbar />
+              {children}
+            </div>
             <Analytics />
             <Toaster />
           </ThemeProvider>
