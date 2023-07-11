@@ -28,6 +28,10 @@ export default defineConfig({
               label: "📢 Feedback",
               link: "https://trout.canny.io",
             },
+            {
+              label: "🤖 GitHub",
+              link: "https://github.com/sarimabbas/trout",
+            },
           ],
         },
 
