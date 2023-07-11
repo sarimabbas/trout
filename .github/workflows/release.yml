@@ -23,6 +23,11 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
 
+      - name: Export all repo secrets (except GITHUB_TOKEN)
+        uses: oNaiPs/secrets-to-env-action@v1.3
+        with:
+          secrets: ${{ toJSON(secrets) }}
+
       - name: Install Dependencies
         run: pnpm i
 
@@ -35,5 +40,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
-          PUSHER_KEY: ${{ secrets.PUSHER_KEY }}
