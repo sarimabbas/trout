@@ -48,9 +48,9 @@ export const Navbar = () => {
       <div className="flex items-center gap-12">
         <DarkModeToggle />
         <OrganizationSwitcher
-          appearance={theme === "dark" ? { baseTheme: dark } : {}}
+          appearance={theme !== "light" ? { baseTheme: dark } : {}}
         />
-        <UserButton appearance={theme === "dark" ? { baseTheme: dark } : {}} />
+        <UserButton appearance={theme !== "light" ? { baseTheme: dark } : {}} />
       </div>
     </div>
   );
