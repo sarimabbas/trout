@@ -5,7 +5,7 @@ export const getApiUrl = () => {
     }
     return `http://localhost:3000/`;
   }
-  return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/`;
+  return process.env.NEXT_PUBLIC_BASE_URL;
 };
 
 export const getTopicId = (orgOrUserId: string, sourceId: string) => {
