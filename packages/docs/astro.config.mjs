@@ -34,10 +34,13 @@ export default defineConfig({
             },
           ],
         },
-
         {
           label: "Tutorial",
           autogenerate: { directory: "tutorial" },
+        },
+        {
+          label: "Reference",
+          autogenerate: { directory: "reference" },
         },
       ],
     }),
