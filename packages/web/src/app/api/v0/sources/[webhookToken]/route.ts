@@ -57,18 +57,18 @@ const handler = async (
         return fetch(`${process.env.QSTASH_URL}${nextUrl}`, {
           method: clonedReq.method,
           body: clonedReq.body,
-          cache: clonedReq.cache,
-          credentials: clonedReq.credentials,
+          // cache: clonedReq.cache,
+          // credentials: clonedReq.credentials,
           headers: {
             ...Object.fromEntries(cleanHeaders.entries()),
             Authorization: `Bearer ${process.env.QSTASH_TOKEN}`,
           },
-          integrity: clonedReq.integrity,
-          keepalive: clonedReq.keepalive,
-          mode: clonedReq.mode,
-          redirect: clonedReq.redirect,
-          referrer: clonedReq.referrer,
-          referrerPolicy: clonedReq.referrerPolicy,
+          // integrity: clonedReq.integrity,
+          // keepalive: clonedReq.keepalive,
+          // mode: clonedReq.mode,
+          // redirect: clonedReq.redirect,
+          // referrer: clonedReq.referrer,
+          // referrerPolicy: clonedReq.referrerPolicy,
           // https://github.com/microsoft/TypeScript-DOM-lib-generator/issues/1483
           // @ts-ignore
           duplex: "half",

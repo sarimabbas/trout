@@ -37,15 +37,15 @@ export const serializeRequest = async (req: Request) => {
   return JSON.stringify({
     method: clonedReq.method, // string
     body: textBody, // string
-    cache: clonedReq.cache, // string
-    credentials: clonedReq.credentials, // string
+    // cache: clonedReq.cache, // string
+    // credentials: clonedReq.credentials, // string
     headers: Object.fromEntries(cleanedHeaders), // object
-    integrity: clonedReq.integrity, // string
-    keepalive: clonedReq.keepalive, // boolean
-    mode: clonedReq.mode, // string
-    redirect: clonedReq.redirect, // string
-    referrer: clonedReq.referrer, // string
-    referrerPolicy: clonedReq.referrerPolicy, // string
+    // integrity: clonedReq.integrity, // string
+    // keepalive: clonedReq.keepalive, // boolean
+    // mode: clonedReq.mode, // string
+    // redirect: clonedReq.redirect, // string
+    // referrer: clonedReq.referrer, // string
+    // referrerPolicy: clonedReq.referrerPolicy, // string
     url: clonedReq.url, // string
   } as RequestInit & { url: string });
 };
