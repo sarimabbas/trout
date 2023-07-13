@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import vercel from "@astrojs/vercel/edge";
+import vercel from "@astrojs/vercel/serverless";
 
 // https://github.com/withastro/astro/issues/7561
 // upgrade to new astro only after above fixed
@@ -8,9 +8,7 @@ import vercel from "@astrojs/vercel/edge";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: vercel({
-    analytics: true,
-  }),
+  adapter: vercel(),
   integrations: [
     starlight({
       head: [
@@ -50,16 +48,23 @@ export default defineConfig({
         },
         {
           label: "Tutorial",
-          autogenerate: { directory: "tutorial" },
+          autogenerate: {
+            directory: "tutorial",
+          },
         },
         {
           label: "Reference",
-          autogenerate: { directory: "reference" },
+          autogenerate: {
+            directory: "reference",
+          },
         },
       ],
     }),
   ],
-
   // Process images with sharp: https://docs.astro.build/en/guides/assets/#using-sharp
-  image: { service: { entrypoint: "astro/assets/services/sharp" } },
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+    },
+  },
 });
