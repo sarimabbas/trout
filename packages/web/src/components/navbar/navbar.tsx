@@ -21,7 +21,7 @@ export const Navbar = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-8 p-8 bg-white border-4 border-blue-200 shadow-sm dark:bg-zinc-900 rounded-xl">
+    <div className="flex flex-wrap items-center justify-between gap-8 p-8 bg-white border-4 border-blue-200 shadow-sm shadow-blue-500 dark:bg-zinc-900 rounded-xl">
       {/* left */}
       <div className="flex flex-wrap items-center gap-8">
         <Link
