@@ -38,9 +38,7 @@ export const Navbar = () => {
             <li key={href}>
               <Link
                 href={href}
-                onClick={() => {
-                  logEvent("link_click", { href, label });
-                }}
+                onClick={() => logEvent("link_click", { href, label })}
               >
                 <Button variant="link" className="p-0">
                   {label}
