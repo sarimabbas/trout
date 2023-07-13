@@ -14,7 +14,7 @@
     "@sarim.garden/ui": "^2.4.1",
     "@t3-oss/env-nextjs": "^0.6.0",
     "@trout.run/shared": "workspace:*",
-    "@types/node": "20.4.1",
+    "@types/node": "20.4.2",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@upstash/qstash": "^0.3.6",

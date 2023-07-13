@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@trout.run/shared": "workspace:*",
-    "@types/node": "20.4.1",
+    "@types/node": "20.4.2",
     "@types/react": "^18.0.32",
     "chalk": "^5.3.0",
     "eslint-config-custom": "workspace:*",
