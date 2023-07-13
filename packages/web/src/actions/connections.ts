@@ -4,7 +4,7 @@ import { xata } from "@trout.run/shared/server";
 import { revalidatePath } from "next/cache";
 import { NavigationLinks, getOrgOrUserId } from "../app/_utils/isomorphic";
 
-const route = NavigationLinks.find((link) => link.label === "Connections").href;
+const route = NavigationLinks.find((link) => link.id === "connections").href;
 
 export const CRUPDATE = async ({
   connectionId,

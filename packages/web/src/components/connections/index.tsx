@@ -63,7 +63,7 @@ export const ConnectionsSection = (props: ConnectionsSectionProps) => {
     <div className="flex flex-col h-screen gap-8">
       <TypographyH2>Connections</TypographyH2>
       <TypographySubtle>
-        Connections direct events from your data sources to your sinks.
+        Connections direct events from your sources to sinks.
       </TypographySubtle>
       <ReactFlow
         // force refresh when org changes

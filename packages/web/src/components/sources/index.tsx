@@ -56,12 +56,8 @@ export const SourcesSection = (props: SourceListProps) => {
     <div className="flex flex-col gap-8">
       <TypographyH2>Sources</TypographyH2>
       <TypographySubtle>
-        Sources receive events from external parties and send them to{" "}
-        <Link href="/sinks" className="underline underline-offset-2">
-          Sinks
-        </Link>
-        . Each source has its own dedicated URL that you can copy and paste in
-        your external sender.
+        Receive events with sources. Each source has its own dedicated URL. You
+        can also use the local CLI to listen on a source.
       </TypographySubtle>
       <Button
         onClick={() =>

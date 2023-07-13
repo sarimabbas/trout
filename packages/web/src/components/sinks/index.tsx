@@ -50,9 +50,7 @@ export const SinksSection = (props: SinksSectionProps) => {
   return (
     <div className="flex flex-col gap-8">
       <TypographyH2>Sinks</TypographyH2>
-      <TypographySubtle>
-        Sinks are where your events are consumed.
-      </TypographySubtle>
+      <TypographySubtle>Sinks are where your events are sent.</TypographySubtle>
       <Button
         onClick={() =>
           startTransition(async () => {

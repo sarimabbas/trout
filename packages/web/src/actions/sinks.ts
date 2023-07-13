@@ -8,7 +8,7 @@ import {
   getRandomName,
 } from "../app/_utils/isomorphic";
 
-const route = NavigationLinks.find((link) => link.label === "Sinks").href;
+const route = NavigationLinks.find((link) => link.id === "sinks").href;
 
 export const CREATE = async () => {
   const lookupId = getOrgOrUserId();

@@ -10,13 +10,14 @@ export const Sidebar = () => {
     <div className="flex flex-col gap-8">
       {/* links */}
       <ul className="flex flex-col gap-4">
-        {NavigationLinks.map(({ href, label }) => (
+        {NavigationLinks.map(({ href, label, icon }) => (
           <li key={href}>
             <Link
               href={href}
               onClick={() => logEvent("link_click", { href, label })}
             >
-              <Button variant="outline" className="justify-start w-full">
+              <Button variant="outline" className="justify-start w-full gap-4">
+                {icon}
                 {label}
               </Button>
             </Link>

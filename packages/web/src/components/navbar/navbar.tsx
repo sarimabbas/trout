@@ -1,17 +1,9 @@
 "use client";
 
-import { NavigationLinks } from "@/app/_utils/isomorphic";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import {
-  Badge,
-  Button,
-  DarkModeToggle,
-  TypographyH3,
-  useTheme,
-} from "@sarim.garden/ui/client";
+import { Badge, TypographyH3, useTheme } from "@sarim.garden/ui/client";
 import { cn } from "@sarim.garden/ui/isomorphic";
-import { logEvent } from "@trout.run/shared/client";
 import { Bungee } from "next/font/google";
 import Link from "next/link";
 
