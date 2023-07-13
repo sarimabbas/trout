@@ -20,7 +20,6 @@ import {
   toast,
 } from "@sarim.garden/ui/client";
 import { MoreHorizontal } from "lucide-react";
-import Link from "next/link";
 import { useTransition } from "react";
 import { UpdateSourceDialog } from "./update-source-dialog";
 

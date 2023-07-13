@@ -3,7 +3,9 @@
 import { NavigationLinks } from "@/app/_utils/isomorphic";
 import { Button, DarkModeToggle } from "@sarim.garden/ui/client";
 import { logEvent } from "@trout.run/shared/client";
+import { HelpCircle } from "lucide-react";
 import Link from "next/link";
+import { MoreDropdown } from "../more-dropdown";
 
 export const Sidebar = () => {
   return (
@@ -25,8 +27,9 @@ export const Sidebar = () => {
         ))}
       </ul>
       {/* dark mode */}
-      <div className="self-end">
+      <div className="flex items-center self-end gap-4">
         <DarkModeToggle />
+        <MoreDropdown />
       </div>
     </div>
   );

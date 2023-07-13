@@ -23,27 +23,6 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "External links",
-          items: [
-            {
-              label: "🏠 Landing page",
-              link: "https://trout.run",
-            },
-            {
-              label: "🐟 Go to app",
-              link: "https://web.trout.run",
-            },
-            {
-              label: "📢 Feedback",
-              link: "https://trout.canny.io",
-            },
-            {
-              label: "🤖 GitHub",
-              link: "https://github.com/sarimabbas/trout",
-            },
-          ],
-        },
-        {
           label: "Tutorial",
           autogenerate: {
             directory: "tutorial",
@@ -54,6 +33,31 @@ export default defineConfig({
           autogenerate: {
             directory: "reference",
           },
+        },
+        {
+          label: "External links",
+          items: [
+            {
+              label: "🏠 Landing page",
+              link: "https://trout.run",
+            },
+            {
+              label: "🤖 GitHub",
+              link: "https://github.com/sarimabbas/trout",
+            },
+            {
+              label: "💬 Submit feedback",
+              link: "https://trout.canny.io",
+            },
+            {
+              label: "🗺️ Roadmap",
+              link: "https://trout.canny.io",
+            },
+            {
+              label: "🪵 Changelog",
+              link: "https://trout.canny.io/changelog",
+            },
+          ],
         },
       ],
     }),
