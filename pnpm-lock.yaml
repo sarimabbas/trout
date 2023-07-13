@@ -158,6 +158,9 @@ importers:
 
   packages/shared:
     dependencies:
+      '@vercel/analytics':
+        specifier: ^1.0.1
+        version: 1.0.1
       '@xata.io/client':
         specifier: ^0.24.3
         version: 0.24.3(typescript@5.1.6)

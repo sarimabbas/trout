@@ -11,6 +11,7 @@ import {
   useTheme,
 } from "@sarim.garden/ui/client";
 import { cn } from "@sarim.garden/ui/isomorphic";
+import { logEvent } from "@trout.run/shared/client";
 import { Bungee } from "next/font/google";
 import Link from "next/link";
 
@@ -35,7 +36,12 @@ export const Navbar = () => {
         <ul className="flex items-center gap-8 md:justify-between">
           {NavigationLinks.map(({ href, label }) => (
             <li key={href}>
-              <Link href={href}>
+              <Link
+                href={href}
+                onClick={() => {
+                  logEvent("link_click", { href, label });
+                }}
+              >
                 <Button variant="link" className="p-0">
                   {label}
                 </Button>

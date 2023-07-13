@@ -1,1 +1,3 @@
-export const hello = "world";
+"use client";
+
+export * from "./utils/logger";
