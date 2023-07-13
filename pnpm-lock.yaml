@@ -118,6 +118,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.6
         version: 18.2.6
+      '@vercel/analytics':
+        specifier: ^1.0.1
+        version: 1.0.1
       autoprefixer:
         specifier: 10.4.14
         version: 10.4.14(postcss@8.4.25)
