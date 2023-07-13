@@ -16,7 +16,7 @@ export const Sidebar = () => {
               href={href}
               onClick={() => logEvent("link_click", { href, label })}
             >
-              <Button variant="link" className="p-0">
+              <Button variant="outline" className="justify-start w-full">
                 {label}
               </Button>
             </Link>
@@ -24,7 +24,9 @@ export const Sidebar = () => {
         ))}
       </ul>
       {/* dark mode */}
-      <DarkModeToggle />
+      <div className="self-end">
+        <DarkModeToggle />
+      </div>
     </div>
   );
 };

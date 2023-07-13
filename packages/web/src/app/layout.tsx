@@ -31,10 +31,9 @@ export default function RootLayout({
             <div className="container flex flex-col gap-8 p-4 mx-auto md:p-8">
               <Navbar />
               <div className="flex gap-8 ">
-                <div className="min-w-[200px] px-4">
+                <div className="min-w-[200px]">
                   <Sidebar />
                 </div>
-                <div className="border w-[1px]"></div>
                 <div className="flex-1">{children}</div>
               </div>
             </div>
