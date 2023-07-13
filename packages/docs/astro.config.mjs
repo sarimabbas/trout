@@ -7,7 +7,7 @@ import vercel from "@astrojs/vercel/edge";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "static",
+  output: "server",
   adapter: vercel({
     analytics: true,
   }),
