@@ -1,19 +1,11 @@
-import { Button } from "@sarim.garden/ui/client";
-import { HelpCircle } from "lucide-react";
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@sarim.garden/ui/client";
+import { HelpCircle } from "lucide-react";
 import Link from "next/link";
 
 export const MoreDropdown = () => {
@@ -21,7 +13,7 @@ export const MoreDropdown = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
-          <HelpCircle className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <HelpCircle className="h-[1.2rem] w-[1.2rem] dark:text-white" />
           <span className="sr-only">More links</span>
         </Button>
       </DropdownMenuTrigger>
