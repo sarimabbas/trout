@@ -9,6 +9,15 @@ import Link from "next/link";
 
 const bungee = Bungee({ subsets: ["latin"], weight: "400" });
 
+// center alignment
+const orgSwitcherStyles = {
+  elements: {
+    rootBox: {
+      display: "flex",
+    },
+  },
+};
+
 export const Navbar = () => {
   const { theme } = useTheme();
 
@@ -29,7 +38,11 @@ export const Navbar = () => {
       {/* right */}
       <div className="flex items-center gap-12">
         <OrganizationSwitcher
-          appearance={theme !== "light" ? { baseTheme: dark } : {}}
+          appearance={
+            theme !== "light"
+              ? { baseTheme: dark, ...orgSwitcherStyles }
+              : { ...orgSwitcherStyles }
+          }
         />
         <UserButton appearance={theme !== "light" ? { baseTheme: dark } : {}} />
       </div>
