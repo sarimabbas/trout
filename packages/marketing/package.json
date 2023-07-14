@@ -12,7 +12,7 @@
     "@sarim.garden/ui": "^2.4.1",
     "@trout.run/shared": "workspace:*",
     "@types/node": "20.4.2",
-    "@types/react": "18.2.14",
+    "@types/react": "18.2.15",
     "@types/react-dom": "^18.2.6",
     "@vercel/analytics": "^1.0.1",
     "autoprefixer": "10.4.14",
