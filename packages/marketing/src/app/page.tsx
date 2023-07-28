@@ -4,6 +4,7 @@ import {
   TypographyH4,
   TypographyInlineCode,
   TypographyP,
+  TypographySubtle,
 } from "@sarim.garden/ui/client";
 import { cn } from "@sarim.garden/ui/isomorphic";
 import { Inbox, Send, TerminalSquare } from "lucide-react";
@@ -58,7 +59,7 @@ export default function Home() {
           <Send className="w-8 h-8 text-blue-500" />
           <TypographyH4 className="m-0">Send to sinks</TypographyH4>
           <TypographyP className="!m-0">
-            Redirect webhook events to any URL, with automatic retries
+            Forward webhook events to any URL, with automatic retries
           </TypographyP>
         </GridItem>
       </div>
@@ -77,6 +78,12 @@ export default function Home() {
             Read the docs
           </Button>
         </Link>
+      </div>
+      {/* footer */}
+      <div className="flex flex-col items-center gap-4">
+        <TypographySubtle className="!m-0">
+          ©️ {new Date().getFullYear()}. Made in San Francisco.
+        </TypographySubtle>
       </div>
     </main>
   );

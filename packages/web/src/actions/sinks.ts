@@ -71,7 +71,7 @@ export const DELETE = async (props: { sinkId: string }) => {
   if (!lookupId) {
     throw new Error("lookupId is not defined");
   }
-  const sink = await xata.db.sources.read(sinkId);
+  const sink = await xata.db.sinks.read(sinkId);
   if (!sink) {
     throw new Error("sink not found");
   }
