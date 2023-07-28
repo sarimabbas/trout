@@ -17,6 +17,7 @@ const tables = [
       { name: "cliToken", type: "string" },
       { name: "webhookToken", type: "string" },
     ],
+    revLinks: [{ column: "source", table: "connections" }],
   },
   {
     name: "sinks",
@@ -27,6 +28,7 @@ const tables = [
       { name: "diagramPosX", type: "int" },
       { name: "diagramPosY", type: "int" },
     ],
+    revLinks: [{ column: "sink", table: "connections" }],
   },
   {
     name: "connections",

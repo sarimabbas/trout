@@ -8,7 +8,7 @@ export const copyParamsToUrl = (srcUrl: string, destUrl: string): string => {
   const source = new URL(srcUrl);
   const dest = new URL(destUrl);
   source.searchParams.forEach((value, key) => {
-    source.searchParams.set(key, value);
+    dest.searchParams.set(key, value);
   });
   return dest.toString();
 };

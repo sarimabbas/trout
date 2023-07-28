@@ -3,7 +3,7 @@ import {
   requestProcessor,
 } from "@trout.run/shared/isomorphic";
 import { SourcesRecord } from "@trout.run/shared/server";
-import { Text } from "ink";
+import { consola } from "consola";
 import { useCallback, useEffect, useState } from "react";
 import { z } from "zod";
 import { pusherClient } from "../utils";
@@ -11,6 +11,7 @@ import { pusherClient } from "../utils";
 export const options = z.object({
   source: z.string().describe("CLI token for the source"),
   forward: z.string().url().describe("URL to forward events to"),
+  verbose: z.boolean().optional().default(false),
 });
 
 type Props = {
@@ -21,6 +22,7 @@ export default function Listen({ options }: Props) {
   const [source, setSource] = useState<SourcesRecord>();
 
   const getSource = useCallback(async () => {
+    consola.start("Authenticating...");
     const response = await fetch(
       process.env.NEXT_PUBLIC_BASE_URL + "/api/v0/cli-tokens",
       {
@@ -38,10 +40,15 @@ export default function Listen({ options }: Props) {
       return;
     }
 
+    consola.ready(`Listening for events on source "${source.name}"...`);
+
     const channel = pusherClient.subscribe(source.id);
     channel.bind(
       defaultPusherEventName,
       async (data: { serializedRequest: string }) => {
+        consola.info("Received an event.");
+
+        // deserialize request
         const requestInit = requestProcessor.deserializeRequest(
           data.serializedRequest
         );
@@ -49,13 +56,33 @@ export default function Listen({ options }: Props) {
           requestInit.url,
           options.forward
         );
-        const response = await fetch(destUrl, requestInit);
-        console.log(await response.json());
+
+        if (options.verbose) {
+          consola.info(JSON.stringify(requestInit, null, 2));
+          consola.start(`Forwarding event to "${destUrl}"...`);
+        }
+
+        // send it onward!
+        try {
+          const response = await fetch(destUrl, requestInit);
+          consola.success(
+            `Forwarded event successfully, with response status: ${response.status}`
+          );
+          if (options.verbose) {
+            consola.info(await response.json());
+          }
+        } catch (e) {
+          if (options.verbose) {
+            consola.error(e);
+          } else {
+            consola.error("Something went wrong forwarding the event.");
+          }
+        }
       }
     );
 
     return () => {
-      console.log("Disconnecting consumer...");
+      consola.info("Disconnecting...");
       pusherClient.unsubscribe(source.id);
     };
   }, [source?.id]);
@@ -68,11 +95,5 @@ export default function Listen({ options }: Props) {
     listenForEvents();
   }, [listenForEvents]);
 
-  return source?.id ? (
-    <Text>
-      Listening for events on source <Text color="green">{source.name}</Text>...
-    </Text>
-  ) : (
-    <Text>Waiting for source...</Text>
-  );
+  return null;
 }
