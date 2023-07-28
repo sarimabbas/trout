@@ -22,10 +22,13 @@ export default function Home() {
         Webhooks 🎣 made easy
       </div>
       {/* cover */}
-      <img
-        alt="cover"
-        src="/cover.png"
-        className="object-scale-down w-full shadow-lg rounded-xl"
+      <video
+        src="/promo.mp4"
+        autoPlay
+        loop
+        muted
+        controls
+        className="w-full border-2 border-gray-200 rounded-xl"
       />
       {/* feature section header */}
       <div className={cn("text-2xl text-blue-500 ", bungee.className)}>
