@@ -1,5 +1,11 @@
 # @trout.run/cli
 
+## 2.2.0
+
+### Minor Changes
+
+- 0f5b437: Improve CLI logging and fix bug with forwarding query parameters
+
 ## 2.1.2
 
 ### Patch Changes
