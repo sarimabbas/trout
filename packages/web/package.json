@@ -11,7 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.21.14",
     "@clerk/themes": "^1.7.5",
-    "@sarim.garden/ui": "^2.4.1",
+    "@sarim.garden/ui": "^2.4.2",
     "@t3-oss/env-nextjs": "^0.6.0",
     "@trout.run/shared": "workspace:*",
     "@types/node": "20.4.2",
