@@ -29,6 +29,12 @@ export default defineConfig({
           },
         },
         {
+          label: "Learn",
+          autogenerate: {
+            directory: "learn",
+          },
+        },
+        {
           label: "Reference",
           autogenerate: {
             directory: "reference",
