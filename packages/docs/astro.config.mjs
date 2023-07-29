@@ -23,6 +23,10 @@ export default defineConfig({
       },
       sidebar: [
         {
+          label: "Home",
+          link: "/",
+        },
+        {
           label: "Tutorial",
           autogenerate: {
             directory: "tutorial",
