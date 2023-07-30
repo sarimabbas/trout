@@ -2,12 +2,6 @@
 title: Get started
 ---
 
-import { Card } from "@astrojs/starlight/components";
-
-<Card icon="warning" color="goldenrod" title="Note">
-  This tutorial is still being written.
-</Card>
-
 ## Introduction
 
 In this tutorial, you will learn how to:
@@ -65,4 +59,24 @@ Let's try sending that CURL request again. You should see the event appear in th
 
 ## Creating a sink
 
-## Next steps
+The CLI is useful for local development, but you will want to create a sink to forward events to a production service. In the UI, click on "Sinks" in the navigation. Then click on the "Create new sink" button.
+
+![Create new sink](/get-started/7-create-sink.png)
+
+Click on the actions menu to reveal the "Edit" option. Click on this to edit the sink and add a URL to forward events to. For now, let's just use a public [RequestBin](https://public.requestbin.com/r).
+
+![Edit sink](/get-started/8-edit-sink.png)
+
+![Set url](/get-started/9-set-url.png)
+
+## Connect your source and sink
+
+Now that you have a source and a sink, you can connect them together. In the UI, click on "Connections" in the navigation. Then simply drag from one to the other.
+
+![Connect source and sink](/get-started/10-connect.png)
+
+Now you can try sending that CURL request again. You should see the event appear in the RequestBin.
+
+## Conclusion
+
+You made it! You now know how to create sources, sinks, and connections. You can use the Trout CLI to inspect events sent to sources in realtime. You can also use the Trout UI to connect sources and sinks together for production.
