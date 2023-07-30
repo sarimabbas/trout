@@ -3,7 +3,7 @@ title: Welcome to the Trout docs
 description: Learn how to use Trout to develop with webhooks
 ---
 
-import { Card, CardGrid } from "@astrojs/starlight/components";
+import { Card, CardGrid, Icon } from "@astrojs/starlight/components";
 
 Trout is a developer-friendly platform that simplifies webhook integration. Easily create sources with unique URLs for webhook senders like Stripe, Clerk, and Twilio. Establish connections between sources and sinks to effortlessly route webhook events to their intended destinations.
 
@@ -13,9 +13,16 @@ Whether you're an experienced developer or just starting out, Trout's intuitive 
 
 <CardGrid>
   <Card title="Tutorial">
-    <a href="/tutorial">Get started&nbsp;&nbsp;👉</a>
+    <a href="/tutorial" style="display: flex; gap: 8px; align-items: center;">
+      <span>Get started</span>
+      <Icon name="right-arrow" />
+    </a>
+
   </Card>
   <Card title="Learn">
-    <a href="/learn">Learn about the main concepts&nbsp;&nbsp;👉</a>
+    <a href="/learn" style="display: flex; gap: 8px; align-items: center;">
+      <span>Learn about the main concepts</span>
+      <Icon name="right-arrow" />
+    </a>
   </Card>
 </CardGrid>

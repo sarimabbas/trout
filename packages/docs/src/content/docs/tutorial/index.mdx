@@ -10,37 +10,58 @@ import { Card } from "@astrojs/starlight/components";
 
 ## Introduction
 
-In this tutorial, we will walk through the following:
+In this tutorial, you will learn how to:
 
-1. Using the UI to direct webhook events to a source
-2. Inspecting the events in realtime using the Trout CLI
-3. Directing webhook events from a source to a sink
+1. Create a source to receive webhook events
+2. Use the Trout CLI to inspect events in realtime
+3. Create sinks to send events to other services
+4. Connect sources and sinks together
 
 ## Creating a source
 
-In the UI, click on the "Sources" tab. Then click on the "Create new source" button.
+In the UI, click on "Sources" in the navigation. Then click on the "Create new source" button.
 
-<video src="/create-source.mp4" controls />
+![Create new source](/get-started/0-create-source.png)
 
-If you click the actions menu, you'll see some options, including "Copy webhook URL". You can try to send a CURL request to this URL to see it in action.
+Click on the actions menu to reveal the "Copy webhook URL" option. Click on this to copy the URL to your clipboard.
 
-<video src="/copy-url.mp4" controls />
+![Copy webhook URL](/get-started/1-copy-url.png)
 
-<video src="/curl-url.mp4" controls />
-
-## Installing the CLI
+You can plug this URL into any service that supports webhooks. For now, let's just try sending a test request to this URL using CURL. With a terminal open, run the following command:
 
 ```
+curl -X POST -H "Content-Type: application/json" -d '{"hello": "world"}' https://web.trout.run/<replace-with-your-url>
+```
+
+You will observe a success acknowledgement/response.
+
+![CURL response](/get-started/2-curl-response.png)
+
+## Inspecting events locally with the CLI
+
+You can use the Trout CLI to inspect events in realtime. Install the CLI using the following command (you need Node installed on your machine):
+
+```bash
 npm i @trout.run/cli -g
 ```
 
-This will install the Trout CLI globally on your machine. It exposes one command, `trout`.
+Enter `trout --help` to see the available commands. You can use `trout listen` to listen for events on a source.
 
-Use the following command to listen to events from a source:
+```bash
+trout listen --source xxxxx --forward xxxxx
+```
 
-```
-trout listen --source xxxxx
-```
+You can find the source ID by clicking "Copy CLI command" in the UI.
+
+![Copy CLI command](/get-started/3-source-id.png)
+
+![CLI listen](/get-started/4-cli-install.png)
+
+You must also specify a `forward` option. This is the URL you would like to forward events to in local development. This is usually something like `localhost:PORT`. You can also just use a public [RequestBin](https://public.requestbin.com/r) to inspect events.
+
+Let's try sending that CURL request again. You should see the event appear in the CLI, and in the RequestBin.
+
+![RequestBin](/get-started/6-requestbin.png)
 
 ## Creating a sink
 
