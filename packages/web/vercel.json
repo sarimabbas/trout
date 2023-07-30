@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/v0/waitlist/offboard",
+      "schedule": "0 10 * * *"
+    }
+  ]
+}

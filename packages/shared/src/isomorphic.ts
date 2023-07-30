@@ -16,3 +16,5 @@ export const getTopicId = (orgOrUserId: string, sourceId: string) => {
 export const defaultPusherEventName = "webhook-event";
 
 export * as requestProcessor from "./utils/requestProcessor";
+
+export * as waitlist from "./utils/waitlist";
