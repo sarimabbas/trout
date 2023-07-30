@@ -8,10 +8,6 @@ import { Inter } from "next/font/google";
 import { Metadata } from "next";
 import { Sidebar } from "@/components/sidebar";
 
-// allow typescript to parse startTransition with async
-// https://github.com/vercel/next.js/issues/49420#issuecomment-1537794691
-import {} from "react/experimental";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
