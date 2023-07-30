@@ -60,6 +60,7 @@ export const SourcesSection = (props: SourceListProps) => {
       </TypographySubtle>
       <Button
         onClick={() =>
+          // @ts-ignore
           startTransition(async () => {
             const source = await CREATE();
             toast.success(`Created source "${source.name}"`);
@@ -157,6 +158,7 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         {/* delete a source */}
         <DropdownMenuItem
           onClick={() =>
+            // @ts-ignore
             startTransition(async () => {
               await props.row.actions.DELETE({
                 sourceId: props.row.id,

@@ -53,6 +53,7 @@ export const SinksSection = (props: SinksSectionProps) => {
       <TypographySubtle>Sinks are where your events are sent.</TypographySubtle>
       <Button
         onClick={() =>
+          // @ts-ignore
           startTransition(async () => {
             const sink = await CREATE();
             toast.success(`Created sink "${sink.name}"`);
@@ -129,6 +130,7 @@ const ActionsMenu = (props: ActionsMenuProps) => {
         {/* delete a source */}
         <DropdownMenuItem
           onClick={() =>
+            // @ts-ignore
             startTransition(async () => {
               await props.row.actions.DELETE({
                 sinkId: props.row.id,

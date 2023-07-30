@@ -27,6 +27,7 @@ export const UpdateSourceDialog = (props: UpdateSourceDialogProps) => {
   const [name, setName] = useState(source.name);
 
   const onSubmit = () => {
+    // @ts-ignore
     startTransition(async () => {
       await UPDATE({
         name,

@@ -28,6 +28,7 @@ export const UpdateSinkDialog = (props: UpdateSinkDialogProps) => {
   const [url, setUrl] = useState(sink.url);
 
   const onSubmit = () => {
+    // @ts-ignore
     startTransition(async () => {
       await UPDATE({
         sinkId: sink.id,
