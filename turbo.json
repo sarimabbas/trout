@@ -1,6 +1,7 @@
 {
   "globalEnv": [
     "NODE_ENV",
+    "VERCEL_URL",
     "NEXT_PUBLIC_VERCEL_URL",
     "NEXT_PUBLIC_BASE_URL",
     "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
@@ -8,7 +9,11 @@
     "PUSHER_KEY",
     "PUSHER_SECRET",
     "QSTASH_TOKEN",
-    "QSTASH_URL"
+    "QSTASH_URL",
+    "RESEND_API_KEY",
+    "WAITLIST_ID",
+    "WAITLIST_EMAIL",
+    "WAITLIST_SECRET"
   ],
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],

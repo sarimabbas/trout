@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "dev": "doppler run -- next dev",
+    "dev": "doppler run -- next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -33,7 +33,11 @@
     "reactflow": "^11.7.4",
     "tailwindcss": "3.3.3",
     "typescript": "^5.1.6",
-    "zod": "^3.21.4"
+    "zod": "^3.21.4",
+    "resend": "^0.17.2",
+    "@react-email/components": "0.0.6",
+    "@react-email/tailwind": "^0.0.8",
+    "react-email": "1.9.3"
   },
   "devDependencies": {
     "@clerk/clerk-sdk-node": "^4.12.1",
