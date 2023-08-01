@@ -20,24 +20,22 @@ export async function GET() {
   // find top waitlistees
   const waitlistees = await waitlist.getWaitlistees(accessToken, limit);
 
-  console.log({ waitlistees });
+  // offboard from waitlist
+  const offboarded = await waitlist.offboardWaitlistees(
+    accessToken,
+    waitlistees.map((w) => w.uuid)
+  );
 
-  // // offboard from waitlist
-  // const offboarded = await waitlist.offboardWaitlistees(
-  //   accessToken,
-  //   waitlistees.map((w) => w.uuid)
-  // );
+  // send them an email
+  const resendResponse = await resend.emails.send({
+    from: "Trout <hi@updates.trout.run>",
+    reply_to: "Trout <hi@trout.run>",
+    to: offboarded.map((w) => w.email),
+    subject: "Your invitation to Trout",
+    react: WaitlistOffboardEmail({}),
+  });
 
-  // // send them an email
-  // const resendResponse = await resend.emails.send({
-  //   from: "Trout <hi@updates.trout.run>",
-  //   reply_to: "Trout <hi@trout.run>",
-  //   to: offboarded.map((w) => w.email),
-  //   subject: "Your invitation to Trout",
-  //   react: WaitlistOffboardEmail({}),
-  // });
-
-  if (process.env.RUNTIME_ENV === "production") {
+  if (process.env.DEPLOYMENT_ENV === "production") {
     try {
       await fetch(process.env.HEARTBEAT_WAITLIST_OFFBOARD, {
         method: "POST",
@@ -54,5 +52,5 @@ export async function GET() {
     }
   }
 
-  return NextResponse.json({ hello: "world" });
+  return NextResponse.json({ resendResponse });
 }

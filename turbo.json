@@ -14,7 +14,7 @@
     "WAITLIST_ID",
     "WAITLIST_EMAIL",
     "WAITLIST_SECRET",
-    "RUNTIME_ENV",
+    "DEPLOYMENT_ENV",
     "HEARTBEAT_WAITLIST_OFFBOARD"
   ],
   "$schema": "https://turbo.build/schema.json",
