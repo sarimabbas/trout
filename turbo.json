@@ -13,7 +13,9 @@
     "RESEND_API_KEY",
     "WAITLIST_ID",
     "WAITLIST_EMAIL",
-    "WAITLIST_SECRET"
+    "WAITLIST_SECRET",
+    "RUNTIME_ENV",
+    "HEARTBEAT_WAITLIST_OFFBOARD"
   ],
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],

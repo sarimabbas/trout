@@ -35,5 +35,22 @@ export async function POST() {
     react: WaitlistOffboardEmail({}),
   });
 
+  if (process.env.RUNTIME_ENV === "production") {
+    try {
+      await fetch(process.env.HEARTBEAT_WAITLIST_OFFBOARD, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          status: "success",
+          message: `Offboarded ${offboarded.length} waitlistees`,
+        }),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   return NextResponse.json({ resendResponse });
 }
