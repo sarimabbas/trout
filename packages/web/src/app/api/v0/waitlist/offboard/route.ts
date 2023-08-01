@@ -45,7 +45,7 @@ export async function GET() {
         },
         body: JSON.stringify({
           status: "success",
-          message: `Offboarded ${0} waitlistees`,
+          message: `Offboarded ${waitlistees.length} waitlistees`,
         }),
       });
     } catch (e) {
