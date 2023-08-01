@@ -13,9 +13,10 @@ export async function GET() {
   // get waitlist metadata
   const metadata = await waitlist.getWaitlistMeta();
 
-  // offboard 20% of the waitlist during this run
+  // getwaitlist limit is 25 with pagination (resend limit is 50)
+  // so for simplicity, we'll just offboard min(20% of the waitlist, 25)
   const total = metadata.statistics.current_waiters;
-  const limit = Math.ceil(total * 0.2);
+  const limit = Math.min(Math.ceil(total * 0.2), 25);
 
   // find top waitlistees
   const waitlistees = await waitlist.getWaitlistees(accessToken, limit);
