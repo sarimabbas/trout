@@ -31,7 +31,8 @@ export async function GET() {
   const resendResponse = await resend.emails.send({
     from: "Trout <hi@updates.trout.run>",
     reply_to: "Trout <hi@trout.run>",
-    to: offboarded.map((w) => w.email),
+    to: "hi@trout.run",
+    bcc: offboarded.map((w) => w.email),
     subject: "Your invitation to Trout",
     react: WaitlistOffboardEmail({}),
   });
