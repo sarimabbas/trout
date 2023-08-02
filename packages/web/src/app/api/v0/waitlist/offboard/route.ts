@@ -22,20 +22,20 @@ export async function GET() {
   const waitlistees = await waitlist.getWaitlistees(accessToken, limit);
 
   // offboard from waitlist
-  const offboarded = await waitlist.offboardWaitlistees(
-    accessToken,
-    waitlistees.map((w) => w.uuid)
-  );
+  // const offboarded = await waitlist.offboardWaitlistees(
+  //   accessToken,
+  //   waitlistees.map((w) => w.uuid)
+  // );
 
-  // send them an email
-  const resendResponse = await resend.emails.send({
-    from: "Trout <hi@updates.trout.run>",
-    reply_to: "Trout <hi@trout.run>",
-    to: "hi@trout.run",
-    bcc: offboarded.map((w) => w.email),
-    subject: "Your invitation to Trout",
-    react: WaitlistOffboardEmail({}),
-  });
+  // // send them an email
+  // const resendResponse = await resend.emails.send({
+  //   from: "Trout <hi@updates.trout.run>",
+  //   reply_to: "Trout <hi@trout.run>",
+  //   to: "hi@trout.run",
+  //   bcc: offboarded.map((w) => w.email),
+  //   subject: "Your invitation to Trout",
+  //   react: WaitlistOffboardEmail({}),
+  // });
 
   if (process.env.DEPLOYMENT_ENV === "production") {
     try {
@@ -46,7 +46,7 @@ export async function GET() {
         },
         body: JSON.stringify({
           status: "success",
-          message: `Offboarded ${offboarded.length} waitlistees`,
+          message: `Offboarded ${0} waitlistees`,
         }),
       });
     } catch (e) {
@@ -54,5 +54,5 @@ export async function GET() {
     }
   }
 
-  return NextResponse.json({ resendResponse });
+  return NextResponse.json({ tmp: "tmp" });
 }
