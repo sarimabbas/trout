@@ -1,12 +1,22 @@
 import WaitlistOffboardEmail from "@/components/emails/waitlist-offboard";
+import { auth } from "@clerk/nextjs";
 import { waitlist } from "@trout.run/shared/isomorphic";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // runs as a cron job everyday via vercel.json
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const authHeader = request.headers.get("Authorization");
+  const cronSecret = authHeader?.replace("Bearer", "").trim();
+  if (process.env.CRON_SECRET !== cronSecret) {
+    return NextResponse.json({
+      message: "Unauthorized",
+      error: true,
+    });
+  }
+
   // get access token
   const accessToken = await waitlist.getAccessToken();
 

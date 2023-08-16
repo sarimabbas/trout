@@ -15,7 +15,8 @@
     "WAITLIST_EMAIL",
     "WAITLIST_SECRET",
     "DEPLOYMENT_ENV",
-    "HEARTBEAT_WAITLIST_OFFBOARD"
+    "HEARTBEAT_WAITLIST_OFFBOARD",
+    "CRON_SECRET"
   ],
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
