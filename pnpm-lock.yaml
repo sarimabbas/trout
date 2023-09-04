@@ -216,8 +216,8 @@ importers:
         specifier: ^18.2.7
         version: 18.2.7
       '@upstash/qstash':
-        specifier: ^0.3.6
-        version: 0.3.6
+        specifier: ^2.0.0
+        version: 2.0.0
       '@vercel/analytics':
         specifier: ^1.0.1
         version: 1.0.1
@@ -1162,10 +1162,6 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
-
-  /@deno/shim-crypto@0.3.1:
-    resolution: {integrity: sha512-ed4pNnfur6UbASEgF34gVxR9p7Mc3qF+Ygbmjiil8ws5IhNFhPDFy5vE5hQAUA9JmVsSxXPcVLM5Rf8LOZqQ5Q==}
-    dev: false
 
   /@edge-runtime/format@2.1.0:
     resolution: {integrity: sha512-gc2qbYEIIJRczBApBPznVI1c5vZgzrZQOsFZnAxxFiYah9qldHiu1YEitzSvXI8X8ZgvAguuIiyIbpWz17nlXA==}
@@ -6571,10 +6567,11 @@ packages:
       eslint-visitor-keys: 3.4.2
     dev: false
 
-  /@upstash/qstash@0.3.6:
-    resolution: {integrity: sha512-NKN4jbPhB5lfHoSIaU7AuQ3F+yGS20e/FBRiUuPetcKoi354wHhKj9AJFfkFT5SSeLq0XEsXRNynm8gqCS4HjQ==}
+  /@upstash/qstash@2.0.0:
+    resolution: {integrity: sha512-PvnzL2kUOGcK+QvAnd9piH+bQzWXCv2uv0+vnG1olREtQcaUgs6lO1SgpeT3n82OsnXtj/Z56ubOwWqWlMdzkA==}
     dependencies:
-      '@deno/shim-crypto': 0.3.1
+      crypto-js: 4.1.1
+      jose: 4.14.5
     dev: false
 
   /@vercel/analytics@1.0.1:
@@ -7805,6 +7802,10 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  /crypto-js@4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+    dev: false
 
   /css-selector-parser@1.4.1:
     resolution: {integrity: sha512-HYPSb7y/Z7BNDCOrakL4raGO2zltZkbeXyAd6Tg9obzix6QhzxCotdBl6VT0Dv4vZfJGVz3WL/xaEI9Ly3ul0g==}
@@ -10574,6 +10575,10 @@ packages:
 
   /jju@1.4.0:
     resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
+    dev: false
+
+  /jose@4.14.5:
+    resolution: {integrity: sha512-56ns1XlSI8d5V0t7hilPu8dMbE4YIwrTJU6e7bV1Abyu6oel4tSc4YmD742MoWV3U+vn7O0WlKpinzu2DP0HWw==}
     dev: false
 
   /joycon@3.1.1:
