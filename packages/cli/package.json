@@ -35,7 +35,7 @@
     "chalk": "^5.3.0",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",
-    "tsup": "^7.1.0",
+    "tsup": "^8.0.0",
     "typescript": "^5.0.3"
   }
 }
