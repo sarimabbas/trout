@@ -23,11 +23,11 @@
   "license": "ISC",
   "dependencies": {
     "@vercel/analytics": "^1.0.1",
-    "@xata.io/client": "^0.24.3",
+    "@xata.io/client": "^0.29.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@types/node": "20.4.2",
-    "@xata.io/cli": "^0.12.7"
+    "@types/node": "20.11.30",
+    "@xata.io/cli": "^0.15.0"
   }
 }
