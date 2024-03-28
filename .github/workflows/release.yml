@@ -21,10 +21,10 @@ jobs:
           node-version: 18.x
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2.2.4
+        uses: pnpm/action-setup@v2.4.0
 
       - name: Export all repo secrets (except GITHUB_TOKEN)
-        uses: oNaiPs/secrets-to-env-action@v1.3
+        uses: oNaiPs/secrets-to-env-action@v1.5
         with:
           secrets: ${{ toJSON(secrets) }}
 
