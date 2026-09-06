@@ -17,6 +17,7 @@ export default function Home() {
   return (
     <main className="container flex flex-col items-center gap-16 py-10 mx-auto text-center md:px-16 lg:px-32 xl:px-56">
       <Navbar />
+      <p className="text-sm text-gray-600">RIP — Trout is no longer running. Explore the demo, documentation, and source code below.</p>
       {/* headline */}
       <div className={cn("text-6xl text-blue-500 ", bungee.className)}>
         Webhooks 🎣 made easy
@@ -68,19 +69,19 @@ export default function Home() {
       </div>
       {/* cta */}
       <div className="flex items-center gap-4">
-        <Link href="https://getwaitlist.com/waitlist/8877">
+        <Link href="https://github.com/sarimabbas/trout">
           <Button
             size="lg"
             className="px-8 py-6 bg-blue-600 md:text-lg hover:bg-blue-500"
           >
-            Sign up
+            Source code
           </Button>
         </Link>
-        <Link href="https://docs.trout.run">
+        <a href="/docs/">
           <Button variant="secondary" className="px-8 py-6 md:text-lg">
             Read the docs
           </Button>
-        </Link>
+        </a>
       </div>
       {/* footer */}
       <div className="flex flex-col items-center gap-4">

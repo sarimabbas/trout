@@ -11,14 +11,12 @@ export const Navbar = () => {
       </TypographyH3>
       <ul className="flex items-center gap-4">
         <li>
-          <Link href="https://getwaitlist.com/waitlist/8877" legacyBehavior>
-            <TypographyLink>Sign up</TypographyLink>
+          <Link href="https://github.com/sarimabbas/trout" legacyBehavior>
+            <TypographyLink>Source code</TypographyLink>
           </Link>
         </li>
         <li>
-          <Link href="https://docs.trout.run" legacyBehavior>
-            <TypographyLink>Docs</TypographyLink>
-          </Link>
+          <a href="/docs/" className="font-medium underline underline-offset-4">Docs</a>
         </li>
       </ul>
     </div>

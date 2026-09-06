@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
+  images: { unoptimized: true },
   reactStrictMode: true,
-  transpilePackages: ["@trout.run/shared"],
-  experimental: {
-    serverActions: true,
-  },
 };
 
 export default nextConfig;
