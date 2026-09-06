@@ -6,6 +6,8 @@ import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://trout.lil.run",
+  base: "/docs",
   integrations: [
     starlight({
       head: [
@@ -49,23 +51,11 @@ export default defineConfig({
           items: [
             {
               label: "🏠 Landing page",
-              link: "https://trout.run",
+              link: "https://trout.lil.run",
             },
             {
               label: "🤖 GitHub",
               link: "https://github.com/sarimabbas/trout",
-            },
-            {
-              label: "💬 Submit feedback",
-              link: "https://trout.canny.io",
-            },
-            {
-              label: "🗺️ Roadmap",
-              link: "https://trout.canny.io",
-            },
-            {
-              label: "🪵 Changelog",
-              link: "https://trout.canny.io/changelog",
             },
           ],
         },

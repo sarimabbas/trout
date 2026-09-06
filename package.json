@@ -1,6 +1,8 @@
 {
   "private": true,
   "scripts": {
+    "install:site": "corepack pnpm@8.6.7 --filter @trout.run/marketing --filter @trout.run/docs --filter eslint-config-custom --filter tsconfig install --config.shared-workspace-lockfile=false --frozen-lockfile",
+    "build:site": "corepack pnpm@8.6.7 --filter @trout.run/marketing --filter @trout.run/docs build && node scripts/assemble-site.mjs && node scripts/check-site.mjs",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",

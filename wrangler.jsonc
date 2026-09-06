@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "trout",
+  "account_id": "f7df7fafe5b4e9d4e0446100575c0bf4",
+  "compatibility_date": "2026-09-05",
+  "assets": { "directory": "./dist", "not_found_handling": "404-page" },
+  "routes": [{ "pattern": "trout.lil.run", "custom_domain": true }]
+}
